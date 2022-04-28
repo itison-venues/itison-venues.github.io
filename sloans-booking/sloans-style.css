@@ -16,9 +16,7 @@ body {
     background:
  
         linear-gradient(180deg, rgba(5,51,39,.5) 0%, rgba(5,51,39,.5) 100%), url("https://itison-venues.github.io/sloans-booking/images/bar-2.jpg") center center no-repeat !important;
-        width:100%!important;
-    height:100%!important;
-    background-size: cover!important;
+
 }
 
 
