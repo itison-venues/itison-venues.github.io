@@ -6,9 +6,9 @@
     height: 200px !important;
 }
 
-
-
-
+.header-row {
+    background-color: transparent!important;
+}
 
 body {
     background:
