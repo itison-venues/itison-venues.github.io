@@ -1,0 +1,117 @@
+.header-row,
+.header-row-partner {
+    background: url("https://itison-venues.github.io/elfingrove-booking/images/elfingrove-logo.png") center center no-repeat;
+    height: 200px !important;
+    background-size: contain;
+}
+
+.header-row {
+    background-color: transparent!important;
+}
+
+body {
+    background: linear-gradient(180deg, #0F236A, #5471D9) !important;
+}
+
+
+.footer, .secondary{
+    visibility: hidden;
+}
+
+.top-border {
+    margin-bottom: 200px !important;
+    background-color: #1a1a1a !important;
+}
+
+
+.well {
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: transparent !important;
+    border: none !important;
+    border-radius: 3px;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+
+}
+
+.stage {
+    background-color: rgba(255,255,255,0.85);
+    padding: 20px;
+    margin: auto;
+    border-radius: 5px;
+}
+
+.required-label {
+    color: #1a1a1a !important;
+}
+
+
+.logo img,
+h2 {
+    display: none;
+}
+
+.intro-content {
+    padding-top: 20px;
+}
+
+.alert, .alert-warning p {
+    color:#1a1a1a !important;
+    font-weight: 500;
+}
+
+p,
+.center-block {
+    color: #1a1a1a !important;
+    font-weight:700px;
+}
+
+.control-label,
+a,
+body {
+    color: #1a1a1a !important;
+}
+a {
+    font-weight: 700;
+}
+
+.alert-warning {
+    /* background-color: #fdd09e !important; */
+    /* border-color: #fdd09e !important; */
+
+    background-color: transparent !important;
+    border-color: transparent !important;
+    color: #1a1a1a !important;
+}
+
+
+.btn-lg {
+
+    color: #fff;
+    background-color: #1a1a1a !important;
+    border-color: #1a1a1a !important;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active,
+.btn-primary.active,
+.open>.btn-primary.dropdown-toggle,
+.btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active, .btn-secondary.active, .open > .btn-secondary.dropdown-toggle {
+    color: #fff;
+    background-color: #1a1a1a !important;
+    border-color: #1a1a1a !important;
+
+
+
+}
+
+@media (min-width: 1200px) {
+    .col-lg-6 {
+        width: 75%!important;
+      }
+.col-lg-offset-3 {
+  margin-left: 12.5%!important;
+}}
