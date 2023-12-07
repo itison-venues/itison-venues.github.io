@@ -3,7 +3,7 @@
     background:
     
         url("https://itison-venues.github.io/sloans-booking/images/white-logo.png") center center no-repeat;
-    height: 2000px !important;
+    height: 200px !important;
 }
 
 .header-row {
@@ -42,7 +42,7 @@ body {
 
 .stage {
     background-color: rgba(255,255,255,0.85);
-    padding: 200px;
+    padding: 20px;
     margin: auto;
     border-radius: 5px;
 }
