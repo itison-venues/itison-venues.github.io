@@ -1,18 +1,13 @@
-:root {
-    --red:                  #DB4439;
-    --cream:                #FAF4DC;
-    --white:                #FFFFFF;
-    --black:                #1a1a1a;
-    --transparent:          rgba(250, 244, 220, 0.4);
-}
 .header-row,
 .header-row-partner {
-    background: url("https://images.squarespace-cdn.com/content/58f7443403596edd09d4e1e7/ae103ab2-dd49-4c82-b07a-84568788eb36/Maggies+Text+Logo+%28Horns%29%404x.png?content-type=image%2Fpng") center center no-repeat;
-    height: 200px !important;
+    background: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/eaad3147-a746-4954-a694-91c3e12c9301/Brel+Logo+-+White.png?content-type=image%2Fpng") center center no-repeat;
     height: 20vh !important;
     background-size:contain ; /* Try changing this to cover */
     margin-top: 2.5vh;
     margin-bottom: 2.5vh;
+    /*  BACKUP 
+        url("https://images.squarespace-cdn.com/content/v1/595350c4bebafb54f3d494a2/1498640078994-BQZ4MDCLAXCCN61IHT9K/Brel.png?format=350w") center center no-repeat;
+    height: 200px !important;*/
 }
 
 .header-row {
@@ -20,15 +15,17 @@
 }
 
 
-body {
-    background: #FAF4DC;
 
-    /* BACKUP
+body {
+
+    /* IMAGE BACKGROUND 
     background:
- 
-        linear-gradient(180deg, rgba(5,51,39,.5) 0%, rgba(5,51,39,.5) 100%), url("https://itison-venues.github.io/sloans-booking/images/bar-2.jpg") center center no-repeat !important;
-*/
+    linear-gradient(360deg, rgba(248,83,114,0.4) 0%, rgba(93,164,174,0.4) 100%), url("https://images.squarespace-cdn.com/content/v1/595350c4bebafb54f3d494a2/1506088083004-9D0BS4VHZHUWJFO7JX9T/Garden+3.jpg") center center no-repeat !important;
+    */
+
+    background: #72a8af;
 }
+
 
 .footer, .secondary{
     visibility: hidden;
@@ -36,7 +33,7 @@ body {
 
 .top-border {
     margin-bottom: 200px !important;
-    background-color: #FAF4DC !important;
+    background-color: #72a8af !important;
 }
 
 
@@ -53,14 +50,14 @@ body {
 }
 
 .stage {
-    background-color: var(--red);
+    background-color: rgba(255,255,255,0.85);
     padding: 20px;
     margin: auto;
     border-radius: 5px;
 }
 
 .required-label {
-    color: #FAF4DC !important;
+    color: #72a8af;
 }
 
 
@@ -74,23 +71,20 @@ h2 {
 }
 
 .alert, .alert-warning p {
-    color:#FAF4DC !important;
+    color:#72a8af !important;
     font-weight: 500;
 }
 
 p,
 .center-block {
-    color: #FAF4DC!important;
+    color: #72a8af !important;
     font-weight:700px;
 }
 
 .control-label,
 a,
 body {
-    color: #FAF4DC !important;
-}
-a {
-    font-weight: 700;
+    color: #72a8af !important;
 }
 
 .alert-warning {
@@ -99,13 +93,15 @@ a {
 
     background-color: transparent !important;
     border-color: transparent !important;
-    color: #FAF4DC !important;
+    color: #72a8af !important;
 }
+
+
 .btn-lg {
-    color: var(--red);
-    font-weight: 600;
-    background-color: #FAF4DC !important;
-    border-color: #FAF4DC !important;
+
+    color: #fff;
+    background-color: #72a8af !important;
+    border-color: #72a8af !important;
 }
 
 .btn-primary:hover,
@@ -114,16 +110,26 @@ a {
 .btn-primary.active,
 .open>.btn-primary.dropdown-toggle,
 .btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active, .btn-secondary.active, .open > .btn-secondary.dropdown-toggle {
-    color: var(--black);
-    background-color: #FAF4DC !important;
-    border-color: #FAF4DC !important;
+    color: #fff;
+    background-color: #C44159 !important;
+    border-color: #C44159 !important;
+
+
+
 }
 
 @media (min-width: 1200px) {
-        .col-lg-6 {
-            width: 75%!important;
-        }
-    .col-lg-offset-3 {
-    margin-left: 12.5%!important;
+    .col-lg-6 {
+        width: 75%!important;
+      }
+.col-lg-offset-3 {
+  margin-left: 12.5%!important;
+}}
+
+@media only screen and (max-width: 500px) {
+
+    .header-row,
+    .header-row-partner {
+        background-size: contain;
     }
 }

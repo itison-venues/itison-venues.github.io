@@ -1,43 +1,43 @@
+:root {
+    --red:                  #DB4439;
+    --cream:                #FAF4DC;
+    --white:                #FFFFFF;
+    --black:                #1a1a1a;
+    --transparent:          rgba(250, 244, 220, 0.4);
+}
+
 .header-row,
 .header-row-partner {
-
     background: url("https://images.squarespace-cdn.com/content/58f7443403596edd09d4e1e7/ae103ab2-dd49-4c82-b07a-84568788eb36/Maggies+Text+Logo+%28Horns%29%404x.png?content-type=image%2Fpng") center center no-repeat;
     height: 200px !important;
-    
-    /* BACKUP 
-    background:
-        url("https://itison-venues.github.io/maggies-booking/images/logo.png") center center no-repeat;
-    
-}*/
+    height: 20vh !important;
+    background-size:contain ; /* Try changing this to cover */
+    margin-top: 2.5vh;
+    margin-bottom: 2.5vh;
+}
 
 .header-row {
-    background-color: transparent !important;
+    background-color: transparent!important;
 }
 
 
 body {
-    background-color: #FAF4DC;
+    background: #FAF4DC;
+
+    /* BACKUP
+    background:
+ 
+        linear-gradient(180deg, rgba(5,51,39,.5) 0%, rgba(5,51,39,.5) 100%), url("https://itison-venues.github.io/sloans-booking/images/bar-2.jpg") center center no-repeat !important;
+*/
 }
 
-
-/*
-body {
-    background: linear-gradient(180deg, rgba(235, 0, 0, .5) 0%, rgba(235, 0, 0, .15) 100%), url("https://itison-venues.github.io/maggies-booking/images/bg-1.jpeg") center center no-repeat !important;
-    background-size: cover !important;
-    width: 100% !important;
-    height: 100% !important;
-
-}*/
-
-
-.footer,
-.secondary {
+.footer, .secondary{
     visibility: hidden;
 }
 
 .top-border {
     margin-bottom: 200px !important;
-    background-color: #eb0000 !important;
+    background-color: #FAF4DC !important;
 }
 
 
@@ -54,14 +54,14 @@ body {
 }
 
 .stage {
-    background-color: rgba(0, 0, 0, 0.85);
+    background-color: var(--red);
     padding: 20px;
     margin: auto;
     border-radius: 5px;
 }
 
 .required-label {
-    color: #eb0000 !important;
+    color: #FAF4DC !important;
 }
 
 
@@ -74,24 +74,22 @@ h2 {
     padding-top: 20px;
 }
 
-.alert,
-.alert-warning p {
-    color: #fff !important;
+.alert, .alert-warning p {
+    color:#FAF4DC !important;
     font-weight: 500;
 }
 
 p,
 .center-block {
-    color: #fff !important;
-    font-weight: 700px;
+    color: #FAF4DC!important;
+    font-weight:700px;
 }
 
 .control-label,
 a,
 body {
-    color: #eb0000 !important;
+    color: #FAF4DC !important;
 }
-
 a {
     font-weight: 700;
 }
@@ -102,15 +100,13 @@ a {
 
     background-color: transparent !important;
     border-color: transparent !important;
-    color: #eb0000 !important;
+    color: #FAF4DC !important;
 }
-
-
 .btn-lg {
-
-    color: #fff;
-    background-color: #eb0000 !important;
-    border-color: #eb0000 !important;
+    color: var(--red);
+    font-weight: 600;
+    background-color: #FAF4DC !important;
+    border-color: #FAF4DC !important;
 }
 
 .btn-primary:hover,
@@ -118,33 +114,17 @@ a {
 .btn-primary:active,
 .btn-primary.active,
 .open>.btn-primary.dropdown-toggle,
-.btn-secondary:hover,
-.btn-secondary:focus,
-.btn-secondary:active,
-.btn-secondary.active,
-.open>.btn-secondary.dropdown-toggle {
-    color: #fff;
-    background-color: #6B0000 !important;
-    border-color: #6B0000 !important;
-
-
-
+.btn-secondary:hover, .btn-secondary:focus, .btn-secondary:active, .btn-secondary.active, .open > .btn-secondary.dropdown-toggle {
+    color: var(--black);
+    background-color: #FAF4DC !important;
+    border-color: #FAF4DC !important;
 }
 
 @media (min-width: 1200px) {
-    .col-lg-6 {
-        width: 75% !important;
-    }
-
+        .col-lg-6 {
+            width: 75%!important;
+        }
     .col-lg-offset-3 {
-        margin-left: 12.5% !important;
-    }
-}
-
-@media only screen and (max-width: 1060px) {
-
-    .header-row,
-    .header-row-partner {
-        background-size: contain;
+    margin-left: 12.5%!important;
     }
 }
