@@ -3,7 +3,8 @@
     background: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/eaad3147-a746-4954-a694-91c3e12c9301/Brel+Logo+-+White.png?content-type=image%2Fpng") center center no-repeat;
     height: 20vh !important;
     background-size:contain ; /* Try changing this to cover */
-    margin-top: 5vh;
+    margin-top: 2.5vh;
+    margin-bottom: 2.5vh;
     /*  BACKUP 
         url("https://images.squarespace-cdn.com/content/v1/595350c4bebafb54f3d494a2/1498640078994-BQZ4MDCLAXCCN61IHT9K/Brel.png?format=350w") center center no-repeat;
     height: 200px !important;*/
