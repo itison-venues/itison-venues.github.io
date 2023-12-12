@@ -12,10 +12,17 @@
 
 
 body {
+
+    
+
+    background: #0c6666
+ 
+
+    /* BACKUP
     background:
  
         linear-gradient(180deg, rgba(5,51,39,.5) 0%, rgba(5,51,39,.5) 100%), url("https://itison-venues.github.io/sloans-booking/images/bar-2.jpg") center center no-repeat !important;
-
+*/
 }
 
 .footer, .secondary{
@@ -24,7 +31,7 @@ body {
 
 .top-border {
     margin-bottom: 200px !important;
-    background-color: #053327 !important;
+    background-color: #0c6666 !important;
 }
 
 
@@ -48,7 +55,7 @@ body {
 }
 
 .required-label {
-    color: #053327 !important;
+    color: #0c6666 !important;
 }
 
 
@@ -75,7 +82,7 @@ p,
 .control-label,
 a,
 body {
-    color: #053327 !important;
+    color: #0c6666 !important;
 }
 a {
     font-weight: 700;
@@ -87,14 +94,14 @@ a {
 
     background-color: transparent !important;
     border-color: transparent !important;
-    color: #053327 !important;
+    color: #0c6666 !important;
 }
 
 .btn-lg {
 
     color: #fff;
-    background-color: #053327 !important;
-    border-color: #053327 !important;
+    background-color: #0c6666 !important;
+    border-color: #0c6666 !important;
 }
 
 .btn-primary:hover,
