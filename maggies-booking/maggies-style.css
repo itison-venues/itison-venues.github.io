@@ -1,24 +1,33 @@
 .header-row,
 .header-row-partner {
-    background:
 
-        url("https://itison-venues.github.io/maggies-booking/images/logo.png") center center no-repeat;
+    background: url("https://images.squarespace-cdn.com/content/58f7443403596edd09d4e1e7/ae103ab2-dd49-4c82-b07a-84568788eb36/Maggies+Text+Logo+%28Horns%29%404x.png?content-type=image%2Fpng") center center no-repeat;
     height: 200px !important;
-}
+    
+    /* BACKUP 
+    background:
+        url("https://itison-venues.github.io/maggies-booking/images/logo.png") center center no-repeat;
+    
+}*/
 
 .header-row {
     background-color: transparent !important;
 }
 
 
+body {
+    background-color: #FAF4DC;
+}
 
+
+/*
 body {
     background: linear-gradient(180deg, rgba(235, 0, 0, .5) 0%, rgba(235, 0, 0, .15) 100%), url("https://itison-venues.github.io/maggies-booking/images/bg-1.jpeg") center center no-repeat !important;
     background-size: cover !important;
     width: 100% !important;
     height: 100% !important;
 
-}
+}*/
 
 
 .footer,
