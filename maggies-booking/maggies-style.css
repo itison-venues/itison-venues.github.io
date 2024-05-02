@@ -54,10 +54,11 @@ body {
 }
 
 .stage {
-    background-color: var(--red);
+    /*background-color: var(--red);*/
     padding: 20px;
     margin: auto;
     border-radius: 5px;
+    border: 2px solid var(--red);
 }
 
 .required-label {
