@@ -65,6 +65,9 @@ body {
     color: #FAF4DC !important;
 }
 
+.ng-binding.ng-scope {
+    display: none;
+  }
 
 .col-sm-12 {
     pointer-events: none;
