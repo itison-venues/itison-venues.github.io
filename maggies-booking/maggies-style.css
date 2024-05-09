@@ -66,6 +66,25 @@ body {
 }
 
 
+.col-sm-12 {
+    pointer-events: none;
+}
+
+/* Hide the default arrow */
+select#type {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: none;
+  }
+  
+  /* Add a custom arrow if needed */
+  select#type::-ms-expand {
+    display: none;
+  }
+
+
+
 .logo img,
 h2 {
     display: none;
@@ -76,9 +95,15 @@ h2 {
 }
 
 .alert, .alert-warning p {
-    color:#FAF4DC !important;
+    color:var(--red) !important;
     font-weight: 500;
 }
+
+.alert-danger {
+    background-color: var(--cream);
+}
+
+
 
 p,
 .center-block {
