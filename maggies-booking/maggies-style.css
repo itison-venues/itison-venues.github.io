@@ -65,6 +65,11 @@ body {
     color: #FAF4DC !important;
 }
 
+a.ng-binding.ng-scope[ng-click*="screenOptions.showBookingDetailsForm"] {
+    display: none;
+  }
+  
+
 
 .col-sm-12 {
     pointer-events: none;
