@@ -81,6 +81,7 @@ select#type {
     -webkit-appearance: none;
     -moz-appearance: none;
     background-image: none;
+    padding-top:0;
   }
   
   /* Add a custom arrow if needed */
