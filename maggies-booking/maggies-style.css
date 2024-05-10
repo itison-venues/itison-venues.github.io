@@ -56,8 +56,9 @@ body {
 .stage {
     background-color: var(--red);
     padding: 20px;
-    height: 60vh;
-    margin: auto;
+    height: auto;
+    overflow: overlay;
+    margin: 1px;
     border-radius: 5px;
     border: 2px solid var(--red);
 }
