@@ -64,13 +64,13 @@ body {
 .required-label {
     color: #FAF4DC !important;
 }
-
+/*
 a.ng-binding.ng-scope[ng-click*="screenOptions.showBookingDetailsForm"] {
     display: none;
-  }
+  }*/
   
-  .ng-binding {
-    color: var(--cream);
+  .ng-binding p {
+    color: var(--cream) !important;
 }
 
 
