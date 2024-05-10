@@ -69,6 +69,11 @@ a.ng-binding.ng-scope[ng-click*="screenOptions.showBookingDetailsForm"] {
     display: none;
   }
   
+  .ng-binding {
+    color: var(--cream);
+}
+
+
 
 
   #type {
