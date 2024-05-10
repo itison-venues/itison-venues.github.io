@@ -107,8 +107,15 @@ h2 {
 }
 
 .alert, .alert-warning p {
-    color:var(--red) !important;
+    /*color:var(--red) !important;
+    font-weight: 500;*/
+
+    color: var(--cream);
     font-weight: 500;
+    border: 1px solid var(--cream);
+    padding: 10px;
+    background: var(--red) !important;
+
 }
 
 .alert-danger {
