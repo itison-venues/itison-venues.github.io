@@ -1,3 +1,9 @@
+/* removes "change" button */
+a[ng-if="!isLinkedBookings()"][ng-click*="showBookingDetailsForm"].ng-binding.ng-scope {
+ color: #ebf3f4 !important;
+}
+
+
 .header-row,
 .header-row-partner {
     background: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/eaad3147-a746-4954-a694-91c3e12c9301/Brel+Logo+-+White.png?content-type=image%2Fpng") center center no-repeat;
