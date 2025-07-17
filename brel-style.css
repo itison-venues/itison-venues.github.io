@@ -1,6 +1,8 @@
 /* removes "change" button */
 a[ng-if="!isLinkedBookings()"][ng-click*="showBookingDetailsForm"].ng-binding.ng-scope {
  color: #ebf3f4 !important;
+ display: none !important;
+ visibility: hidden !important;
 }
 
 
