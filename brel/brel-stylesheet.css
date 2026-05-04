@@ -38,10 +38,11 @@
 
     /* ---------- FONTS ---------- */
     @font-face {
-        font-family:    'CaviarDreamsBold';
-        src:            url('https://static1.squarespace.com/static/595350c4bebafb54f3d494a2/t/63da4391d52f796a41a566dc/1675248529107/CaviarDreams_Bold.ttf') format('truetype');
-        font-weight:    bold;
-        font-style:     normal;
+      font-family: 'CaviarDreamsBold';
+      src: url('https://cdn.jsdelivr.net/gh/itison-venues/itison-venues.github.io@main/fonts/CaviarDreams_Bold.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
     }
 
 
