@@ -37,13 +37,13 @@
     .black      {color: var(--black);}
 
     /* ---------- FONTS ---------- */
-    @font-face {
-      font-family: 'CaviarDreamsBold';
-      src: url('https://cdn.jsdelivr.net/gh/itison-venues/itisonvenues.github.io@main/brel/fonts/CaviarDreams_Bold.ttf') format('truetype');
-      font-weight: 700;
-      font-style: normal;
-      font-display: swap;
-    }
+@font-face {
+  font-family: 'CaviarDreamsBold';
+  src: url('https://cdn.jsdelivr.net/gh/itison-venues/itisonvenues.github.io@main/brel/fonts/CaviarDreams_Bold.ttf') format('truetype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
 
 
