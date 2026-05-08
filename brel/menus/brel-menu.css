@@ -164,8 +164,10 @@
     PROMO BANNERS
     =========================================================== */
 
-        /* moules monday */
-
+.moules-monday-container {
+  column-span: all;
+  break-inside: avoid;
+}
 
         .moules-monday-top{
         display: flex;
@@ -291,76 +293,28 @@
             height: 100%;
         }
 
-        /* ----------- IMAGES -----------*/
-
-        /* FOOD */
-            /* SMALL */
-            .img-small-1 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/2818e08b-c77b-4c03-b427-b9a155a2f7ce/Brel+Landscape+-+transparent+bg-min+%281%29.png?content-type=image%2Fpng");}
-            .img-small-2 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/2818e08b-c77b-4c03-b427-b9a155a2f7ce/Brel+Landscape+-+transparent+bg-min+%281%29.png?content-type=image%2Fpng");}
-
-            /* POUTINES */
-            .img-poutine-1 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/e3e8dc41-46d2-488c-bc68-26acb6c139ed/Poutine+2.jpg?content-type=image%2Fjpeg");}
-
-            /* BIGS */ 
-            .img-big-1 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/d065ecb5-5435-46cd-90a1-cf8708135886/Moules+1.jpg?content-type=image%2Fjpeg");}
-            .img-big-2 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/415ac0ea-1c07-4911-82c8-cf63534f9456/Chicken+Schnitzel+1.jpg?content-type=image%2Fjpeg");}
-            .img-big-3 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/5fb949dc-e18e-4ac1-b1ee-0698cbd1a886/Savoury+Fondue+1.jpg?content-type=image%2Fjpeg");}
-            .img-big-4 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/8f160179-ee3a-4c77-bade-604929f429d3/Savoury+Fondue+7.jpg?content-type=image%2Fjpeg");}
-            .img-big-5 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/021652c6-908c-4e3d-8023-2d05ac920cbd/Savoury+Fondue+29.jpg?content-type=image%2Fjpeg");}
-
-            /* BREADS */
-            .img-bread-1 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/2818e08b-c77b-4c03-b427-b9a155a2f7ce/Brel+Landscape+-+transparent+bg-min+%281%29.png?content-type=image%2Fpng");}
-            .img-bread-2 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/2818e08b-c77b-4c03-b427-b9a155a2f7ce/Brel+Landscape+-+transparent+bg-min+%281%29.png?content-type=image%2Fpng");}
-
-            /* SIDES */
-            .img-side-1 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/2818e08b-c77b-4c03-b427-b9a155a2f7ce/Brel+Landscape+-+transparent+bg-min+%281%29.png?content-type=image%2Fpng");}
-            .img-side-2 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/2818e08b-c77b-4c03-b427-b9a155a2f7ce/Brel+Landscape+-+transparent+bg-min+%281%29.png?content-type=image%2Fpng");}
-
-            /* DESSERTS */
-            .img-dessert-1 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/2818e08b-c77b-4c03-b427-b9a155a2f7ce/Brel+Landscape+-+transparent+bg-min+%281%29.png?content-type=image%2Fpng");}
-            .img-dessert-2 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/2818e08b-c77b-4c03-b427-b9a155a2f7ce/Brel+Landscape+-+transparent+bg-min+%281%29.png?content-type=image%2Fpng");}
-
-        /* DRINK */
-
-            /* BIERS */ 
-            .img-bier-1 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/0c179757-8d94-4561-930c-4005b5e692f5/Bier+15.jpg?content-type=image%2Fjpeg");}
-            .img-bier-2 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/be347858-1b15-40b8-a168-4c3d938b069f/Bier+3.jpg?content-type=image%2Fjpeg");}
-            .img-bier-3 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/bc0c50a6-710d-47bb-affb-76dc3b2ca07d/Bier+5.jpg?content-type=image%2Fjpeg");}
-            .img-bier-4 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/e842b82e-426d-4ddd-9698-dd625e1ab5f2/Bier+2.jpg?content-type=image%2Fjpeg");}
-            .img-bier-5 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/113f3d84-679d-4f87-addb-62a305f343cf/Bier+4.jpg?content-type=image%2Fjpeg");}
-            .img-bier-6 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/113f3d84-679d-4f87-addb-62a305f343cf/Bier+4.jpg?content-type=image%2Fjpeg");}
-
-            /* COCKTAILS */ 
-            .img-cocktail-1 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/4d6eeabe-587c-4d6a-b474-b704085d336d/Cocktails+4.jpg?content-type=image%2Fjpeg");}
-            .img-cocktail-2 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/581bd327-26b5-42b9-a18b-28a65adec1bb/Cocktails+14.jpg?content-type=image%2Fjpeg");}
-            .img-cocktail-3 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/9399f93f-4f03-4e1b-b71d-bb3e1a6b2aab/Cocktails+17.jpg?content-type=image%2Fjpeg");}
-            .img-cocktail-4 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/ef7dbb4f-4569-47a5-ab39-18800e3e6360/Cocktails+13.jpg?content-type=image%2Fjpeg");}
-
-            /* SPIRITS */ 
-            .img-spirits-1 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/d065ecb5-5435-46cd-90a1-cf8708135886/Moules+1.jpg?content-type=image%2Fjpeg");}
-            .img-spirits-2 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/415ac0ea-1c07-4911-82c8-cf63534f9456/Chicken+Schnitzel+1.jpg?content-type=image%2Fjpeg");}
-            .img-spirits-3 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/5fb949dc-e18e-4ac1-b1ee-0698cbd1a886/Savoury+Fondue+1.jpg?content-type=image%2Fjpeg");}
-            .img-spirits-4 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/8f160179-ee3a-4c77-bade-604929f429d3/Savoury+Fondue+7.jpg?content-type=image%2Fjpeg");}
-            .img-spirits-5 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/8f160179-ee3a-4c77-bade-604929f429d3/Savoury+Fondue+7.jpg?content-type=image%2Fjpeg");}
-
-            /* WINE */ 
-            .img-wine-1 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/d065ecb5-5435-46cd-90a1-cf8708135886/Moules+1.jpg?content-type=image%2Fjpeg");}
-            .img-wine-2 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/415ac0ea-1c07-4911-82c8-cf63534f9456/Chicken+Schnitzel+1.jpg?content-type=image%2Fjpeg");}
-            .img-wine-3 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/5fb949dc-e18e-4ac1-b1ee-0698cbd1a886/Savoury+Fondue+1.jpg?content-type=image%2Fjpeg");}
-
-            /* SOFT & HOT */ 
-            .img-soft-1 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/d065ecb5-5435-46cd-90a1-cf8708135886/Moules+1.jpg?content-type=image%2Fjpeg");}
-            .img-soft-2 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/415ac0ea-1c07-4911-82c8-cf63534f9456/Chicken+Schnitzel+1.jpg?content-type=image%2Fjpeg");}
-
-
         /* ---------------------------- */ 
-        .content-column { min-width: 0; }
+        .content-column { 
+          min-width: 0; 
+          column-count: 2;
+          column-gap: 44px;
+        }
 
         .menu-item {
             border-bottom: 1px solid rgba(0, 0, 0, 0.18);
             margin-top: 1rem;
             padding: 16px 0px 16px 0px;
         }
+
+        .menu-item, .category h3 {
+          break-inside: avoid;
+        }
+
+        @media (max-width: 820px) {
+  .content-column {
+    column-count: 1;
+  }
+}
 
         .item-row{
             display:flex;
