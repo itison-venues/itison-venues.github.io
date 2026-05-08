@@ -1,1 +1,1780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Menu</title>
 
+    <style>
+
+    /* ========== GENERAL ========== */
+        :root {
+            --rule: rgba(0, 0, 0, 0.18);
+
+            --paper: #f6efe5;
+            --cream: #f6efe5;
+            --teal: #007a8d;
+            --black: #1a1a1a;
+
+            --ssHeaderH: 0px;
+
+            --stickyH: 120px;
+            --stickyActualH: var(--stickyH);
+
+            --navGutter: 100px;  /* the 50px you want */
+            --navFadeW: 108px;   /* width of the fade */   
+        }
+
+        * { box-sizing: border-box; }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: calc(var(--ssHeaderH) + var(--stickyActualH));
+        }
+
+        body {
+            font-family: "Roboto", system-ui, -apple-system, Segoe UI, Arial, sans-serif;
+            margin: 0;
+            background: var(--paper);
+            color: var(--black);
+        }
+
+        .menu-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 18px 18px 64px;
+        }
+
+    /* ========== TEXT ========== */
+        .small-blue-text {
+            color: var(--teal);
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+    /* ========== STICKY NAV ========== */
+        .nav-bar {
+            position: sticky;
+            top: var(--ssHeaderH);
+            z-index: 9999;
+            background: #f9f3ea;
+            padding: 32px 0 32px;
+            border: 2px solid var(--teal);
+            border-radius: 8px;
+        }
+
+        .menu-toggle-wrap {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 18px;
+        }
+
+        .menu-segmented{
+            --toggleBorder: rgba(0,0,0,0.45);
+            display: inline-grid;
+            grid-auto-flow: column;
+            align-items: center;
+            border: 1px solid var(--toggleBorder);
+            border-radius: 999px;
+            padding: 3px;
+            background: transparent;
+            gap: 0;
+        }
+
+        .menu-segmented__input{
+            position: absolute;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .menu-segmented__btn{
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 34px;
+            border-radius: 999px;
+            cursor: pointer;
+            user-select: none;
+            font-weight: 800;
+            font-size: 0.9rem;
+            color: var(--black);
+            line-height: 1;
+            border: 2px solid transparent;
+            background: transparent;
+        }
+
+        .menu-segmented__input:checked + .menu-segmented__btn{
+            border-color: var(--teal)
+        }
+
+        @media (max-width: 520px){
+            .menu-segmented__btn{ padding: 10px 24px; }
+        }
+
+    /* ========== NAV BUTTONS ========== */
+.nav-buttons{
+  display: flex;
+  justify-content: center;
+  gap: 1.1rem;
+  flex-wrap: wrap;
+  margin: 12px 0 0;
+  align-items: center;
+}
+
+.nav-buttons a{
+  display: inline-block;
+  padding: 8px 0;
+  border: 0;
+  background: transparent;
+  border-radius: 0;
+
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: var(--teal);
+
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-thickness: 2px;
+  text-decoration-color: rgba(0, 122, 141, 0.55);
+
+  transition: opacity 0.2s ease, text-decoration-color 0.2s ease;
+}
+
+.nav-buttons a:hover{
+  text-decoration-color: var(--teal);
+}
+
+.nav-buttons a.active{
+  text-decoration-color: var(--teal);
+  text-decoration-thickness: 3px;
+}
+
+/* MOBILE horizontal scroll row (keep your previous mobile rules, but ensure these exist) */
+@media (max-width: 820px){
+  .nav-buttons{
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    justify-content: flex-start;
+    gap: 16px;
+    padding: 0 14px;
+  }
+
+  .nav-buttons::-webkit-scrollbar{ display:none; }
+  .nav-buttons{ scrollbar-width:none; }
+
+  .nav-buttons a,
+  .nav-specials{ flex: 0 0 auto; }
+}
+
+    /* ===========================================================
+    PROMO BANNERS
+    =========================================================== */
+
+        /* moules monday */
+
+
+        .moules-monday-top{
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        }
+
+        /* 50/50 columns */
+        .moules-image{
+        position: relative;
+        flex: 1 1 0;
+        padding-right: 20px; /* space for the divider */
+        }
+
+        .content{
+        flex: 1 1 0;
+        display: grid;
+        gap: 25px;
+        }
+
+        .item-details {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* image scales within its 50% column */
+        .moules-image img{
+        width: 100%;
+        max-width: 300px; /* optional cap so it doesn't get huge */
+        height: auto;
+        display: block;
+        margin: 0 auto;
+        }
+
+        /* vertical divider 
+        .moules-image::after{
+        content: "";
+        position: absolute;
+        top: 10%;
+        right: 0;
+        width: 1px;
+        height: 80%;
+        background-color: var(--cream);
+        }*/
+
+        /* Mobile: stack + remove divider */
+        @media (max-width: 675px){
+        .moules-monday-top{
+        flex-direction: column;
+        }
+
+        .moules-image,
+        .content{
+        flex: none;
+        width: 100%;
+        }
+
+        .content {
+        margin-top: 28px;
+        margin-bottom: 28px;
+        }
+
+        .moules-image::after{
+        display: none;
+        }
+        }
+
+    /* ===========================================================
+    SECTION LAYOUT
+    =========================================================== */
+        .section-anchor {
+            scroll-margin-top: calc(var(--ssHeaderH) + var(--stickyActualH));
+        }
+
+        .section-block{
+            display: grid;
+            grid-template-columns: 1fr !important; /*   1/3 + 2/3 */ /* change back to 1fr 2fr when photos are ready */
+            gap: 44px;
+            align-items: stretch;           /*   makes both columns same height */
+            margin-top: 44px;
+        }
+
+
+
+
+        .section-title-wrap {
+            grid-column: 1 / -1;
+            margin-top: 3rem;
+        }
+
+        /* LEFT column fills full height */
+        .section-image{
+            height: 100%;
+            min-height: 1px;
+        }
+
+        .img-stack{
+            --imgCount: 2;
+
+            display: grid;
+            gap: 18px;
+            height: 100%;
+            grid-template-rows: repeat(var(--imgCount), 1fr); /*   evenly spaced */
+            min-height: 1px;
+        }
+/*
+        div {
+            border: 1px solid red;
+        }
+*/
+        .img-stack > div{
+            width: 100%;
+            height: 100%;
+            min-height: 0;
+        }
+
+        .img-def{
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            border-radius: 18px;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* ----------- IMAGES -----------*/
+
+        /* FOOD */
+            /* SMALL */
+            .img-small-1 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/2818e08b-c77b-4c03-b427-b9a155a2f7ce/Brel+Landscape+-+transparent+bg-min+%281%29.png?content-type=image%2Fpng");}
+            .img-small-2 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/2818e08b-c77b-4c03-b427-b9a155a2f7ce/Brel+Landscape+-+transparent+bg-min+%281%29.png?content-type=image%2Fpng");}
+
+            /* POUTINES */
+            .img-poutine-1 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/e3e8dc41-46d2-488c-bc68-26acb6c139ed/Poutine+2.jpg?content-type=image%2Fjpeg");}
+
+            /* BIGS */ 
+            .img-big-1 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/d065ecb5-5435-46cd-90a1-cf8708135886/Moules+1.jpg?content-type=image%2Fjpeg");}
+            .img-big-2 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/415ac0ea-1c07-4911-82c8-cf63534f9456/Chicken+Schnitzel+1.jpg?content-type=image%2Fjpeg");}
+            .img-big-3 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/5fb949dc-e18e-4ac1-b1ee-0698cbd1a886/Savoury+Fondue+1.jpg?content-type=image%2Fjpeg");}
+            .img-big-4 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/8f160179-ee3a-4c77-bade-604929f429d3/Savoury+Fondue+7.jpg?content-type=image%2Fjpeg");}
+            .img-big-5 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/021652c6-908c-4e3d-8023-2d05ac920cbd/Savoury+Fondue+29.jpg?content-type=image%2Fjpeg");}
+
+            /* BREADS */
+            .img-bread-1 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/2818e08b-c77b-4c03-b427-b9a155a2f7ce/Brel+Landscape+-+transparent+bg-min+%281%29.png?content-type=image%2Fpng");}
+            .img-bread-2 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/2818e08b-c77b-4c03-b427-b9a155a2f7ce/Brel+Landscape+-+transparent+bg-min+%281%29.png?content-type=image%2Fpng");}
+
+            /* SIDES */
+            .img-side-1 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/2818e08b-c77b-4c03-b427-b9a155a2f7ce/Brel+Landscape+-+transparent+bg-min+%281%29.png?content-type=image%2Fpng");}
+            .img-side-2 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/2818e08b-c77b-4c03-b427-b9a155a2f7ce/Brel+Landscape+-+transparent+bg-min+%281%29.png?content-type=image%2Fpng");}
+
+            /* DESSERTS */
+            .img-dessert-1 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/2818e08b-c77b-4c03-b427-b9a155a2f7ce/Brel+Landscape+-+transparent+bg-min+%281%29.png?content-type=image%2Fpng");}
+            .img-dessert-2 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/2818e08b-c77b-4c03-b427-b9a155a2f7ce/Brel+Landscape+-+transparent+bg-min+%281%29.png?content-type=image%2Fpng");}
+
+        /* DRINK */
+
+            /* BIERS */ 
+            .img-bier-1 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/0c179757-8d94-4561-930c-4005b5e692f5/Bier+15.jpg?content-type=image%2Fjpeg");}
+            .img-bier-2 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/be347858-1b15-40b8-a168-4c3d938b069f/Bier+3.jpg?content-type=image%2Fjpeg");}
+            .img-bier-3 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/bc0c50a6-710d-47bb-affb-76dc3b2ca07d/Bier+5.jpg?content-type=image%2Fjpeg");}
+            .img-bier-4 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/e842b82e-426d-4ddd-9698-dd625e1ab5f2/Bier+2.jpg?content-type=image%2Fjpeg");}
+            .img-bier-5 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/113f3d84-679d-4f87-addb-62a305f343cf/Bier+4.jpg?content-type=image%2Fjpeg");}
+            .img-bier-6 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/113f3d84-679d-4f87-addb-62a305f343cf/Bier+4.jpg?content-type=image%2Fjpeg");}
+
+            /* COCKTAILS */ 
+            .img-cocktail-1 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/4d6eeabe-587c-4d6a-b474-b704085d336d/Cocktails+4.jpg?content-type=image%2Fjpeg");}
+            .img-cocktail-2 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/581bd327-26b5-42b9-a18b-28a65adec1bb/Cocktails+14.jpg?content-type=image%2Fjpeg");}
+            .img-cocktail-3 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/9399f93f-4f03-4e1b-b71d-bb3e1a6b2aab/Cocktails+17.jpg?content-type=image%2Fjpeg");}
+            .img-cocktail-4 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/ef7dbb4f-4569-47a5-ab39-18800e3e6360/Cocktails+13.jpg?content-type=image%2Fjpeg");}
+
+            /* SPIRITS */ 
+            .img-spirits-1 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/d065ecb5-5435-46cd-90a1-cf8708135886/Moules+1.jpg?content-type=image%2Fjpeg");}
+            .img-spirits-2 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/415ac0ea-1c07-4911-82c8-cf63534f9456/Chicken+Schnitzel+1.jpg?content-type=image%2Fjpeg");}
+            .img-spirits-3 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/5fb949dc-e18e-4ac1-b1ee-0698cbd1a886/Savoury+Fondue+1.jpg?content-type=image%2Fjpeg");}
+            .img-spirits-4 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/8f160179-ee3a-4c77-bade-604929f429d3/Savoury+Fondue+7.jpg?content-type=image%2Fjpeg");}
+            .img-spirits-5 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/8f160179-ee3a-4c77-bade-604929f429d3/Savoury+Fondue+7.jpg?content-type=image%2Fjpeg");}
+
+            /* WINE */ 
+            .img-wine-1 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/d065ecb5-5435-46cd-90a1-cf8708135886/Moules+1.jpg?content-type=image%2Fjpeg");}
+            .img-wine-2 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/415ac0ea-1c07-4911-82c8-cf63534f9456/Chicken+Schnitzel+1.jpg?content-type=image%2Fjpeg");}
+            .img-wine-3 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/5fb949dc-e18e-4ac1-b1ee-0698cbd1a886/Savoury+Fondue+1.jpg?content-type=image%2Fjpeg");}
+
+            /* SOFT & HOT */ 
+            .img-soft-1 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/d065ecb5-5435-46cd-90a1-cf8708135886/Moules+1.jpg?content-type=image%2Fjpeg");}
+            .img-soft-2 {background-image: url("https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/415ac0ea-1c07-4911-82c8-cf63534f9456/Chicken+Schnitzel+1.jpg?content-type=image%2Fjpeg");}
+
+
+        /* ---------------------------- */ 
+        .content-column { min-width: 0; }
+
+        .menu-item {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.18);
+            margin-top: 1rem;
+            padding: 16px 0px 16px 0px;
+        }
+
+        .item-row{
+            display:flex;
+            justify-content:space-between;
+            gap:16px;
+            align-items: baseline;
+            flex-wrap: wrap;
+            height: auto;
+            min-height: 38px;
+        }
+
+        .item-name {
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            margin: 0;
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+
+        .price { font-weight: 600; white-space: nowrap; flex: 0 0 auto; }
+
+        .dietary {
+            font-size: 0.85em;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            color: var(--teal);
+            margin-left: 8px;
+            white-space: nowrap;
+        }
+
+        .menu-content { display: none; }
+        .menu-content.active { display: block; }
+
+        /*   hide images on mobile */
+        @media (max-width: 820px) {
+            :root { --stickyH: 160px; }
+            .section-block {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+            .section-image { display: none; }
+        }
+
+        @media (max-width: 820px){
+            .item-row{
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) max-content;
+                column-gap: 16px;
+                align-items: start;
+                justify-content: initial;
+                flex-wrap: initial;
+            }
+
+            .item-name{ min-width: 0; }
+
+            .price{
+                white-space: nowrap;
+                text-align: right;
+                justify-self: end;
+            }
+        }
+
+/* ========== FULL-WIDTH STICKY NAV ON MOBILE ========== */
+@media (max-width: 820px){
+  .menu-container{
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .nav-bar{
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+  }
+
+  /* Put padding back INSIDE the nav so content still breathes */
+  .nav-bar > *{
+    padding-left: 18px;
+    padding-right: 18px;
+  }
+}
+
+
+@media (max-width: 820px){
+  .nav-bar{
+    padding-top: 24px;
+    padding-bottom: 20px;
+  }
+}
+
+
+
+
+        /* ========== SPECIALS DROPDOWN ========== */
+.nav-specials{
+  position: relative;
+  display: inline-flex;   /* was flex */
+  justify-content: initial; /* remove centering */
+  margin-top: 0;          /* remove spacing that pushes it down */
+}
+
+
+.specials-btn{
+  padding: 8px 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: var(--teal);
+
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-thickness: 2px;
+  text-decoration-color: rgba(0, 122, 141, 0.55);
+}
+
+.specials-btn[aria-expanded="true"]{
+  text-decoration-color: var(--teal);
+  text-decoration-thickness: 3px;
+}
+
+.specials-menu{
+  position: absolute;
+  top: calc(100% + 10px);
+
+  left: 100px;          /* <-- 100px from the left edge of the nav */
+  transform: none;      /* <-- remove centering */
+
+  min-width: 220px;
+  background: #fff;
+  border: 2px solid rgba(0, 122, 141, 0.35);
+  border-radius: 12px;
+  padding: 10px;
+  max-width: calc(100vw - 24px);
+  display: none;
+  z-index: 10000;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+}
+
+@media (min-width: 821px){
+  .specials-menu{
+    position: fixed;
+    left: 100px;        /* <-- 100px from the viewport edge */
+    transform: none;
+  }
+}
+
+
+.desc {
+    padding: 0;
+}
+
+
+.specials-menu.open{ display: block; }
+
+.specials-menu a{
+  display: block;
+  padding: 10px 12px;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 800;
+  color: var(--black);
+  font-size: 0.9rem;
+}
+
+.specials-menu a:hover{
+  background: rgba(0, 122, 141, 0.10);
+}
+
+
+
+
+
+/* ========== MOBILE HORIZONTAL SCROLL NAV ========== */
+/* ========== MOBILE HORIZONTAL SCROLL NAV ========== */
+@media (max-width: 820px){
+  .nav-buttons{
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    overflow-y: visible;          /* allow dropdown overlay logic */
+    -webkit-overflow-scrolling: touch;
+    justify-content: flex-start;
+    gap: 16px;
+
+    padding: 0 50px;              /* <-- key: 50px at BOTH ends */
+    scroll-padding-left: 50px;
+    scroll-padding-right: 50px;
+
+    scroll-snap-type: x proximity; /* optional */
+  }
+
+  .nav-buttons::-webkit-scrollbar{ display:none; }
+  .nav-buttons{ scrollbar-width:none; }
+
+  .nav-buttons a,
+  .nav-specials{
+    flex: 0 0 auto;
+    scroll-snap-align: start;
+  }
+
+  /* fade edges */
+  .nav-buttons{
+    mask-image: linear-gradient(to right,
+      transparent 0,
+      black 50px,
+      black calc(100% - 50px),
+      transparent 100%
+    );
+    -webkit-mask-image: linear-gradient(to right,
+      transparent 0,
+      black 50px,
+      black calc(100% - 50px),
+      transparent 100%
+    );
+  }
+}
+
+
+@media (max-width: 820px){
+  .nav-bar{
+    position: sticky;
+  }
+
+}
+
+
+/* When Specials is open, don't mask the nav (mask hides dropdown descendants) */
+body.specials-open #sectionNav{
+  mask-image: none !important;
+  -webkit-mask-image: none !important;
+}
+
+/* Also make sure the sticky area doesn't clip anything (safe) */
+.nav-bar{
+  overflow: visible;
+}
+
+@media (max-width: 820px){
+  .nav-bar{ position: sticky; }
+  .nav-buttons{
+    mask-image: linear-gradient(to right, transparent 0, black 18px, black calc(100% - 18px), transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0, black 18px, black calc(100% - 18px), transparent 100%);
+  }
+}
+/* Scroll hint */
+.scroll-hint{
+  display: none;
+  opacity: 0.85;
+  font-size: 12px;
+  margin-top: 10px;
+  text-transform: uppercase;
+}
+
+/* Only show on mobile */
+@media (max-width: 820px){
+  .scroll-hint{ display: block; }
+  /* Hide the hint if the row cannot scroll */
+  #sectionNav:not(.can-scroll) + .scroll-hint{ display: none; }
+}
+
+
+    </style>
+</head>
+
+<body>
+    <!-- TITLE -->
+    <h1 class="header-one teal center margin-btm-05px"> Menus </h1>
+
+    <div class="menu-container">
+
+        <!-- =================== STICKY NAV (TOGGLE + BUTTONS) =================== -->
+        <div class="nav-bar" id="menuNavBar">
+            <div class="menu-toggle-wrap">
+                <div class="menu-segmented" role="tablist" aria-label="Menu toggle">
+                    <input class="menu-segmented__input" type="radio" name="menuMode" id="menuFood" checked />
+                    <label class="menu-segmented__btn" for="menuFood">Food</label>
+
+                    <input class="menu-segmented__input" type="radio" name="menuMode" id="menuDrinks" />
+                    <label class="menu-segmented__btn" for="menuDrinks">Drinks</label>
+
+                    <input class="menu-segmented__input" type="radio" name="menuMode" id="menuKids" />
+                    <label class="menu-segmented__btn" for="menuKids">Kids</label>
+                </div>
+            </div>
+          <!--  <div class="scroll-hint right black FW800" id="scrollHint">Scroll ></div>-->
+
+            <!-- section selectors (auto-built from sections in active menu) -->
+            <nav class="nav-buttons" id="sectionNav" aria-label="Menu sections">
+                <div class="nav-specials" id="specialsNavWrap">
+                <button class="specials-btn" id="specialsBtn" type="button" aria-haspopup="true" aria-expanded="false">
+                    Specials ▾
+                </button>
+
+                <div class="specials-menu" id="specialsMenu" role="menu" aria-label="Specials">
+                    <a href="#moules-monday" role="menuitem">Moules Monday</a>
+                    <a href="#fondue-tuesday" role="menuitem">Fondue Tuesday</a>
+                    <a href="#sunday-roast-fondue" role="menuitem">Sunday Roast Fondue</a>
+                </div>
+                </div>
+            </nav>
+
+            <!-- Specials dropdown -->
+
+
+        </div>
+
+        <!-- =================== FOOD =================== -->
+        <div id="foodMenu" class="menu-content active">
+
+            <!-- SMALL -->
+            <section id="small" class="section-anchor section-block" data-label="Small">
+
+                <!-- TITLE -->
+                <div class="section-title-wrap"><h2 class="header-two center teal">SMALL</h2><hr class="rule spaced" /></div>
+
+                <!-- IMAGES 
+                <aside class="section-image" aria-hidden="true">
+                    <div class="img-stack" style="--imgCount: 2;">
+                        <div class="img-small-1 img-def img-wide"></div>
+                        <div class="img-small-1 img-def img-tall"></div>
+                    </div>
+                </aside>-->
+
+                <!-- CONTENT -->
+                <div class="content-column">
+                    <section class="category">
+
+                        <!-- SNACK -->
+                        <h3 class="header-three teal" style="margin-bottom: 1rem;">Snack</h3>
+
+                            <!-- GORDAL PICANTE OLIVES -->      <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Gordal Picante Olives     <span class="dietary teal">[VG/GF]      </span></p></div><div class="price"><p class="p-large black item-details">£5.50         </p></div></div><!--<p class="p-small balance">                                         </p>--></div>
+                            <!-- FOCACCIA -->                   <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Focaccia                  <span class="dietary">[V]               </span></p></div><div class="price"><p class="p-large black item-details">£6.00         </p></div></div><p class="p-medium balance black desc">Caramelised Onion Whipped Butter       </p></div>
+                            <!-- PRETZEL BITES -->              <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Pretzel Bites             <span class="dietary">[V]               </span></p></div><div class="price"><p class="p-large black item-details">£12.00        </p></div></div><p class="p-medium balance black desc">Cheese Fondue                          </p></div>
+
+                        <!-- SMALL -->
+                        <h3 class="header-three" style="margin-top: 4rem; margin-bottom: 1rem">Small</h3>
+
+                            <!-- FRENCH ONION SOUP -->          <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">French Onion Soup             <span class="dietary">              </span></p></div><div class="price"><p class="p-large black item-details">£9.50         </p></div></div><p class="p-medium balance black desc">Comté Crouton, Soda Bread<br><span class="small-blue-text">Add Small French Onion Cheese Melt +£7.00</span>       </p></div>
+                            <!-- MANCHEGO CHEESE FRITTERS -->   <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Manchego Cheese Fritters      <span class="dietary">[V/GF]        </span></p></div><div class="price"><p class="p-large black item-details">£9.50         </p></div></div><p class="p-medium balance black desc">Romesco                                                                                                           </p></div>
+                            <!-- FRIED SQUID -->                <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Fried Squid                   <span class="dietary">              </span></p></div><div class="price"><p class="p-large black item-details">£12.00        </p></div></div><p class="p-medium balance black desc">Lemon Aioli                                                                                                       </p></div>
+                            <!-- GARLIC & CHILLI PRAWNS -->     <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Garlic & Chilli Prawns        <span class="dietary">[GFA]         </span></p></div><div class="price"><p class="p-large black item-details">£12.00        </p></div></div><p class="p-medium balance black desc">Lemon, Parsley, Soda Bread                                                                                        </p></div>
+                        
+                    </section>
+                </div>
+            </section>
+
+            <!--------------------------------------------------------------------->
+
+            <!-- POUTINES -->
+            <section id="poutines" class="section-anchor section-block" data-label="Poutines">
+
+                <!-- TITLE -->
+                <div class="section-title-wrap"><h2 class="header-two center teal">Poutines</h2><hr class="rule spaced" /></div>
+
+                <!-- IMAGES 
+                <aside class="section-image" aria-hidden="true">
+                    <div class="img-stack" style="--imgCount: 1;">
+                        <div class="img-poutine-1 img-def img-wide"></div>
+                    </div>
+                </aside>-->
+
+                <!-- CONTENT -->
+                <div class="content-column">
+                    <section class="category">
+
+                        <!-- MOZZARELLA, BEER GRAVY -->             <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Mozzarella, Beef Gravy        <span class="dietary">[GF]          </span></p></div><div class="price"><p class="p-large black item-details">£11.00        </p></div></div><!--<p class="p-medium balance black desc">                                           </p>--></div>
+                        <!-- PEPPERCORN & STEAK -->                 <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Peppercorn & Steak            <span class="dietary">[GF]          </span></p></div><div class="price"><p class="p-large black item-details">£16.00        </p></div></div><p class="p-medium balance black desc">Fillet Steak, Peppercorn Sauce, Mozzarella     </p></div>
+                        <!-- TRUFFLE -->                            <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Truffle                       <span class="dietary">[V/GF]        </span></p></div><div class="price"><p class="p-large black item-details">£11.00        </p></div></div><p class="p-medium balance black desc">Truffle Aioli, Black Pepper, Parmesan          </p></div>
+
+                    </section>
+                </div>
+            </section>
+
+            <!--------------------------------------------------------------------->
+
+            <!-- BIGS -->
+            <section id="bigs" class="section-anchor section-block" data-label="Bigs">
+
+                <!-- TITLE -->
+                <div class="section-title-wrap"><h2 class="header-two center teal">BIGS</h2><hr class="rule spaced" /></div>
+
+                <!-- IMAGES 
+                <aside class="section-image" aria-hidden="true">
+                    <div class="img-stack" style="--imgCount: 5;">
+                        <div class="img-big-1 img-def img-wide"></div>
+                        <div class="img-big-2 img-def img-tall"></div>
+                        <div class="img-big-3 img-def img-tall"></div>
+                        <div class="img-big-4 img-def img-tall"></div>
+                        <div class="img-big-5 img-def img-tall"></div>
+                    </div>
+                </aside>-->
+
+                <div class="content-column">
+                    <section class="category">
+
+                        <!-- MOULES FRITES -->
+                        <h3 class="header-three" style="margin-bottom: 1rem">Moules Frites</h3>
+
+                            <!-- SCOTTISH STEAMED MUSSELS -->           <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Scottish Steamed Mussels<span class="dietary">[GFA]</span></p></div><div class="price"><p class="p-large black item-details">£12.75 / £23.00</p></div></div><p class="p-medium balance black desc"><b>Half Pot:</b> Soda Bread / <b>Full Pot:</b> Frites, Soda Bread<br><br><ul><li class="p-small balance black">Mariniere With (Or Without) Cream</li><li class="p-small balance black">Belgian Beer, Bacon, Leek</li><li class="p-small balance black">Thai Lemongrass, Coriander</li><li class="p-small balance black">Romesco</li></ul></p></div>
+
+                            <!-- MOULES MONDAY PROMO -->
+
+                            <div id="moules-monday" class="moules-monday-container section-anchor" data-hide-nav="true" style="background-color: var(--teal); padding: 38px; border-radius: 8px;">
+
+                                <div class="moules-monday-top">
+                                    <div class="moules-image">
+                                        <img src="https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/a6d68a70-a9b7-48e0-96e1-283584204eaf/Brel+-+Moules+Monday.png?content-type=image%2Fpng" alt="Moules Mondays">
+                                    </div>
+
+                                    <div class="content">
+                                        <p class="p-medium cream center" style="font-weight: 600">Moules & Frites from £14<br>
+                                            <span class="p-small" style="font-weight: normal">Full Pot, Frites &amp; Aioli</span>
+                                        </p>
+
+                                        <p class="p-medium cream center" style="font-weight: 600">Moules for 2 from £38<br>
+                                            <span class="p-small balance" style="font-weight: normal">2 x Pots, 2 x Frites, Bottle of House Wine</span>
+                                        </p>
+
+                                    </div>
+                                </div>
+<div>                                        <p class="p-medium cream center" style="margin-top: 38px; text-transform: uppercase;"><b>All day every Monday</b></p>
+</div>
+                                <div class="btn-container btn-center" style="margin-top: 42px; width: 100%;">
+                                    <a class="btn btn--outline" href="https://www.sevenrooms.com/explore/brel/reservations/create/search/">book a table</a>
+                                </div>
+                            </div>
+
+                        <!-- BIGS -->
+                        <h3 class="header-three" style="margin-top: 4rem; margin-bottom: 1rem;">Bigs</h3>
+
+                            <!-- STEAK FRITES -->                       <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Steak Frites                              <span class="dietary">[GF]      </span></p></div><div class="price"><p class="p-large black item-details">£32.50        </p></div></div><p class="p-medium balance black desc">8oz Fillet Steak, Tenderstem Broccoli, Peppercorn Sauce                                                                                                                       </p></div>
+                            <!-- CHICKEN SCHNITZEL -->                  <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Chicken Schnitzel                         <span class="dietary">[GF]      </span></p></div><div class="price"><p class="p-large black item-details">£19.75        </p></div></div><p class="p-medium balance black desc">Crushed Potatoes, Tenderstem Broccoli, Fried Egg, Caper & Lemon Butter                                                                                                        </p></div>
+                            <!-- COMTE TARTIFLETTE -->                  <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Comté Tartiflette                         <span class="dietary">[GF]      </span></p></div><div class="price"><p class="p-large black item-details">£19.00        </p></div></div><p class="p-medium balance black desc">Potatoes, Garlic, Red Onion, Smoked Bacon, Camembert, Comté Crumb                                                                                                             </p></div>
+                            <!-- PRAWN LINGUINI -->                     <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Prawn Linguini                            <span class="dietary">          </span></p></div><div class="price"><p class="p-large black item-details">£22.00        </p></div></div><p class="p-medium balance black desc">Lime, Chilli, Coriander                                                                                                                                                       </p></div>
+                            <!-- SAUSAGE & MASH -->                     <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Sausage & Mash                            <span class="dietary">          </span></p></div><div class="price"><p class="p-large black item-details">£16.00        </p></div></div><p class="p-medium balance black desc">Onion Gravy, Braised Red Cabbage, Tobacco Onions                                                                                                                              </p></div>
+                            <!-- BREL MACARONI -->                      <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Brel Macaroni                             <span class="dietary">[V]       </span></p></div><div class="price"><p class="p-large black item-details">£14.75        </p></div></div><p class="p-medium balance black desc">Comté Crumb, Garlic Ciabatta<br><span class="small-blue-text">Add Bacon & Raclette +£3.00</span>                                                                              </p></div>
+                            <!-- SCHNITZEL CAESAR -->                   <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Schnitzel Caesar                          <span class="dietary">[GF]      </span></p></div><div class="price"><p class="p-large black item-details">£15.50        </p></div></div><p class="p-medium balance black desc">Chicken Schnitzel, Lettuce, Caesar Dressing, Parmesan, Anchovies                                                                                                              </p></div>
+                            <!-- WILD MUSHROOM & SWISS CHEESE CREPE --> <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Wild Mushroom & Swiss Cheese Crepe        <span class="dietary">[V]       </span></p></div><div class="price"><p class="p-large black item-details">£13.00        </p></div></div><p class="p-medium balance black desc">Fried Egg, Truffle Oil                                                                                                                                                        </p></div>
+                            <!-- CREPE FLORENTINE -->                   <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Crepe Florentine                          <span class="dietary">[V]       </span></p></div><div class="price"><p class="p-large black item-details">£13.00        </p></div></div><p class="p-medium balance black desc">Spinach, Ricotta, Parmesan                                                                                                                                                    </p></div>
+
+                            <!-- SUNDAY ROAST FONDUE -->
+
+                            <div id="sunday-roast-fondue" class="moules-monday-container section-anchor" data-hide-nav="true" style="background-color: var(--teal); padding: 38px; border-radius: 8px;">
+
+                                <div class="moules-monday-top">
+                                    <div class="moules-image">
+                                        <img src="https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/bea7780a-d44e-4a41-9eda-ec4f86bbd2ad/Brel+-+Sunday+Roast+Fondue+2.png?content-type=image%2Fpng" alt="Sunday Roast Fondue">
+                                    </div>
+
+                                    <div class="content">
+                                        <p class="p-medium cream center" style="font-weight: 600">£47.50 for 2<br>
+                                            <span class="p-small" style="font-weight: normal">Large Yorkshire pudding filled with fillet steak and gravy fondue</span>
+                                        </p>
+
+                                        <p class="p-medium cream center" style="font-weight: 600"><br>
+                                            <span class="p-small" style="font-weight: normal"><b>Sides: </b>Roast Potatoes, Carrots & Parsnips, Broccoli, Cheese filled Mini Yorkshire Puddings</span>
+                                        </p>
+
+                                    </div>
+                                </div>
+<div>                                        <p class="p-medium cream center" style="margin-top: 38px; text-transform: uppercase;"><b>All day every Sunday</b></p>
+</div>
+                                <div class="btn-container btn-center" style="margin-top: 42px; width: 100%;">
+                                    <a class="btn btn--outline" href="https://www.sevenrooms.com/explore/brel/reservations/create/search/">book a table</a>
+                                </div>
+                                <div><p class="p-small cream center" style="margin-top: 42px;">Limited availability, first come first serve. Book in to secure your spot. Sunday Roast Fondue boards will be limited to 1 board per couple</p></div>
+                            </div>
+
+                            
+                        <!-- FOR THE TABLE -->
+                        <h3 class="header-three" style="margin-top: 4rem; margin-bottom: 1rem;">For the Table</h3>
+
+                            <!-- BREL'S SHARING BOARD -->               <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Brel's Sharing Board                      <span class="dietary">          </span></p></div><div class="price"><p class="p-large black item-details">£32.00        </p></div></div><p class="p-medium balance black desc">Manchego Fritters, Toulouse Sausage, Mini Macaroni, Tenderstem Broccoli, Onion Rings, Foccaccia, Frites, Aioli, Gotcha Ketchup                                                </p></div>
+                            <!-- TRUFFLE HONEY BAKED CAMEMBERT -->      <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Truffle Honey Baked Camembert             <span class="dietary">[V]       </span></p></div><div class="price"><p class="p-large black item-details">£17.00        </p></div></div><p class="p-medium balance black desc">Pretzels, Crudités, Cornichon, Grapes, Apple                                                                                                                                  </p></div>
+
+                            <div style="border: 2px dotted var(--teal); padding: 16px;">
+
+                                <!-- RACLETTE -->                           <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Raclette                                  <span class="dietary">[GFA]     </span></p></div><div class="price"><p class="p-large black item-details">£47.50 for 2     </p></div></div><p class="p-medium balance black desc">14-month Aged Raclette melted at your table                                                                                                                                   </p></div>
+                                <!-- CHEESE FONDUE -->                      <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Cheese Fondue                             <span class="dietary">[GFA]     </span></p></div><div class="price"><p class="p-large black item-details">£47.50 for 2     </p></div></div><p class="p-medium balance black desc">3 Cheese mix fondue to dip in at your table                                                                                                                                   </p></div>
+                                <!-- BOARDS -->                             <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-medium">CHOOSE FROM:                                    </p></div></div><p class="p-small balance balance"><ul><li class=" p-small balance black balance">Toulouse Sausage, Chorizo, Crispy Potatoes, Pretzel Bites, Apple, Pickles [GFA]</li><li class=" p-small balance black balance">Crispy Potatoes, Broccoli & Cauliflower Florets, Cherry Tomatoes, Soda Bread, Pickles [GFA]</li></ul>      </p></div>
+
+                            </div>
+
+                            <!-- FONDUE & RACLETTE TUESDAY -->
+
+                            <div id="fondue-tuesday" class="moules-monday-container section-anchor" data-hide-nav="true" style="background-color: var(--teal); padding: 38px; border-radius: 8px;">
+
+                                <div class="moules-monday-top">
+                                    <div class="moules-image">
+                                        <img src="https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/b63dbd1d-63a5-4e08-a540-577190fbec34/Brel+-+Fondue+Tuesdays.png?content-type=image%2Fpng" alt="Fondue & Raclette Tuesdays">
+                                    </div>
+
+                                    <div class="content">
+                                        <p class="p-medium balance cream center" style="font-weight: 600">Fondue or Raclette for 2 from £31<br>
+                                            <span class="p-small" style="font-weight: normal"></span>
+                                        </p>
+
+                                        <p class="p-medium balance cream center" style="font-weight: 600"> Fondue or Raclette for 2 from £41<br>
+                                            <span class="p-small" style="font-weight: normal">With a bottle of house wine</span>
+                                        </p>
+
+                                    </div>
+                                </div>
+<div>                                        <p class="p-medium cream center" style="margin-top: 38px; text-transform: uppercase;"><b>Every Tuesday from 5pm</b></p>
+</div>
+                                <div class="btn-container btn-center" style="margin-top: 42px; width: 100%;">
+                                    <a class="btn btn--outline" href="https://www.sevenrooms.com/explore/brel/reservations/create/search/">book a table</a>
+                                </div>
+                            </div>
+                    </section>
+                </div>
+            </section>
+
+            <!--------------------------------------------------------------------->
+
+            <!-- BREADS -->
+            <section id="bread" class="section-anchor section-block" data-label="Breads">
+
+                <!-- TITLE -->
+                <div class="section-title-wrap"><h2 class="header-two center teal">BREADS</h2><hr class="rule spaced" /></div>
+
+                <!-- IMAGES 
+                <aside class="section-image" aria-hidden="true">
+                    <div class="img-stack" style="--imgCount: 2;">
+                        <div class="img-bread-1 img-def img-wide"></div>
+                        <div class="img-bread-2 img-def img-tall"></div>
+                    </div>
+                </aside>-->
+
+                <!-- CONTENT -->
+                <div class="content-column">
+                    <section class="category">
+                        <!--<h3 class="header-three  "></h3>-->
+
+                            <!-- BEEF BURGER -->                        <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Beef Burger                   <span class="dietary">[GFA]         </span></p></div><div class="price"><p class="p-large black item-details">£18.00     </p></div></div><p class="p-medium balance black desc">Pretzel Bun, Emmental, Smoked Bacon, French Onions, Truffle Aioli, Frites                              </p></div>
+                            <!-- CHICKEN BURGER -->                     <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Chicken Burger                <span class="dietary">[VGA/GFA]     </span></p></div><div class="price"><p class="p-large black item-details">£18.00     </p></div></div><p class="p-medium balance black desc">Pretzel Bun, Buttermilk Fried Chicken, Red Slaw, Gotcha Ketchup, Frites                                </p></div>
+                            <!-- FRENCH DIP SANDWICH -->                <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">French Dip Sandwich           <span class="dietary">[VG/GF]       </span></p></div><div class="price"><p class="p-large black item-details">£19.00     </p></div></div><p class="p-medium balance black desc">Fillet Steak, French Mustard, Truffle Aioli, French Onions, French Dip, Ciabatta, Shoestring Fries     </p></div>
+                            <!-- FRENCH ONION CHEESE MELT -->           <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">French Onion Cheese Melt      <span class="dietary">              </span></p></div><div class="price"><p class="p-large black item-details">£14.75     </p></div></div><p class="p-medium balance black desc">Raclette, Gruyère, French Onions, Bloomer, Shoestring Frites                                           </p></div>
+                            <!-- BREL CROQUE -->                        <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Brel Croque                   <span class="dietary">[V]           </span></p></div><div class="price"><p class="p-large black item-details">£14.75     </p></div></div><p class="p-medium balance black desc">Raclette, Gruyère, Mozzarella, Sourdough<br><span class="small-blue-text">Add Egg + £2.00</span>       </p></div>
+
+                    </section>
+                </div>
+            </section>
+
+            <!--------------------------------------------------------------------->
+
+            <!-- SIDES -->
+            <section id="sides" class="section-anchor section-block" data-label="Sides">
+
+                <!-- TITLE -->
+                <div class="section-title-wrap"><h2 class="header-two center teal">SIDES</h2><hr class="rule spaced" /></div>
+
+                <!-- IMAGES 
+                <aside class="section-image" aria-hidden="true">
+                    <div class="img-stack" style="--imgCount: 2;">
+                        <div class="img-side-1 img-def img-wide"></div>
+                        <div class="img-side-1 img-def img-tall"></div>
+                    </div>
+                </aside>-->
+
+                <!-- CONTENT -->
+                <div class="content-column">
+                    <section class="category">
+
+                        <!-- FRITES -->                             <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Frites                                <span class="dietary">[VG/GF]       </span></p></div><div class="price"><p class="p-large black item-details">£6.00      </p></div></div><p class="p-medium balance black desc">Aioli                         </p></div>
+                        <!-- CRUSHED CRISPY POTATO -->              <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Crushed Crispy Potato                 <span class="dietary">[V/GF]        </span></p></div><div class="price"><p class="p-large black item-details">£5.75      </p></div></div><p class="p-medium balance black desc">Truffle Aioli, Parsley        </p></div>
+                        <!-- MINI MACARONI -->                      <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Mini Macaroni                         <span class="dietary">[V]           </span></p></div><div class="price"><p class="p-large black item-details">£6.00      </p></div></div><!--<p class="p-medium balance black desc">                          </p>--></div>
+                        <!-- BELGIAN BEER BATTERED ONION RINGS -->  <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Belgian Beer Battered Onion Rings     <span class="dietary">[V]           </span></p></div><div class="price"><p class="p-large black item-details">£5.25      </p></div></div><!--<p class="p-medium balance black desc">                          </p>--></div>
+                        <!-- TENDERSTEM BROCCOLI -->                <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Chilli & Lemon Tenderstem Broccoli    <span class="dietary">[VG/GF]       </span></p></div><div class="price"><p class="p-large black item-details">£5.75      </p></div></div><!--<p class="p-medium balance black desc">                          </p>--></div>
+                        <!-- GARDEN SALAD -->                       <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Garden Salad                          <span class="dietary">[VG/GF]       </span></p></div><div class="price"><p class="p-large black item-details">£5.25      </p></div></div><!--<p class="p-medium balance black desc">                          </p>--></div>
+
+                    </section>
+                </div>
+            </section>
+
+            <!--------------------------------------------------------------------->
+
+            <!-- DESSERTS -->
+            <section id="dessert" class="section-anchor section-block" data-label="Desserts">
+
+                <!-- TITLE -->
+                <div class="section-title-wrap"><h2 class="header-two center teal">DESSERTS</h2><hr class="rule spaced" /></div>
+
+                <!-- IMAGES 
+                <aside class="section-image" aria-hidden="true">
+                    <div class="img-stack" style="--imgCount: 2;">
+                        <div class="img-dessert-1 img-def img-wide"></div>
+                        <div class="img-dessert-1 img-def img-tall"></div>
+                    </div>
+                </aside>-->
+
+                <!-- CONTENT -->
+                <div class="content-column">
+                    <section class="category">
+
+                        <!-- WAFFLE FINGERS -->                     <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Waffle Fingers            <span class="dietary">[V]           </span></p></div><div class="price"><p class="p-large black item-details">£9.50                 </p></div></div><p class="p-medium balance black desc">Cinnamon Sugar, Melted Chocolate                                           </p></div>
+                        <!-- S'MORES -->                            <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">S'mores                   <span class="dietary">[VGA/GFA]     </span></p></div><div class="price"><p class="p-large black item-details">£10.50                </p></div></div><p class="p-medium balance black desc">Crackers, Chocolate, Marshmallows                                          </p></div>
+                        <!-- S'MORES SKILLET -->                    <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">S'mores Skillet           <span class="dietary">[VGA/GFA]     </span></p></div><div class="price"><p class="p-large black item-details">£10.00 / £19.00        </p></div></div><p class="p-medium balance black desc"><b>Small / Large:</b> Crackers, Chocolate, Marshmallows, Berry Compote     </p></div>
+                        <!-- CHOCOLATE FONDUE -->                   <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Chocolate Fondue          <span class="dietary">[V/GFA]       </span></p></div><div class="price"><p class="p-large black item-details">£19.50                </p></div></div><p class="p-medium balance black desc">Fresh Fruit, Waffle Fingers, Meringue, Marshmallows                        </p></div>
+                        <!-- BISCOFF CHEESECAKE -->                 <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Biscoff Cheesecake        <span class="dietary">[V]           </span></p></div><div class="price"><p class="p-large black item-details">£9.00                 </p></div></div><p class="p-medium balance black desc">Biscoff Crumb                                                              </p></div>
+                        <!-- AFFOGATO -->                           <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Affogato                  <span class="dietary">[VGA]         </span></p></div><div class="price"><p class="p-large black item-details">£7.75                 </p></div></div><!--<p class="p-medium balance black desc">                                                                       </p>--></div>
+
+                    </section>
+                </div>
+            </section>
+
+        </div>
+
+
+        <!-- =================== DRINKS =================== -->
+        <div id="drinksMenu" class="menu-content">
+
+            <!-- BIERS -->
+            <section id="bier" class="section-anchor section-block" data-label="Bier">
+
+                <!-- TITLE -->
+                <div class="section-title-wrap"><h2 class="header-two center teal">Bier</h2><hr class="rule spaced" /></div>
+
+                <!-- IMAGES 
+                <aside class="section-image" aria-hidden="true">
+                    <div class="img-stack" style="--imgCount: 6;">
+                        <div class="img-bier-1 img-def img-wide"></div>
+                        <div class="img-bier-2 img-def img-tall"></div>
+                        <div class="img-bier-3 img-def img-wide"></div>
+                        <div class="img-bier-4 img-def img-tall"></div>
+                        <div class="img-bier-5 img-def img-tall"></div>
+                        <div class="img-bier-6 img-def img-tall"></div>
+                    </div>
+                </aside>-->
+
+                <div class="content-column">
+                    <section class="category">
+
+
+                        <!-- KLASSIK -->
+                        <h3 class="header-three teal" style="margin-bottom: 1rem;">Belgian Klassiks</h3>
+
+                            <!-- DUVEL -->                                  <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Duvel                             <!--<span class="dietary teal"></span>--></p></div><div class="price"><p class="p-large black item-details">£8.50       </p></div></div><p class="p-medium balance black desc">330ml | 8.5%                  </p></div>
+                            <!-- ORVAL -->                                  <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Orval                             <!--<span class="dietary teal"></span>--></p></div><div class="price"><p class="p-large black item-details">£7.50       </p></div></div><p class="p-medium balance black desc">330ml | 6.2%                  </p></div>
+                            <!-- DELIRIUM TREMENS -->                       <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Delirium Tremens                  <!--<span class="dietary teal"></span>--></p></div><div class="price"><p class="p-large black item-details">£9.75       </p></div></div><p class="p-medium balance black desc">330ml | 8.5%                  </p></div>
+                            <!-- Brugse Zot Blond -->                       <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Brugse Zot Blond                  <!--<span class="dietary teal"></span>--></p></div><div class="price"><p class="p-large black item-details">£7.50       </p></div></div><p class="p-medium balance black desc">330ml | 6%                    </p></div>
+                            <!-- Blanche De Bruxelles -->                    <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Blanche De Bruxelles               <!--<span class="dietary teal"></span>--></p></div><div class="price"><p class="p-large black item-details">£7.50       </p></div></div><p class="p-medium balance black desc">330ml | 4.5%                  </p></div>
+                            <!-- PAUWEL KWAK -->                            <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Pauwel Kwak                       <!--<span class="dietary teal"></span>--></p></div><div class="price"><p class="p-large black item-details">£9.50       </p></div></div><p class="p-medium balance black desc">330ml | 8.4%                  </p></div>
+                            <!-- CHIMAY RED CAP -->                         <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Chimay Red Cap                    <!--<span class="dietary teal"></span>--></p></div><div class="price"><p class="p-large black item-details">£7.00       </p></div></div><p class="p-medium balance black desc">330ml | 7%                    </p></div>
+                            <!-- CHIMAY BLUE CAP -->                        <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Chimay Blue Cap                   <!--<span class="dietary teal"></span>--></p></div><div class="price"><p class="p-large black item-details">£10.75       </p></div></div><p class="p-medium balance black desc">330ml | 9%                    </p></div>
+                            <!-- BRASSERIE DUPONT MONK'S STOUT -->          <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">La Chouffee Blonde Ale     <!--<span class="dietary teal"></span>--></p></div><div class="price"><p class="p-large black item-details">£9.50      </p></div></div><p class="p-medium balance black desc">330ml | 8%                    </p></div>
+                            <!-- MONGOZO PILSNER -->                        <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Mongozo Pilsner                   <!--<span class="dietary teal"></span>--></p></div><div class="price"><p class="p-large black item-details">£6.80       </p></div></div><p class="p-medium balance black desc">330ml | 5% | Gluten Free      </p></div>
+
+                        <!-- TAP BIER-->
+                        <div style="display: flex; align-items: center; margin-bottom: 1rem;">
+                            <h3 class="header-two center teal">Tap Bier</h3>
+                            <div class="p-small" style="margin-left: auto;">Half Pint / Pint</div>
+                        </div>
+
+                            <!-- LEFFE -->                                  <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Leffe                         <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£3.90 / £7.80      </p></div></div><p class="p-medium balance black desc">Belgium | 6.6%                                                            </p></div>
+                            <!-- WEIHENSTEPHANER -->                        <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Weihenstephaner               <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£3.75 / £7.80      </p></div></div><p class="p-medium balance black desc">Germany | 5.4%                                                            </p></div>
+                            <!-- SCHÖFFERHOFER GRAPEFRUIT -->               <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Schöfferhofer Grapefruit      <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£2.90 / £5.75      </p></div></div><p class="p-medium balance black desc">Germany | 2.5%                                                            </p></div>
+                            <!-- LA CHOUFFE -->                             <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">La Chouffe Session Ale        <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£3.50 / £7.00       </p></div></div><p class="p-medium balance black desc">Belgium | 4%       </p></div>
+                            <!-- AMSTEL -->                                 <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Amstel                        <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£3.25 / £6.50      </p></div></div><p class="p-medium balance black desc">Netherlands | 4.1%                                                        </p></div>
+                            <!-- HEINEKEN -->                               <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Heineken                      <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£3.30 / £6.60      </p></div></div><p class="p-medium balance black desc">Netherlands | 4%                                                          </p></div>
+                            <!-- MORETTI -->                                <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Moretti                       <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£3.40 / £6.75      </p></div></div><p class="p-medium balance black desc">Italy | 4.6%                                                              </p></div>
+                            <!-- GUINNESS -->                               <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Guinness                      <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£3.30 / £6.60      </p></div></div><p class="p-medium balance black desc">Ireland | 4.3%                                                            </p></div>
+                            <!-- ST MUNGO -->                               <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">St Mungo                      <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£3.40 / £6.75      </p></div></div><p class="p-medium balance black desc">Scotland | 4.9%                                                           </p></div>
+                            <!-- NECK OIL -->                               <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Neck Oil                      <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£3.80 / £7.60      </p></div></div><p class="p-medium balance black desc">England | 4.3%                                                            </p></div>
+                            <!-- STRONGBOW -->                              <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Strongbow                     <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£3.30 / £6.60      </p></div></div><p class="p-medium balance black desc">England | 4.5%                                                            </p></div>
+
+                        <!-- ZOET -->
+                        <h3 class="header-three teal" style="margin-bottom: 1rem; margin-top: 4rem;">Zoet (Sweet)</h3>
+
+                            <!-- CHERRY LA CHOUFFE -->                      <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Cherry La Chouffe                 <!--<span class="dietary teal"></span>--></p></div><div class="price"><p class="p-large black item-details">£9.50       </p></div></div><p class="p-medium balance black desc">330ml | 8%                        </p></div>
+                            <!-- FRULI -->                                  <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Fruli                             <!--<span class="dietary teal"></span>--></p></div><div class="price"><p class="p-large black item-details">£6.80       </p></div></div><p class="p-medium balance black desc">330ml | 5.4%                      </p></div>
+                            <!-- MONGOZO COCONUT -->                        <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Mongozo Coconut                   <!--<span class="dietary teal"></span>--></p></div><div class="price"><p class="p-large black item-details">£6.00       </p></div></div><p class="p-medium balance black desc">330ml | 3.5% | Gluten Free        </p></div>
+                            <!-- TIMMERMANS PÊCHE -->                       <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Timmermans Pêche                  <!--<span class="dietary teal"></span>--></p></div><div class="price"><p class="p-large black item-details">£6.75       </p></div></div><p class="p-medium balance black desc">330ml | 4%                        </p></div>
+                            <!-- KASTEEL RUBUS -->                          <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Kasteel Rubus                     <!--<span class="dietary teal"></span>--></p></div><div class="price"><p class="p-large black item-details">£8.00       </p></div></div><p class="p-medium balance black desc">330ml | 7%                        </p></div>
+                            <!-- KASTEEL Tropical -->                       <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Kasteel Tropical                  <!--<span class="dietary teal"></span>--></p></div><div class="price"><p class="p-large black item-details">£8.00       </p></div></div><p class="p-medium balance black desc">330ml | 7%                        </p></div>
+
+                        <!-- AROUND THE WORLD -->
+                        <h3 class="header-three teal" style="margin-bottom: 1rem; margin-top: 4rem;">Around the World</h3>
+
+                            <!-- BUDVAR -->                                 <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Budvar                            <!--<span class="dietary teal"></span>--></p></div><div class="price"><p class="p-large black item-details">£6.75       </p></div></div><p class="p-medium balance black desc">Czech Republic | 500ml | 5%                                                                               </p></div>
+                            <!-- FRÜH KÖLSCH -->                            <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Früh Kölsch                       <!--<span class="dietary teal"></span>--></p></div><div class="price"><p class="p-large black item-details">£7.25       </p></div></div><p class="p-medium balance black desc">Germany | 330ml | 4.8%                                                                                    </p></div>
+                            <!-- CORONA -->                                 <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Corona                            <!--<span class="dietary teal"></span>--></p></div><div class="price"><p class="p-large black item-details">£5.75       </p></div></div><p class="p-medium balance black desc">Mexico | 330ml | 4.6%                                                                                     </p></div>
+                            <!-- JOKER IPA -->                              <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Joker IPA                         <!--<span class="dietary teal"></span>--></p></div><div class="price"><p class="p-large black item-details">£6.50       </p></div></div><p class="p-medium balance black desc">Scotland | 500ml | 5%                                                                                     </p></div>
+                            <!-- OLD MOUT CIDER -->                         <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Old Mout Cider                    <!--<span class="dietary teal"></span>--></p></div><div class="price"><p class="p-large black item-details">£6.75       </p></div></div><p class="p-medium balance black desc">New Zealand | 500ml | 4% <br><span class="small-blue-text">Ask our friendly team for flavours</span>      </p></div>
+
+                            <!-- BIER FLIGHT PROMO -->
+
+                            <div id="moules-monday" class="moules-monday-container section-anchor" data-hide-nav="true" style="background-color: var(--teal); padding: 38px; border-radius: 8px;">
+
+                                <div class="moules-monday-top">
+                                    <div class="moules-image">
+                                        <img src="https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/b6c9835c-6677-4792-920d-30aa18f4504b/Brel+Drinks+Menu+Bier+Flight.png?content-type=image%2Fpng" alt="bier flight" >
+                                    </div>
+
+                                    <div class="content">
+                                        <h2 class="center cream">Beir Flight</h2>
+                                        <p class="p-large cream center" style="font-weight: 600">Belgian - £21<br>
+                                            <span class="p-small" style="font-weight: normal">Orval | Duvel | Fruli</span>
+                                        </p>
+
+                                        <p class="p-large cream center" style="font-weight: 600">Around the World - £16<br>
+                                            <span class="p-small balance" style="font-weight: normal">Weihenstephaner | St Mungo | Schöfferhofer Grapefruit</span>
+                                        </p>
+
+                                    </div>
+                                </div>
+<div>                                      
+</div>
+                                <div class="btn-container btn-center" style="margin-top: 42px; width: 100%;">
+                                    <a class="btn btn--outline" href="https://www.brelbar.com/book">book now</a>
+                                </div>
+                            </div>
+
+
+                        <!-- NON - ALCOHOLIC -->
+                        <h3 class="header-three teal" style="margin-bottom: 1rem; margin-top: 4rem;">Non-Alcoholic</h3>
+
+                            <!-- BEAVERTOWN -->                             <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Beavertown Lazer Crush IPA        <!--<span class="dietary teal"></span>--></p></div><div class="price"><p class="p-large black item-details">£5.00       </p></div></div><p class="p-medium balance black desc">England | 330ml | 0%          </p></div>
+                            <!-- HEINEKEN -->                               <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Heineken                          <!--<span class="dietary teal"></span>--></p></div><div class="price"><p class="p-large black item-details">£5.00       </p></div></div><p class="p-medium balance black desc">Netherlands | 330ml | 0%      </p></div>
+                            <!-- FURSTENBERG -->                            <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Furstenberg                       <!--<span class="dietary teal"></span>--></p></div><div class="price"><p class="p-large black item-details">£5.00       </p></div></div><p class="p-medium balance black desc">Germany | 500ml | 0%          </p></div>
+                            <!-- GUINNESS -->                               <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Guinness 0%                       <!--<span class="dietary teal"></span>--></p></div><div class="price"><p class="p-large black item-details">£5.50       </p></div></div><p class="p-medium balance black desc">Ireland | 538ml | 0%          </p></div>
+
+                    </section>
+                </div>
+            </section>    
+
+            <!--------------------------------------------------------------------->
+
+            <!-- COCKTAILS -->
+            <section id="cocktail" class="section-anchor section-block" data-label="Cocktails">
+
+                <!-- TITLE -->
+                <div class="section-title-wrap"><h2 class="header-two center teal">Cocktails</h2><hr class="rule spaced" /></div>
+
+                <!-- IMAGES 
+                <aside class="section-image" aria-hidden="true">
+                    <div class="img-stack" style="--imgCount: 4;">
+                        <div class="img-cocktail-1 img-def img-wide"></div>
+                        <div class="img-cocktail-2 img-def img-tall"></div>
+                        <div class="img-cocktail-3 img-def img-wide"></div>
+                        <div class="img-cocktail-4 img-def img-tall"></div>
+                    </div>
+                </aside>-->
+
+                <!-- CONTENT -->
+                <div class="content-column">
+                    <section class="category">
+
+                        <!-- KLASSIK -->
+                        <h3 class="header-three teal" style="margin-bottom: 1rem;">Klassik</h3>
+
+                            <!-- Espresso Martini -->                       <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Espresso Martini       <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£11.50     </p></div></div><p class="p-medium balance black desc">Smirnoff Vodka, Kahlua, Espresso, Gomme                                        </p></div>
+                            <!-- Margarita -->                              <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Margarita              <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£11.50     </p></div></div><p class="p-medium balance black desc">[ Classic or Spicy ] <br> El Jimador Blanco, Triple Sec, Gomme, Lime, Salt     </p></div>
+                            <!-- Amaretto Sour -->                          <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Amaretto Sour          <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£11.00     </p></div></div><p class="p-medium balance black desc">Luxardo Amaretto, Angostura Orange Bitters, Lemon, Foamer                      </p></div>
+                            <!-- Old Fashioned -->                          <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Old Fashioned          <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£12.00     </p></div></div><p class="p-medium balance black desc">Woodford Reserve, Jack Daniels, Angostura                                      </p></div>
+                            <!-- Negroni -->                                <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Negroni                <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£12.00     </p></div></div><p class="p-medium balance black desc">Tanqueray Gin, Campari, Martini Rosso                                          </p></div>
+                            <!-- French Martini -->                         <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">French Martini         <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£11.50     </p></div></div><p class="p-medium balance black desc">Smirnoff Vodka, Chambord, Pineapple                                            </p></div>
+                            <!-- Bramble -->                                <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Bramble                <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£11.50     </p></div></div><p class="p-medium balance black desc">Tanqueray Gin, Lemon, Gomma, Crème-de-Mure                                     </p></div>
+                            <!-- Mojito -->                                 <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Mojito                 <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£11.50     </p></div></div><p class="p-medium balance black desc">Morgans Blanco, Mint, Lime, Gomme, Soda                                        </p></div>
+                            <!-- Paloma -->                                 <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Paloma                 <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£12.00     </p></div></div><p class="p-medium balance black desc">El Jimador Blanco, Grapefruit Aperitif, Gomme, Grapefruit Soda, Salt           </p></div>
+                            <!-- Bloody Mary -->                            <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Bloody Mary            <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£12.50     </p></div></div><p class="p-medium balance black desc">Smirnoff Vodka, Toamto, Lemon, Celery Salt, Tobasco, Worcestershire            </p></div>
+
+                        <!-- SPRITZ -->
+                        <h3 class="header-three teal" style="margin-bottom: 1rem;">Spritz</h3>
+
+                            <!-- APEROL -->                                 <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Aperol         <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£11.75     </p></div></div><p class="p-medium balance black desc">Aperol, Prosecco, Soda                                                 </p></div>
+                            <!-- HUGO -->                                   <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Hugo           <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£12.50     </p></div></div><p class="p-medium balance black desc">St Germain Elderflower Liquor, Prosecco, Soda                          </p></div>
+                            <!-- SARTI -->                                  <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Sarti          <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£11.75     </p></div></div><p class="p-medium balance black desc">Sarti Blood Orange, Mango & Passionfruit Liquor, Prosecco, Soda        </p></div>
+                            <!-- LIMONCELLO -->                             <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Limoncello     <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£11.50     </p></div></div><p class="p-medium balance black desc">Luxardo Limoncello, Prosecco, Soda                                     </p></div>
+                            <!-- PEACHY -->                                 <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Peachy         <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£11.50     </p></div></div><p class="p-medium balance black desc">Peach Schnapps, Prosecco, Gomme, Soda                                  </p></div>
+
+                        <!-- HUIS -->
+                        <h3 class="header-three teal" style="margin-bottom: 1rem; margin-top: 4rem;">Huis</h3>
+
+                            <!-- Schofferita -->                            <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">SCHÖFFERITA                <!--<span class="dietary teal"></span>--></p></div><div class="price"><p class="p-large black item-details">£11.50      </p></div></div><p class="p-medium balance black desc">El Jimador Tequila, Schöfferhofer, Lime, Gomme                         </p></div>
+                            <!-- Strawberry Basil Smash -->                 <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Strawberry Basil Smash     <!--<span class="dietary teal"></span>--></p></div><div class="price"><p class="p-large black item-details">£11.75      </p></div></div><p class="p-medium balance black desc">Tanqueray Gin, Lemon, Strawberry, Basil, Soda                          </p></div>
+                            <!-- Sunshine Sour -->                          <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Sunshine Sour              <!--<span class="dietary teal"></span>--></p></div><div class="price"><p class="p-large black item-details">£11.75      </p></div></div><p class="p-medium balance black desc">Havana Especial, Smirnoff Peach, Pineapple, Gomme, Lemon, Foamer       </p></div>
+                            <!-- Mon Cheri -->                              <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">MON CHÉRI                  <!--<span class="dietary teal"></span>--></p></div><div class="price"><p class="p-large black item-details">£11.75      </p></div></div><p class="p-medium balance black desc">Smirnoff Vodka, Cherry Liquor, Lime, Grenadine                         </p></div>
+
+                        <!-- SHARERS -->
+                        <h3 class="header-three teal" style="margin-bottom: 1rem; margin-top: 4rem;">Sharers</h3>
+
+                            <!-- PIMMS -->                                  <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Pimms              <!--<span class="dietary teal"></span>--></p></div><div class="price"><p class="p-large black item-details">£30.00      </p></div></div><p class="p-medium balance black desc">Pimms No.1, Lemonade, Mixed Fruit          </p></div>
+                            <!-- PEACH SANGRIA -->                          <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Peach Sangria      <!--<span class="dietary teal"></span>--></p></div><div class="price"><p class="p-large black item-details">£35.00      </p></div></div><p class="p-medium balance black desc">Peach Schnapps, Pinot Blush, Lemonde       </p></div>
+                            <!-- APEROL -->                                 <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Aperol             <!--<span class="dietary teal"></span>--></p></div><div class="price"><p class="p-large black item-details">£35.00      </p></div></div><p class="p-medium balance black desc">Aperol, Prosecco, Soda                     </p></div>
+                            <!-- HUGO -->                                   <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Hugo               <!--<span class="dietary teal"></span>--></p></div><div class="price"><p class="p-large black item-details">£37.00      </p></div></div><p class="p-medium balance black desc">St Germain, Prosecco, Soda                 </p></div>
+
+                        <!-- MOCKTAILS -->
+                        <h3 class="header-three teal" style="margin-bottom: 1rem; margin-top: 4rem;">Mocktails</h3>
+
+                            <!-- STRAWBERRY & ELDERFLOWER SPRITZ -->        <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Strawberry & Elderflower Spritz        <!--<span class="dietary teal"></span>--></p></div><div class="price"><p class="p-large black item-details">£5.50       </p></div></div><p class="p-medium balance black desc">Strawberry, Elderflower, Lemon, Soda       </p></div>
+                            <!-- MELLOW MANGO -->                           <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Mellow Mango                           <!--<span class="dietary teal"></span>--></p></div><div class="price"><p class="p-large black item-details">£5.50       </p></div></div><p class="p-medium balance black desc">Mango, Vanilla, Lemon, Soda                </p></div>
+                            <!-- GARDEN SOUR -->                            <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Garden Sour                            <!--<span class="dietary teal"></span>--></p></div><div class="price"><p class="p-large black item-details">£6.00       </p></div></div><p class="p-medium balance black desc">Tanqueray 0%, Lemon, Gomme                 </p></div>
+
+                    </section>
+                </div>
+            </section>       
+
+            <!--------------------------------------------------------------------->
+
+            <!-- SPIRITS -->
+            <section id="spirits" class="section-anchor section-block" data-label="Spirits">
+
+                <!-- TITLE -->
+                <div class="section-title-wrap"><h2 class="header-two center teal">SPIRITS</h2><hr class="rule spaced" /></div>
+
+                <!-- IMAGES 
+                <aside class="section-image" aria-hidden="true">
+                    <div class="img-stack" style="--imgCount: 5;">
+                        <div class="img-spirits-1 img-def img-wide"></div>
+                        <div class="img-spirits-2 img-def img-tall"></div>
+                        <div class="img-spirits-3 img-def img-wide"></div>
+                        <div class="img-spirits-4 img-def img-tall"></div>
+                        <div class="img-spirits-3 img-def img-wide"></div>
+                        <div class="img-spirits-2 img-def img-wide"></div>
+                        <div class="img-spirits-1 img-def img-wide"></div>
+                    </div>
+                </aside>-->
+
+                <!-- CONTENT -->
+                <div class="content-column">
+                    <section class="category">
+
+                        <!-- VODKA-->
+                        <h3 class="header-three teal" style="margin-bottom: 1rem;">Vodka</h3>
+
+                            <!-- SMIRNOFF RED VODKA -->                     <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Smirnoff Red Vodka            <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£6.25      </p></div></div><!--<p class="p-medium balance black desc">                      </p>--></div>
+                            <!-- SMIRNOFF PINK RASPBERRY -->                <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Smirnoff Pink Raspberry       <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£6.50      </p></div></div><!--<p class="p-medium balance black desc">                      </p>--></div>
+                            <!-- SMIRNOFF VANILLA -->                       <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Smirnoff Vanilla              <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£6.20      </p></div></div><!--<p class="p-medium balance black desc">                      </p>--></div>
+                            <!-- CIROC -->                                  <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Ciroc                         <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£7.25      </p></div></div><p class="p-medium balance black desc">Ask Team for Flavours     </p></div>
+
+                        <!-- RUM -->
+                        <h3 class="header-three teal" style="margin-bottom: 1rem; margin-top: 4rem;">Rum</h3>
+
+                            <!-- CAPTAIN MORGAN'S BLANCO -->                <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Captain Morgan's Blanco           <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£6.25      </p></div></div><!--<p class="p-medium balance black desc">                          </p>--></div>
+                            <!-- CAPTAIN MORGAN'S SPICED -->                <div class="menu-item"> <div class="item-row"><div class="item-name"><p class="p-large black item-details">Captain Morgan's Spiced          <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£6.25      </p></div></div><!--<p class="p-medium balance black desc">                          </p>--></div>
+                            <!-- APPLETON ESTATE 8YR RESERVE -->            <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Appleton Estate 8yr Reserve       <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£7.50      </p></div></div><!--<p class="p-medium balance black desc">                          </p>--></div>
+                            <!-- DIPLOMATICO -->                            <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Diplomatico                       <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£7.25      </p></div></div><p class="p-medium balance black desc">Reserva Golden / Mantuano     </p></div>
+                            <!-- HAVANA 3 -->                               <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Havana 3                          <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£7.25      </p></div></div><!--<p class="p-medium balance black desc">                          </p>--></div>
+                            <!-- HAVANA 7 -->                               <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Havana 7                          <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£7.25      </p></div></div><!--<p class="p-medium balance black desc">                          </p>--></div>
+                            <!-- KRAKEN -->                                 <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Kraken                            <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£7.00      </p></div></div><!--<p class="p-medium balance black desc">                          </p>--></div>
+                            <!-- BRUGAL 1888 -->                            <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Brugal 1888                       <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£7.50      </p></div></div><!--<p class="p-medium balance black desc">                          </p>--></div>
+
+                        <!-- GIN -->
+                        <h3 class="header-three teal" style="margin-bottom: 1rem; margin-top: 4rem;">Gin</h3>
+
+                            <!-- THE BOTANIST -->                           <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">The Botanist                  <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£7.00      </p></div></div><!--<p class="p-medium balance black desc">                  </p>--></div>
+                            <!-- CAORUNN -->                                <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Caorunn                       <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£7.00      </p></div></div><!--<p class="p-medium balance black desc">                  </p>--></div>
+                            <!-- BROCKMAN'S -->                             <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Brockman's                    <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£7.00      </p></div></div><p class="p-medium balance black desc">Classic / Orange      </p></div>
+                            <!-- GLASWEGIN -->                              <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Glaswegin                     <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£7.00      </p></div></div><p class="p-medium balance black desc">Classic / Pink        </p></div>
+                            <!-- TANQUERAY -->                              <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Tanqueray                     <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£6.25      </p></div></div><!--<p class="p-medium balance black desc">                  </p>--></div>
+                            <!-- TANQUERAY NO.10 -->                        <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Tanqueray No.10               <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£7.25      </p></div></div><!--<p class="p-medium balance black desc">                  </p>--></div>
+                            <!-- TANQUERAY FLOR DE SEVILLA -->              <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Tanqueray Flor De Sevilla     <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£7.00      </p></div></div><!--<p class="p-medium balance black desc">                  </p>--></div>
+                            <!-- GIN MARE -->                               <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Gin Mare                      <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£7.00      </p></div></div><!--<p class="p-medium balance black desc">                  </p>--></div>
+                            <!-- ROKU -->                                   <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Roku                          <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£7.00      </p></div></div><!--<p class="p-medium balance black desc">                  </p>--></div>
+                            <!-- GORDON'S PINK -->                          <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Gordon's Pink                 <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£6.50      </p></div></div><!--<p class="p-medium balance black desc">                  </p>--></div>
+                            <!-- GORDON'S SICILIAN -->                      <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Gordon's Sicilian             <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£6.75      </p></div></div><!--<p class="p-medium balance black desc">                  </p>--></div>
+                            <!-- GORDON'S PASSIONFRUIT -->                  <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Gordon's Passionfruit         <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£6.75      </p></div></div><!--<p class="p-medium balance black desc">                  </p>--></div>
+                            <!-- DOWNPOUR SLOE GIN -->                      <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Downpour Sloe Gin             <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£6.75      </p></div></div><!--<p class="p-medium balance black desc">                  </p>--></div>
+
+
+                        <!-- TEQUILA & MEZCAL -->
+                        <h3 class="header-three teal" style="margin-bottom: 1rem; margin-top: 4rem;">Tequila & Mezcal</h3>
+
+                            <!-- CAZCABEL COFFEE -->                        <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Cazcabel Coffee           <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£5.60      </p></div></div><!--<p class="p-medium balance black desc"></p>--></div>
+                            <!-- EL JIMADOR BLANCO -->                      <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">El Jimador Blanco         <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£6.25      </p></div></div><!--<p class="p-medium balance black desc"></p>--></div>
+                            <!-- HERRADURA BLANCO -->                       <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Herradura Blanco          <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£7.25      </p></div></div><!--<p class="p-medium balance black desc"></p>--></div>
+                            <!-- HERRADURA REPOSADO -->                     <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Herradura Reposado        <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£6.40      </p></div></div><!--<p class="p-medium balance black desc"></p>--></div>
+                            <!-- EL JIMADOR RESPOSADO -->                   <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">El Jimador Resposado      <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£6.25      </p></div></div><!--<p class="p-medium balance black desc"></p>--></div>
+                            <!-- CASAMIGOS BLANCO -->                       <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Casamigos Blanco          <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£7.50      </p></div></div><!--<p class="p-medium balance black desc"></p>--></div>
+
+                        <!-- WHISKY & BOURBON -->
+                        <h3 class="header-three teal" style="margin-bottom: 1rem; margin-top: 4rem;">Whisky & Bourbon</h3>
+
+                            <!-- FAMOUS GROUSE -->                          <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Famous Grouse                     <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£7.00      </p></div></div><!--<p class="p-medium balance black desc">                                  </p>--></div>
+                            <!-- NAKED GROUSE -->                           <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Naked Grouse                      <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£7.25      </p></div></div><!--<p class="p-medium balance black desc">                                  </p>--></div>
+                            <!-- HIGHLAND PARK 12 -->                       <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Highland Park 12                  <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£8.00      </p></div></div><!--<p class="p-medium balance black desc">                                  </p>--></div>
+                            <!-- LAPHROAIG -->                              <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Laphroaig                         <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£7.75      </p></div></div><!--<p class="p-medium balance black desc">                                  </p>--></div>
+                            <!-- GLENLIVET -->                              <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Glenlivet                         <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£7.75      </p></div></div><!--<p class="p-medium balance black desc">                                  </p>--></div>
+                            <!-- AUCHENTOSHAN 12 -->                        <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Auchentoshan 12                   <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£8.00      </p></div></div><!--<p class="p-medium balance black desc">                                  </p>--></div>
+                            <!-- JOHNNIE WALKER BLACK -->                   <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Johnnie Walker Black              <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£6.75      </p></div></div><!--<p class="p-medium balance black desc">                                  </p>--></div>
+                            <!-- HAIG CLUB -->                              <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Haig Club                         <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£7.00      </p></div></div><p class="p-medium balance black desc">Original / Mediterranean Orange       </p></div>
+                            <!-- JAMESON -->                                <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Jameson                           <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£7.00      </p></div></div><!--<p class="p-medium balance black desc">                                  </p>--></div>
+                            <!-- MAKER'S MARK -->                           <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Maker's Mark                      <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£7.25      </p></div></div><!--<p class="p-medium balance black desc">                                  </p>--></div>
+                            <!-- Jack Daniel's -->                           <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Jack Daniel's                      <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£6.25      </p></div></div><!--<p class="p-medium balance black desc">                                  </p>--></div>
+                            <!-- Jack Daniel's HONEY -->                     <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Jack Daniel's Honey                <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£6.50      </p></div></div><!--<p class="p-medium balance black desc">                                  </p>--></div>
+                            <!-- Jack Daniel's APPLE -->                     <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Jack Daneils Apple                <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£6.50      </p></div></div><!--<p class="p-medium balance black desc">                                  </p>--></div>
+                            <!-- Jack Daniel's FIRE -->                      <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Jack Daniel's Fire                 <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£6.50      </p></div></div><!--<p class="p-medium balance black desc">                                  </p>--></div>
+                            <!-- Jack Daniel's SINGLE BARREL -->             <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Jack Daniel's Single Barrel        <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£8.00      </p></div></div><!--<p class="p-medium balance black desc">                                  </p>--></div>
+                            <!-- GENTLEMAN JACK -->                         <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Gentleman Jack                    <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£7.50      </p></div></div><!--<p class="p-medium balance black desc">                                  </p>--></div>
+                            <!-- SLANE -->                                  <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Slane                             <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£6.50      </p></div></div><!--<p class="p-medium balance black desc">                                  </p>--></div>
+                            <!-- BENRIACH 10 -->                            <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Benriach 10                       <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£8.00      </p></div></div><!--<p class="p-medium balance black desc">                                  </p>--></div>
+                            <!-- GLENDRONACH 12 -->                         <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Glendronach 12                    <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£7.25      </p></div></div><!--<p class="p-medium balance black desc">                                  </p>--></div>
+
+                        <!-- SPIRITS -->
+                        <h3 class="header-three teal" style="margin-bottom: 1rem; margin-top: 4rem;">Spirits</h3>
+
+                            <!-- COURVOISIER -->                            <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Courvoisier               <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£6.30      </p></div></div><!--<p class="p-medium balance black desc"></p>--></div>
+                            <!-- MALIBU -->                                 <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Malibu                    <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£6.25      </p></div></div><!--<p class="p-medium balance black desc"></p>--></div>
+                            <!-- PIMM'S -->                                 <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Pimm's                    <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£7.70      </p></div></div><!--<p class="p-medium balance black desc"></p>--></div>
+                            <!-- BAILEYS -->                                <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Baileys                  <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£6.50      </p></div></div><!--<p class="p-medium balance black desc"></p>--></div>
+                            <!-- CAMPARI -->                                <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Campari                   <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£5.75      </p></div></div><!--<p class="p-medium balance black desc"></p>--></div>
+                            <!-- PEACH SCHNAPPS -->                         <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Peach Schnapps            <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£5.25      </p></div></div><!--<p class="p-medium balance black desc"></p>--></div>
+                            <!-- CHAMBORD -->                               <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Chambord                  <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£5.25      </p></div></div><!--<p class="p-medium balance black desc"></p>--></div>
+                            <!-- LUXARDO LIMONCELLO -->                     <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Luxardo Limoncello        <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£5.25      </p></div></div><!--<p class="p-medium balance black desc"></p>--></div>
+                            <!-- SARTI -->                                  <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Sarti                     <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£5.50       </p></div></div><!--<p class="p-medium balance black desc"></p>--></div>
+
+                    </section>
+                </div>
+            </section>     
+
+            <!--------------------------------------------------------------------->
+
+            <!-- WINE -->
+            <section id="wine" class="section-anchor section-block" data-label="Wine">
+
+                <!-- TITLE -->
+                <div class="section-title-wrap"><h2 class="header-two center teal">WINE</h2><hr class="rule spaced" /></div>
+
+                <!-- IMAGES 
+                <aside class="section-image" aria-hidden="true">
+                    <div class="img-stack" style="--imgCount: 3;">
+                        <div class="img-cocktail-2 img-def img-wide"></div>
+                        <div class="img-cocktail-3 img-def img-tall"></div>
+                        <div class="img-cocktail-1 img-def img-wide"></div>
+                    </div>
+                </aside>-->
+
+                <!-- CONTENT -->
+                <div class="content-column">
+                    <section class="category">
+
+                        <!-- WHITE -->
+                        <div style="display: flex; align-items: center; margin-bottom: 1rem;"><h3 class="header-two center teal">WHITE</h3><div class="p-small" style="margin-left: auto;">175ml / 250ml / Bottle</div></div>
+
+                            <!-- PERINITZA PINOT GRIGIO -->                 <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Perinitza Pinot Grigio                <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£7.50 / £10.00 / £30.00         </p></div></div><p class="p-medium balance black desc">Romania       </p></div>
+                            <!-- GRAND CREVETTE SAUVIGNON BLANC -->         <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Grand Crevette Sauvignon Blanc        <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£9.00 / £11.00 / £34.00        </p></div></div><p class="p-medium balance black desc">France        </p></div>
+                            <!-- FIFTH QUARTER VINHO VERDE -->              <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Fifth Quarter Vinho Verde             <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£9.25 / £11.50 / £35.00        </p></div></div><p class="p-medium balance black desc">Portugal      </p></div>
+
+                        <!-- RED -->
+                        <div style="display: flex; align-items: center; margin-top: 4rem; margin-bottom: 1rem;"><h3 class="header-two center teal">RED</h3><div class="p-small" style="margin-left: auto;">175ml / 250ml / Bottle</div></div>
+
+                            <!-- LE RUSE MERLOT -->                         <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Le Ruse Merlot            <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£7.50 / £10.00 / £30.00         </p></div></div><p class="p-medium balance black desc">France        </p></div>
+                            <!-- PERINITZA PINOT NOIR -->                   <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Perinitza Pinot Noir      <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£8.75 / £11.50 / £33.00        </p></div></div><p class="p-medium balance black desc">Romania       </p></div>
+                            <!-- GOYENCHA MALBEC -->                        <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Goyencha Malbec           <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£8.60 / £9.80 / £33.00         </p></div></div><p class="p-medium balance black desc">Argentina     </p></div>
+
+                        <!-- ROSE -->
+                        <div style="display: flex; align-items: center; margin-top: 4rem; margin-bottom: 1rem;"><h3 class="header-two center teal">ROSE</h3><div class="p-small" style="margin-left: auto;">175ml / 250ml / Bottle</div></div>
+
+                            <!-- VILLA MOLINO PINOT GRIGIO BLUSH -->        <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Villa Molino Pinot Grigio Blush       <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£7.50 / £10.00 / £30.00     </p></div></div><p class="p-medium balance black desc">France        </p></div>
+
+                        <!-- FIZZ -->
+                        <div style="display: flex; align-items: center; margin-top: 4rem; margin-bottom: 1rem;"><h3 class="header-two center teal">FIZZ</h3><div class="p-small" style="margin-left: auto;">125ml / Bottle</div></div>
+
+                            <!-- BOTTER PROSECCO -->                        <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Botter Prosecco                           <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£8.00 / £35.50     </p></div></div><p class="p-medium balance black desc">Italy                                                             </p></div>
+                            <!-- PERRIER JOUET GRAND BRUT NV CHAMPAGNE -->  <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Perrier Jouet Grand Brut NV Champagne     <span class="dietary teal"></span></p></div><div class="price"><p class="p-large black item-details">£97.50             </p></div></div><p class="p-medium balance black desc">France<br><span class="small-blue-text">Bottle Only</span>        </p></div>
+
+                    </section>
+                </div>
+            </section>   
+
+            <!--------------------------------------------------------------------->
+
+            <!-- SOFT & HOT -->
+            <section id="softhot" class="section-anchor section-block" data-label="Soft & Hot">
+
+                <!-- TITLE -->
+                <div class="section-title-wrap"><h2 class="header-two center teal">SOFT & HOT</h2><hr class="rule spaced" /></div>
+
+                <!-- IMAGES 
+                <aside class="section-image" aria-hidden="true">
+                    <div class="img-stack" style="--imgCount: 2;">
+                        <div class="img-soft-1 img-def img-wide"></div>
+                        <div class="img-soft-2 img-def img-tall"></div>
+                    </div>
+                </aside>-->
+
+                <!-- CONTENT -->
+                <div class="content-column">
+                    <section class="category">
+
+                        <!-- SOFT -->
+                        <h3 class="header-three teal" style="margin-bottom: 1rem;">Soft</h3>
+
+                            <!-- SODA & LIME -->                            <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Soda & Lime                   <span class="dietary teal">[HALF PINT / PINT]       </span></p></div><div class="price"><p class="p-large black item-details">£3.25 / £4.25     </p></div></div><!--<p class="p-medium balance black desc">                                      </p>--></div>
+                            <!-- LEMONADE -->                               <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Lemonade                      <span class="dietary teal">[HALF PINT / PINT]       </span></p></div><div class="price"><p class="p-large black item-details">£3.50 / £4.75     </p></div></div><!--<p class="p-medium balance black desc">                                      </p>--></div>
+                            <!-- PEPSI MAX -->                              <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Pepsi Max                     <span class="dietary teal">[HALF PINT / PINT]       </span></p></div><div class="price"><p class="p-large black item-details">£3.50 / £4.75     </p></div></div><!--<p class="p-medium balance black desc">                                      </p>--></div>
+                            <!-- DIET PEPSI -->                             <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Diet Pepsi                    <span class="dietary teal">[HALF PINT / PINT]       </span></p></div><div class="price"><p class="p-large black item-details">£3.50 / £4.75     </p></div></div><!--<p class="p-medium balance black desc">                                      </p>--></div>
+                            <!-- IRN BRU CAN -->                            <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Irn Bru                       <span class="dietary teal">[CAN]                    </span></p></div><div class="price"><p class="p-large black item-details">£3.90             </p></div></div><!--<p class="p-medium balance black desc">                                      </p>--></div>
+                            <!-- DIET IRN BRU CAN -->                       <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Diet Irn Bru                  <span class="dietary teal">[CAN]                    </span></p></div><div class="price"><p class="p-large black item-details">£3.90             </p></div></div><!--<p class="p-medium balance black desc">                                      </p>--></div>
+                            <!-- SAN PELLEGRINO -->                         <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">San Pellegrino                <span class="dietary teal">                         </span></p></div><div class="price"><p class="p-large black item-details">£4.40             </p></div></div><p class="p-medium balance black desc">Limonata / Aranciata                      </p></div>
+                            <!-- LONDON ESSENCE -->                         <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">London Essence                <span class="dietary teal">                         </span></p></div><div class="price"><p class="p-large black item-details">£4.40             </p></div></div><p class="p-medium balance black desc">Tonic / Ginger Beer / Grapefruit Soda     </p></div>
+                            <!-- FENTIMAN'S ROSE LEMONADE -->               <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Fentiman's Rose Lemonade      <span class="dietary teal">                         </span></p></div><div class="price"><p class="p-large black item-details">£4.70             </p></div><!--<p class="p-small balance"></p>--></div>
+
+                        <!-- HOT -->
+                        <h3 class="header-three teal" style="margin-bottom: 1rem; margin-top: 4rem;">Hot</h3>
+
+                            <!-- ESPRESSO -->                               <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Espresso                      <span class="dietary teal">                         </span></p></div><div class="price"><p class="p-large black item-details">£3.50             </p></div></div><!--<p class="p-small balance">                                            </p>--></div>
+                            <!-- DOUBLE ESPRESSO -->                        <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Double Espresso               <span class="dietary teal">                         </span></p></div><div class="price"><p class="p-large black item-details">£4.00             </p></div></div><!--<p class="p-small balance">                                            </p>--></div>
+                            <!-- AMERICANO -->                              <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Americano                     <span class="dietary teal">                         </span></p></div><div class="price"><p class="p-large black item-details">£3.75             </p></div></div><!--<p class="p-small balance">                                            </p>--></div>
+                            <!-- LATTE -->                                  <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Latte                         <span class="dietary teal">                         </span></p></div><div class="price"><p class="p-large black item-details">£4.25             </p></div></div><!--<p class="p-small balance">                                            </p>--></div>
+                            <!-- CAPPUCCINO -->                             <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Cappuccino                    <span class="dietary teal">                         </span></p></div><div class="price"><p class="p-large black item-details">£4.25             </p></div></div><!--<p class="p-small balance">                                            </p>--></div>
+                            <!-- FLAT WHITE -->                             <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Flat White                    <span class="dietary teal">                         </span></p></div><div class="price"><p class="p-large black item-details">£4.25             </p></div></div><!--<p class="p-small balance">                                            </p>--></div>
+                            <!-- MACHIATTO -->                              <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Machiatto                     <span class="dietary teal">                         </span></p></div><div class="price"><p class="p-large black item-details">£4.25             </p></div></div><!--<p class="p-small balance">                                            </p>--></div>
+                            <!-- HOT CHOCOLATE -->                          <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Hot Chocolate                 <span class="dietary teal">                         </span></p></div><div class="price"><p class="p-large black item-details">£4.75             </p></div></div><p class="p-medium balance black desc">Whipped Cream, Marshmallows               </p></div>
+                            <!-- ALTERNATIVE MILK -->                       <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Alternative Milk              <span class="dietary teal">                         </span></p></div><div class="price"><p class="p-large black item-details">+£1.00            </p></div></div><p class="p-medium balance black desc">Oat / Almond                              </p></div>
+                            <!-- SYRUPS -->                                 <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Syrups                        <span class="dietary teal">                         </span></p></div><div class="price"><p class="p-large black item-details">+£1.00            </p></div></div><p class="p-medium balance black desc">Caramel / Vanilla / Chai                  </p></div>
+                            <!-- TEA -->                                    <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Tea                           <span class="dietary teal">                         </span></p></div><div class="price"><p class="p-large black item-details">£3.75             </p></div></div><p class="p-medium balance black desc">Ask Staff for Flavours                    </p></div>
+
+                    </section>
+                </div>
+            </section>       
+        </div>
+
+        <!-- =================== KIDS =================== -->
+        <div id="kidsMenu" class="menu-content">
+
+            <!-- KIDS MENU -->
+            <section id="small" class="section-block" data-label="Small">
+
+                <!-- TITLE -->
+                <div class="section-title-wrap"><h2 class="header-two center teal">KIDS MENU</h2><hr class="rule spaced" /></div>
+
+                <!-- IMAGES 
+                <aside class="section-image" aria-hidden="true">
+                    <div class="img-stack" style="--imgCount: 2;">
+                        <div class="img-small-1 img-def img-wide"></div>
+                        <div class="img-small-1 img-def img-tall"></div>
+                    </div>
+                </aside>-->
+
+                <!-- CONTENT -->
+                <div class="content-column">
+                    <section class="category">
+
+                        <!-- KIDS MENU 
+                        <h3 class="header-three teal" style="margin-bottom: 1rem;">KIDS MENU</h3>-->
+
+                            <!-- MAC N CHEESE -->               <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Mac 'n' Cheese                <span class="dietary teal">[V]      </span></p></div><div class="price"><p class="p-large black item-details">£10.00    </p></div></div><p class="p-medium balance black desc">With Garlic Bread      </p></div>
+                            <!-- MOULES FRITES -->              <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Moules Frites                 <span class="dietary">[GF]          </span></p></div><div class="price"><p class="p-large black item-details">£10.00    </p></div></div><!--<p class="p-medium balance black desc">                   </p>--></div>
+                            <!-- BEEF BURGER -->                <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Beef Burger                   <span class="dietary">[GFA]         </span></p></div><div class="price"><p class="p-large black item-details">£10.00    </p></div></div><p class="p-medium balance black desc">With Frites            </p></div>
+                            <!-- CHICKEN BURGER -->             <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Chicken Burger                <span class="dietary">              </span></p></div><div class="price"><p class="p-large black item-details">£10.00    </p></div></div><p class="p-medium balance black desc">With Frites            </p></div>
+                            <!-- VEGGIE CHICKEN BURGER -->      <div class="menu-item"><div class="item-row"><div class="item-name"><p class="p-large black item-details">Cluck Free Chicken Burger     <span class="dietary">[VG]          </span></p></div><div class="price"><p class="p-large black item-details">£10.00    </p></div></div><p class="p-medium balance black desc">With Frites            </p></div>
+
+                    </section>
+                </div>
+            </section>
+
+            <!--------------------------------------------------------------------->
+
+
+
+        </div>
+    </div>
+
+<script>
+  /* ---------------- Squarespace header offset ---------------- */
+  function setSquarespaceHeaderHeight() {
+    const candidates = [
+      document.querySelector("header.Header"),
+      document.querySelector("#header"),
+      document.querySelector('header[role="banner"]'),
+      document.querySelector(".sqs-site-frame .Header"),
+    ].filter(Boolean);
+
+    let h = 0;
+    for (const el of candidates) {
+      const rect = el.getBoundingClientRect();
+      const isVisible = rect.height > 0 && getComputedStyle(el).display !== "none";
+      if (isVisible) h = Math.max(h, rect.height);
+    }
+    document.documentElement.style.setProperty("--ssHeaderH", h + "px");
+  }
+
+  /* ---------------- Measure OUR sticky block height ---------------- */
+  const navBarEl = document.getElementById("menuNavBar");
+  function setStickyActualHeight() {
+    if (!navBarEl) return;
+    const stickyH = Math.ceil(navBarEl.getBoundingClientRect().height);
+    document.documentElement.style.setProperty("--stickyActualH", stickyH + "px");
+  }
+
+  function getStickyOffsetPx() {
+    const ss = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--ssHeaderH")) || 0;
+    const st = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--stickyActualH")) || 0;
+    return ss + st;
+  }
+
+  /* ---------------- Menu toggle + dynamic section nav ---------------- */
+  const sectionNav = document.getElementById("sectionNav");
+
+function updateNavFades() {
+  const el = sectionNav; // #sectionNav is your .nav-buttons
+  if (!el) return;
+
+  const canScroll = el.scrollWidth > el.clientWidth + 1;
+  el.classList.toggle("can-scroll", canScroll);
+
+  if (!canScroll) {
+    el.classList.remove("show-left", "show-right");
+    return;
+  }
+
+  const left = el.scrollLeft;
+  const maxLeft = el.scrollWidth - el.clientWidth;
+
+  el.classList.toggle("show-left", left > 1);
+  el.classList.toggle("show-right", left < maxLeft - 1);
+}
+
+// Call after nav is rebuilt AND on scroll/resize
+sectionNav.addEventListener("scroll", updateNavFades, { passive: true });
+
+const _buildNavFor = buildNavFor;
+buildNavFor = function(menuWrap){
+  _buildNavFor(menuWrap);
+  updateNavFades();
+};
+
+window.addEventListener("resize", updateNavFades);
+document.addEventListener("DOMContentLoaded", updateNavFades);
+
+
+  // IMPORTANT: fix kids wrapper id to match HTML.
+  // Either change HTML to id="kidsMenu" OR change this JS to "kidsMenu".
+  const menus = {
+    food:   { input: document.getElementById("menuFood"),   wrap: document.getElementById("foodMenu") },
+    drinks: { input: document.getElementById("menuDrinks"), wrap: document.getElementById("drinksMenu") },
+    kids:   { input: document.getElementById("menuKids"),   wrap: document.getElementById("kidsMenu") }, // <- was kidsMenu
+  };
+
+  let io = null;
+
+  function getActiveWrap() {
+    return Object.values(menus).find(m => m.input && m.input.checked)?.wrap || null;
+  }
+
+function buildNavFor(menuWrap) {
+  if (!menuWrap) return;
+
+  // Grab specials BEFORE we clear/replace nav contents
+  const specials = document.getElementById("specialsNavWrap");
+
+  const sections = Array.from(
+    menuWrap.querySelectorAll('.section-anchor:not([data-hide-nav="true"])')
+  );
+
+  // Build new nav links as real nodes (safer than innerHTML)
+  const links = sections.map(sec => {
+    const a = document.createElement("a");
+    a.href = `#${sec.id}`;
+    a.textContent = sec.getAttribute("data-label") || sec.id;
+    return a;
+  });
+
+  // Replace nav contents without destroying specials (if it exists)
+  if (specials) {
+    sectionNav.replaceChildren(specials, ...links);
+  } else {
+    sectionNav.replaceChildren(...links);
+  }
+
+  setStickyActualHeight();
+  syncSpecialsVisibility(); // <-- IMPORTANT: update which specials show
+}
+
+
+
+  // Scope lookup to active wrap to avoid duplicate ID collisions
+  function findSectionInActiveMenu(id) {
+    const wrap = getActiveWrap();
+    if (!wrap) return null;
+    // Prefer exact id match inside the active menu
+    return wrap.querySelector(`#${CSS.escape(id)}`);
+  }
+
+  function scrollToSectionId(id) {
+    const target = findSectionInActiveMenu(id) || document.getElementById(id);
+    if (!target) return;
+
+    const topOffset = getStickyOffsetPx();
+    const y = target.getBoundingClientRect().top + window.pageYOffset - topOffset;
+    window.scrollTo({ top: y, behavior: "smooth" });
+  }
+
+  function setupActiveHighlighting() {
+    if (io) io.disconnect();
+
+    const navLinks = Array.from(sectionNav.querySelectorAll("a"));
+    const sections = navLinks
+      .map(a => {
+        const id = a.getAttribute("href").slice(1);
+        return findSectionInActiveMenu(id);
+      })
+      .filter(Boolean);
+
+    navLinks.forEach(a => a.classList.remove("active"));
+    if (navLinks[0]) navLinks[0].classList.add("active");
+
+    const topOffset = getStickyOffsetPx();
+
+    io = new IntersectionObserver((entries) => {
+      const visible = entries
+        .filter(e => e.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+
+      navLinks.forEach(a => a.classList.remove("active"));
+      const active = navLinks.find(a => a.getAttribute("href") === "#" + visible.target.id);
+      if (active) active.classList.add("active");
+    }, {
+      threshold: [0.25, 0.4, 0.55],
+      rootMargin: `-${topOffset}px 0px -60% 0px`,
+    });
+
+    sections.forEach(sec => io.observe(sec));
+  }
+
+  sectionNav.addEventListener("click", (e) => {
+    const link = e.target.closest('a[href^="#"]');
+    if (!link) return;
+
+    e.preventDefault();
+    const id = link.getAttribute("href").slice(1);
+    scrollToSectionId(id);
+
+    sectionNav.querySelectorAll("a").forEach(a => a.classList.remove("active"));
+    link.classList.add("active");
+  });
+
+  /* ---------------- Specials dropdown ---------------- */
+const specialsNavWrap = document.getElementById("specialsNavWrap");
+const specialsBtn = document.getElementById("specialsBtn");
+const specialsMenu = document.getElementById("specialsMenu");
+
+function closeSpecials() {
+  if (!specialsMenu || !specialsBtn) return;
+  specialsMenu.classList.remove("open");
+  specialsBtn.setAttribute("aria-expanded", "false");
+  document.body.classList.remove("specials-open");
+}
+
+function positionSpecialsMenu(){
+  if (!specialsMenu || !specialsBtn) return;
+
+  const r = specialsBtn.getBoundingClientRect();
+
+  specialsMenu.style.position = "fixed";
+  specialsMenu.style.top = (r.bottom + 10) + "px";
+  specialsMenu.style.zIndex = "20000";
+
+  // Make sure we can measure it
+  const menuRect = specialsMenu.getBoundingClientRect();
+  const menuW = menuRect.width || 220;
+
+  const viewportW = window.innerWidth;
+  const gutter = 12;
+
+  // Center under the button
+  let left = r.left + (r.width / 2);
+
+  // Clamp inside viewport
+  const minLeft = gutter + (menuW / 2);
+  const maxLeft = viewportW - gutter - (menuW / 2);
+  left = Math.max(minLeft, Math.min(maxLeft, left));
+
+  specialsMenu.style.left = left + "px";
+  specialsMenu.style.transform = "translateX(-50%)";
+}
+
+
+
+function toggleSpecials() {
+  const isOpen = specialsMenu.classList.toggle("open");
+  specialsBtn.setAttribute("aria-expanded", String(isOpen));
+
+  if (isOpen) {
+    document.body.classList.add("specials-open");
+    positionSpecialsMenu();
+  } else {
+    document.body.classList.remove("specials-open");
+  }
+}
+
+
+// Show specials only if those anchors exist in the ACTIVE menu
+function syncSpecialsVisibility() {
+  if (!specialsNavWrap || !specialsMenu) return;
+  const wrap = getActiveWrap();
+  if (!wrap) { specialsNavWrap.style.display = "none"; return; }
+
+  const links = Array.from(specialsMenu.querySelectorAll('a[href^="#"]'));
+  let anyVisible = false;
+
+  links.forEach(a => {
+    const id = a.getAttribute("href").slice(1);
+    const existsInActive = !!wrap.querySelector(`#${CSS.escape(id)}`);
+    a.style.display = existsInActive ? "" : "none";
+    if (existsInActive) anyVisible = true;
+  });
+
+  specialsNavWrap.style.display = anyVisible ? "" : "none";
+  if (!anyVisible) closeSpecials();
+}
+
+  if (specialsBtn && specialsMenu) {
+    specialsBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      toggleSpecials();
+    });
+
+    specialsMenu.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const link = e.target.closest('a[href^="#"]');
+      if (!link) return;
+
+      e.preventDefault();
+      const id = link.getAttribute("href").slice(1);
+      closeSpecials();
+      scrollToSectionId(id);
+    });
+
+    window.addEventListener("resize", () => {
+      if (specialsMenu.classList.contains("open")) positionSpecialsMenu();
+    });
+
+    document.addEventListener("click", () => closeSpecials());
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeSpecials();
+    });
+  }
+
+
+function setMenu(key, opts = {}) {
+  const { scrollTop = true, pushState = true } = opts;
+
+  Object.entries(menus).forEach(([k, m]) => {
+    if (m.wrap) m.wrap.classList.toggle("active", k === key);
+  });
+
+  buildNavFor(menus[key]?.wrap);
+  setupActiveHighlighting();
+
+  if (pushState) {
+    const url = new URL(window.location.href);
+    url.searchParams.set("menu", key);
+    history.replaceState(null, "", url.toString());
+  }
+
+  if (scrollTop) {
+    const wrap = menus[key]?.wrap;
+    const topOffset = getStickyOffsetPx();
+
+    // Scroll to the first section in the newly active menu (or fall back to nav)
+    const firstSection = wrap?.querySelector('.section-anchor');
+    const targetEl = firstSection || navBarEl;
+
+    const y = targetEl.getBoundingClientRect().top + window.pageYOffset - topOffset;
+    window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
+  }
+}
+
+
+  Object.entries(menus).forEach(([key, menu]) => {
+    if (!menu.input) return;
+    menu.input.addEventListener("change", () => {
+      if (menu.input.checked) setMenu(key);
+    });
+  });
+
+  function applyMenuFromUrl() {
+    const params = new URLSearchParams(window.location.search);
+    const menu = (params.get("menu") || "food").toLowerCase();
+    if (menus[menu]?.input) {
+      menus[menu].input.checked = true;
+      setMenu(menu, { scrollTop: false, pushState: false });
+    }
+  }
+
+  function init() {
+    setSquarespaceHeaderHeight();
+
+    applyMenuFromUrl();                 // sets initial menu + nav
+    setStickyActualHeight();            // ensure final sticky height
+
+    // support ?menu=drinks#cocktail
+    const hashId = (location.hash || "").replace("#", "");
+    if (hashId) setTimeout(() => scrollToSectionId(hashId), 0);
+  }
+
+  document.addEventListener("DOMContentLoaded", init);
+
+  window.addEventListener("resize", () => {
+    setSquarespaceHeaderHeight();
+    setStickyActualHeight();
+    setupActiveHighlighting();
+  });
+</script>
+
+
+</body>
+</html>
