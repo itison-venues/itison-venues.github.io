@@ -293,6 +293,12 @@
             height: 100%;
         }
 
+        .content-column .category h3 {
+  column-span: all;
+  break-after: avoid;
+  break-inside: avoid;
+}
+
         /* ---------------------------- */ 
         .content-column { 
           min-width: 0; 
