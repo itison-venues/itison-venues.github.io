@@ -106,117 +106,260 @@ h3,
     03. TYPOGRAPHY
     ==========================================  */
 
+:root {
+    /* Mobile: 440px and below */
+
+    /* H1 */
+    --h1-font-size:             36px;
+    --h1-line-height:           44px;
+    --h1-space-after:           36px;
+
+    /* H2 */
+    --h2-font-size:             40px;
+    --h2-line-height:           48px;
+    --h2-space-after:           40px;
+
+    /* H3 */
+    --h3-font-size:             32px;
+    --h3-line-height:           40px;
+    --h3-space-after:           32px;
+
+    /* H4 */
+    --h4-font-size:             28px;
+    --h4-line-height:           32px;
+    --h4-space-after:           20px;
+
+    /* H5 */
+    --h5-font-size:             24px;
+    --h5-line-height:           28px;
+    --h5-space-after:           20px;
+
+    /* H6 */
+    --h6-font-size:             20px;
+    --h6-line-height:           24px;
+    --h6-space-after:           20px;
+
+    /* Paragraph Large */
+    --p-large-font-size:        20px;
+    --p-large-line-height:      24px;
+    --p-large-space-after:      20px;
+
+    /* Paragraph Medium */
+    --p-medium-font-size:       16px;
+    --p-medium-line-height:     24px;
+    --p-medium-space-after:     16px;
+
+    /* Paragraph Small */
+    --p-small-font-size:        14px;
+    --p-small-line-height:      16px;
+    --p-small-space-after:      14px;
+
+    /* Paragraph Extra Small */
+    --p-xsmall-font-size:       12px;
+    --p-xsmall-line-height:     20px;
+    --p-xsmall-space-after:     12px;
+}
+
+
+/* Mobile Large: 640px */
+@media screen and (min-width: 640px) {
     :root {
-        /* H1 */
-        --h1-font-size:             clamp(45px, calc(40.714px + 1.339vw), 60px);
-        --h1-line-height:           clamp(56px, calc(51.429px + 1.429vw), 72px);
-        --h1-space-after:           64px;
+        --h1-font-size:             40px;
+        --h1-line-height:           48px;
+        --h1-space-after:           40px;
 
-        /* H2 */
-        --h2-font-size:             clamp(40px, calc(37.714px + 0.714vw), 48px);
-        --h2-line-height:           clamp(48px, calc(45.714px + 0.714vw), 56px);
-        --h2-space-after:           clamp(48px, calc(68.571px - 1.429vw), 64px);
+        --h2-font-size:             42px;
+        --h2-line-height:           52px;
+        --h2-space-after:           42px;
 
-        /* H3 */
-        --h3-font-size:             clamp(32px, calc(29.714px + 0.714vw), 40px);
-        --h3-line-height:           clamp(40px, calc(37.714px + 0.714vw), 48px);
-        --h3-space-after:           clamp(32px, calc(73.143px - 2.857vw), 64px);
+        --h3-font-size:             32px;
+        --h3-line-height:           40px;
+        --h3-space-after:           32px;
 
-        /* H4 */
-        --h4-font-size:             clamp(28px, calc(26.857px + 0.357vw), 32px);
-        --h4-line-height:           clamp(32px, calc(29.714px + 0.714vw), 40px);
-        --h4-space-after:           20px;
+        --h4-font-size:             28px;
+        --h4-line-height:           32px;
+        --h4-space-after:           28px;
 
-        /* H5 */
         --h5-font-size:             24px;
         --h5-line-height:           28px;
-        --h5-space-after:           20px;
+        --h5-space-after:           24px;
 
-        /* H6 */
         --h6-font-size:             20px;
         --h6-line-height:           24px;
         --h6-space-after:           20px;
 
-        /* Paragraph Large */
         --p-large-font-size:        20px;
         --p-large-line-height:      24px;
         --p-large-space-after:      20px;
 
-        /* Paragraph Medium */
         --p-medium-font-size:       16px;
         --p-medium-line-height:     24px;
-        --p-medium-space-after:     20px;
+        --p-medium-space-after:     16px;
 
-        /* Paragraph Small */
         --p-small-font-size:        14px;
-        --p-small-line-height:      16px;
-        --p-small-space-after:      20px;
+        --p-small-line-height:      20px;
+        --p-small-space-after:      14px;
+
+        --p-xsmall-font-size:       12px;
+        --p-xsmall-line-height:     20px;
+        --p-xsmall-space-after:     12px;
     }
+}
 
 
-    .h1 { 
-        font-family: 'CaviarDreamsBold', sans-serif;
-        text-transform: uppercase;
-        text-wrap: balance;
-        font-size: var(--h1-font-size); 
-        line-height: var(--h1-line-height); 
-        margin-bottom: var(--h1-space-after); 
+/* Tablet: 768px */
+@media screen and (min-width: 768px) {
+    :root {
+        --h1-font-size:             44px;
+        --h1-line-height:           56px;
+        --h1-space-after:           44px;
+
+        --h2-font-size:             44px;
+        --h2-line-height:           52px;
+        --h2-space-after:           44px;
+
+        --h3-font-size:             36px;
+        --h3-line-height:           44px;
+        --h3-space-after:           36px;
+
+        --h4-font-size:             28px;
+        --h4-line-height:           32px;
+        --h4-space-after:           28px;
+
+        --h5-font-size:             24px;
+        --h5-line-height:           28px;
+        --h5-space-after:           24px;
+
+        --h6-font-size:             20px;
+        --h6-line-height:           24px;
+        --h6-space-after:           20px;
     }
+}
 
-    .h2 { 
-        font-family: 'CaviarDreamsBold', sans-serif;
-        text-transform: uppercase;
-        text-wrap: balance;
-        font-size: var(--h2-font-size); 
-        line-height: var(--h2-line-height); 
-        margin-bottom: var(--h2-space-after); 
+
+/* Desktop: 1024px */
+@media screen and (min-width: 1024px) {
+    :root {
+        --h1-font-size:             48px;
+        --h1-line-height:           60px;
+        --h1-space-after:           48px;
+
+        --h2-font-size:             44px;
+        --h2-line-height:           52px;
+        --h2-space-after:           44px;
+
+        --h3-font-size:             36px;
+        --h3-line-height:           44px;
+        --h3-space-after:           36px;
+
+        --h4-font-size:             32px;
+        --h4-line-height:           40px;
+        --h4-space-after:           32px;
     }
+}
 
-    .h3 { 
-        font-family: 'CaviarDreamsBold', sans-serif;
-        text-transform: uppercase;
-        text-wrap: balance;
-        font-size: var(--h3-font-size); 
-        line-height: var(--h3-line-height); 
-        margin-bottom: var(--h3-space-after); 
+
+/* Desktop Large: 1440px */
+@media screen and (min-width: 1440px) {
+    :root {
+        --h1-font-size:             52px;
+        --h1-line-height:           64px;
+        --h1-space-after:           52px;
+
+        --h2-font-size:             48px;
+        --h2-line-height:           56px;
+        --h2-space-after:           40px;
+
+        --h3-font-size:             40px;
+        --h3-line-height:           48px;
+        --h3-space-after:           40px;
+
+        --h4-font-size:             32px;
+        --h4-line-height:           40px;
+        --h4-space-after:           32px;
     }
+}
 
-    .h4 { 
-        font-size: var(--h4-font-size); 
-        line-height: var(--h4-line-height); 
-        margin-bottom: var(--h4-space-after); 
-    }
 
-    .h5 { 
-        font-size: var(--h5-font-size); 
-        line-height: var(--h5-line-height); 
-        margin-bottom: var(--h5-space-after); 
-    }
+.h1,
+h1 { 
+    font-family: 'CaviarDreamsBold', sans-serif;
+    text-transform: uppercase;
+    text-wrap: balance;
+    font-size: var(--h1-font-size); 
+    line-height: var(--h1-line-height); 
+    margin-bottom: var(--h1-space-after); 
+}
 
-    .h6 { 
-        font-size: var(--h6-font-size); 
-        line-height: var(--h6-line-height); 
-        margin-bottom: var(--h6-space-after); 
-    }
+.h2,
+h2 { 
+    font-family: 'CaviarDreamsBold', sans-serif;
+    text-transform: uppercase;
+    text-wrap: balance;
+    font-size: var(--h2-font-size); 
+    line-height: var(--h2-line-height); 
+    margin-bottom: var(--h2-space-after); 
+}
 
-    .p-large  { 
-        font-size: var(--p-large-font-size);  
-        line-height: var(--p-large-line-height);  
-        margin-bottom: var(--p-large-space-after); 
-    }
+.h3,
+h3 { 
+    font-family: 'CaviarDreamsBold', sans-serif;
+    text-transform: uppercase;
+    text-wrap: balance;
+    font-size: var(--h3-font-size); 
+    line-height: var(--h3-line-height); 
+    margin-bottom: var(--h3-space-after); 
+}
 
-    .p-medium { 
-        font-size: var(--p-medium-font-size); 
-        line-height: var(--p-medium-line-height); 
-        margin-bottom: var(--p-medium-space-after); 
-    }
+.h4,
+h4 { 
+    font-size: var(--h4-font-size); 
+    line-height: var(--h4-line-height); 
+    margin-bottom: var(--h4-space-after); 
+}
 
-    .p-small  { 
-        font-size: var(--p-small-font-size);  
-        line-height: var(--p-small-line-height);  
-        margin-bottom: var(--p-small-space-after); 
-    }
+.h5,
+h5 { 
+    font-size: var(--h5-font-size); 
+    line-height: var(--h5-line-height); 
+    margin-bottom: var(--h5-space-after); 
+}
 
+.h6,
+h6 { 
+    font-size: var(--h6-font-size); 
+    line-height: var(--h6-line-height); 
+    margin-bottom: var(--h6-space-after); 
+}
+
+.p-large,
+.paragraph-lg { 
+    font-size: var(--p-large-font-size);  
+    line-height: var(--p-large-line-height);  
+    margin-bottom: var(--p-large-space-after); 
+}
+
+.p-medium,
+.paragraph-md { 
+    font-size: var(--p-medium-font-size); 
+    line-height: var(--p-medium-line-height); 
+    margin-bottom: var(--p-medium-space-after); 
+}
+
+.p-small,
+.paragraph-sm { 
+    font-size: var(--p-small-font-size);  
+    line-height: var(--p-small-line-height);  
+    margin-bottom: var(--p-small-space-after); 
+}
+
+.p-xsmall,
+.p-xsm,
+.paragraph-xsm { 
+    font-size: var(--p-xsmall-font-size);  
+    line-height: var(--p-xsmall-line-height);  
+    margin-bottom: var(--p-xsmall-space-after); 
+}
 
 
 
