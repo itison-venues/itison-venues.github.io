@@ -1563,45 +1563,7 @@
 
   /*----------------------STICKY HEADER----------------------*/
 
-  /* Finds the height of the Squarespace header and stores it as a CSS variable. Creates sticky menu */
-  function useHeaderOffset() {
-    React.useEffect(() => {
-      const setOffset = () => {
-        /* all possible squarespace header selectors */
-        const selectors = [
-          "header.Header",
-          "#header",
-          'header[role="banner"]',
-          ".sqs-site-frame .Header",
-        ];
-        let height = 0;
 
-        /* Check each possible header and keep the tallest visible one */
-        selectors.forEach((sel) => {
-          const el = document.querySelector(sel);
-          if (!el) return;
-          const rect = el.getBoundingClientRect();
-          if (rect.height > 0 && getComputedStyle(el).display !== "none")
-            height = Math.max(height, rect.height);
-        });
-
-        /* Save the header height for CSS scroll calculations */
-        document.documentElement.style.setProperty(
-          "--ssHeaderH",
-          height + "px",
-        );
-      };
-
-      /* Run this once when the menu loads */
-      setOffset();
-
-      /* recalculate when the screen is resized */
-      window.addEventListener("resize", setOffset);
-
-      /* clean up the event listener if react ever unmounts this component */
-      return () => window.removeEventListener("resize", setOffset);
-    }, []);
-  }
 
   /*----------------------SMOOTH SCROLLS TO SECTION----------------------*/
 
@@ -1729,8 +1691,7 @@
   function RenderBlock({ item, activeMenu }) {
     if (item.type === "heading") return <Heading text={item.text} />; // Subheading.
     if (item.type === "item") return <MenuItem item={item} />; // Normal menu row.
-    if (item.type === "promo")
-      return <Promo item={item} activeMenu={activeMenu} />; // Promo card.
+    if (item.type === "promo") return null; // Promo cards removed.
 
     // Dotted outline box, used for grouped fondue/raclette content.
     if (item.type === "box") {
@@ -1773,136 +1734,21 @@
     );
   }
 
-  /*----------------------MAIN MENU APP CONTROLS STICKY NAV BAR, DROPDOWNS AND RENDERED SECTIONS----------------------*/
+  /*----------------------MAIN MENU APP RENDERS FOOD SECTIONS ONLY, WITHOUT STICKY NAV OR PROMO BANNERS----------------------*/
   function BrelMenu() {
-    // Keep sticky nav offset aligned with the Squarespace header.
-    useHeaderOffset();
-
-    // Initial active tab. If URL contains ?menu=drinks or ?menu=kids, it opens that tab first. Defaults to food.
-    const [activeMenu, setActiveMenu] = React.useState(() => {
-      const param = new URLSearchParams(window.location.search).get("menu");
-      return MENU_DATA[param] ? param : "food";
-    });
-
-    // Controls whether the Specials dropdown is open.
-    const [specialsOpen, setSpecialsOpen] = React.useState(false);
-
-    // Sections for the currently active menu.
-    const sections = MENU_DATA[activeMenu] || MENU_DATA.food;
-
-    // Build the Specials dropdown by finding all promo cards in the active menu.
-    const specials = React.useMemo(() => {
-      const list = [];
-      sections.forEach((section) => {
-        section.items.forEach((item) => {
-          if (item.type === "promo" && item.id) list.push(item);
-        });
-      });
-      return list;
-    }, [sections]);
-
-    // Update the URL when the active menu changes, e.g. ?menu=food, ?menu=drinks, ?menu=kids.
-    React.useEffect(() => {
-      const url = new URL(window.location.href);
-      url.searchParams.set("menu", activeMenu);
-      history.replaceState(null, "", url.toString());
-      setSpecialsOpen(false); // Close Specials dropdown when changing menu.
-    }, [activeMenu]);
-
-    // Close the Specials dropdown when clicking elsewhere on the page.
-    React.useEffect(() => {
-      const close = () => setSpecialsOpen(false);
-      document.addEventListener("click", close);
-      return () => document.removeEventListener("click", close);
-    }, []);
+    const activeMenu = "food";
+    const sections = MENU_DATA.food;
 
     return (
       // Main outer menu container. max-w-6xl keeps it from getting too wide; mx-auto centres it.
       <div className="w-full mx-auto max-w-6xl bg-[#fbf3ea] px-4 pb-16 font-sans text-[#1a1a1a]">
         {/* Main page title. */}
         <h1 className="mb-5 text-center text-4xl font-extrabold text-[#007a8d]">
-          Menus
+          Food Menu
         </h1>
 
-        {/* Sticky nav block containing Food/Drinks/Kids toggle and section links. */}
-        <div
-          id="brel-menu-nav"
-          className="sticky z-[9999] rounded-lg border-2 border-[#007a8d] bg-[#f9f3ea] px-4 py-6"
-          style={{ top: "var(--ssHeaderH, 0px)" }}
-        >
-          {/* Food / Drinks / Kids segmented buttons. */}
-          <div className="mb-5 flex justify-center">
-            <div className="inline-grid grid-flow-col rounded-full border border-black/50 p-1">
-              {Object.keys(MENU_DATA).map((key) => (
-                <button
-                  key={key}
-                  type="button"
-                  onClick={() => setActiveMenu(key)}
-                  className={cx(
-                    "rounded-full px-7 py-3 text-sm font-extrabold capitalize leading-none",
-                    activeMenu === key && "outline outline-2 outline-[#007a8d]",
-                  )}
-                >
-                  {key}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Horizontal section nav. Scrolls on mobile; wraps/centres on desktop. */}
-          <nav className="relative flex gap-4 overflow-x-auto whitespace-nowrap px-2 text-sm font-extrabold uppercase text-[#007a8d] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden md:flex-wrap md:justify-center">
-            {/* Specials dropdown appears only if the active menu contains promo cards. */}
-            {specials.length > 0 && (
-              <div
-                className="relative inline-block"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <button
-                  type="button"
-                  onClick={() => setSpecialsOpen((v) => !v)}
-                  className="underline decoration-[#007a8d]/50 decoration-2 underline-offset-4 hover:decoration-[#007a8d]"
-                  aria-expanded={specialsOpen}
-                >
-                  Specials ▾
-                </button>
-
-                {/* Dropdown panel for promo cards. Fixed positioning helps it avoid being clipped by the sticky nav. */}
-                {specialsOpen && (
-                  <div className="fixed left-1/2 z-[20000] mt-3 min-w-56 -translate-x-1/2 rounded-xl border-2 border-[#007a8d]/40 bg-white p-3 text-left normal-case text-[#1a1a1a] shadow-xl">
-                    {specials.map((item) => (
-                      <button
-                        key={item.id}
-                        type="button"
-                        onClick={() => {
-                          setSpecialsOpen(false);
-                          scrollToId(`${activeMenu}-${item.id}`);
-                        }}
-                        className="block w-full rounded-lg px-3 py-2 text-left font-extrabold hover:bg-[#007a8d]/10"
-                      >
-                        {item.alt || item.title || item.id.replaceAll("-", " ")}
-                      </button>
-                    ))}
-                  </div>
-                )}
-              </div>
-            )}
-
-            {/* Section buttons are generated from the active menu sections. */}
-            {sections.map((section) => (
-              <button
-                key={section.id}
-                type="button"
-                onClick={() => scrollToId(`${activeMenu}-${section.id}`)}
-                className="underline decoration-[#007a8d]/50 decoration-2 underline-offset-4 hover:decoration-[#007a8d]"
-              >
-                {section.label}
-              </button>
-            ))}
-          </nav>
-        </div>
-
-        {/* Actual menu sections rendered below the sticky nav. */}
-        <div className="mt-6">
+        {/* Actual food menu sections rendered as a simple list. */}
+        <div>
           {sections.map((section) => (
             <Section
               key={section.id}
