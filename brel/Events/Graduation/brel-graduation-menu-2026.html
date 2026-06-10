@@ -25,1532 +25,156 @@
   const MENU_DATA = {
     food: [
       {
-        id: "small",
-        label: "Small",
-        title: "SMALL",
+        // STARTERS
+        id: "starters",
+        label: "Starters",
+        title: "STARTERS",
         items: [
           {
-            type: "heading",
-            text: "Snack",
-          },
-          {
             type: "item",
-            name: "Gordal Picante Olives",
-            dietary: "[VG/GF]",
-            price: "£5.50",
-            desc: "",
+            name: "Harissa Chicken",
+            dietary: "[GF]",
+            price: "",
+            desc: "Mint & Chive Yoghurt",
           },
+
           {
             type: "item",
             name: "Focaccia",
             dietary: "[V]",
-            price: "£6.00",
+            price: "",
             desc: "Caramelised Onion Whipped Butter",
           },
-          {
-            type: "heading",
-            text: "Small",
-          },
-          {
-            type: "item",
-            name: "French Onion Soup",
-            dietary: "",
-            price: "£9.50",
-            desc: "Comté Crouton, Soda Bread Add Small French Onion Cheese Melt +£7.00",
-          },
+
           {
             type: "item",
             name: "Manchego Cheese Fritters",
             dietary: "[V/GF]",
-            price: "£9.50",
-            desc: "Gotcha",
+            price: "",
+            desc: "Gotcha Ketchup",
           },
-          {
-            type: "item",
-            name: "Fried Squid",
-            dietary: "",
-            price: "£12.00",
-            desc: "Lemon Aioli",
-          },
-          {
-            type: "item",
-            name: "Garlic & Chilli Prawns",
-            dietary: "[GFA]",
-            price: "£12.00",
-            desc: "Lemon, Parsley, Soda Bread",
-          },
-          {
-            type: "item",
-            name: "Chicken Skewers",
-            dietary: "[GF]",
-            price: "£12.00",
-            desc: "Harrissa, Mint & Chive Yoghurt",
-          },
-        ],
-      },
-      {
-        id: "poutines",
-        label: "Poutines",
-        title: "Poutines",
-        items: [
-          {
-            type: "item",
-            name: "Mozzarella, Beef Gravy",
-            dietary: "[GF]",
-            price: "£11.00",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Peppercorn & Steak",
-            dietary: "[GF]",
-            price: "£16.00",
-            desc: "Fillet Steak, Peppercorn Sauce, Mozzarella",
-          },
-          {
-            type: "item",
-            name: "Truffle",
-            dietary: "[V/GF]",
-            price: "£11.00",
-            desc: "Truffle Aioli, Black Pepper, Parmesan",
-          },
-          {
-            type: "item",
-            name: "Manchego",
-            dietary: "[GF]",
-            price: "£12.00",
-            desc: "Gotcha Ketchup, Crispy Onions",
-          },
-        ],
-      },
-      {
-        id: "bigs",
-        label: "Bigs",
-        title: "BIGS",
-        items: [
-          {
-            type: "heading",
-            text: "Moules Frites",
-          },
+
           {
             type: "item",
             name: "Scottish Steamed Mussels",
             dietary: "[GFA]",
-            price: "£12.75 / £23.00",
-            desc: "Half Pot: Soda Bread / Full Pot: Frites, Soda Bread\n• Mariniere With (Or Without) Cream\n• Belgian Beer, Bacon, Leek\n• Thai Lemongrass, Coriander\n• Saffron, Coconut & Chilli (GFA)",
+            price: "",
+            desc: "Half Pot: Soda Bread\n• Mariniere With (Or Without) Cream\n• Belgian Beer, Bacon, Leek\n• Thai Lemongrass, Coriander\n• Saffron, Coconut & Chilli",
           },
-          {
-            type: "promo",
-            id: "moules-monday",
-            title: "",
-            image:
-              "https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/a6d68a70-a9b7-48e0-96e1-283584204eaf/Brel+-+Moules+Monday.png?content-type=image%2Fpng",
-            alt: "Moules Mondays",
-            lines: [
-              "Moules & Frites from £14 Full Pot, Frites & Aioli",
-              "Moules for 2 from £38 2 x Pots, 2 x Frites, Bottle of House Wine",
-              "All day every Monday",
-            ],
-            buttonText: "book a table",
-            buttonHref:
-              "https://www.sevenrooms.com/explore/brel/reservations/create/search/",
-          },
-          {
-            type: "heading",
-            text: "Bigs",
-          },
-          {
-            type: "item",
-            name: "Steak Frites",
-            dietary: "[GF]",
-            price: "£32.50",
-            desc: "8oz Fillet Steak, Tenderstem Broccoli, Peppercorn Sauce",
-          },
+
+        ],
+      },
+
+      // BIGS
+      {
+        id: "bigs",
+        label: "Bigs",
+        title: "Bigs",
+        items: [
           {
             type: "item",
             name: "Chicken Schnitzel",
             dietary: "[GF]",
-            price: "£19.75",
+            price: "",
             desc: "Crushed Potatoes, Tenderstem Broccoli, Fried Egg, Caper & Lemon Butter",
           },
-          {
-            type: "item",
-            name: "Prawn Linguini",
-            dietary: "",
-            price: "£22.00",
-            desc: "Lime, Chilli, Coriander",
-          },
+
           {
             type: "item",
             name: "Caesar Salad",
             dietary: "[GFA]",
-            price: "£13.50",
-            desc: "Lettuce, Parmesan, Croutons, Anchovies, Caesar Dressing Add Grilled Chicken +£4.00",
+            price: "",
+            desc: "Lettuce, Parmesan, Croutons, Anchovies, Caesar Dressing\nAdd Grilled Chicken + £4.00",
           },
+
           {
             type: "item",
             name: "Beetroot & Goats Cheese Salad",
             dietary: "[V]",
-            price: "£14.00",
-            desc: "Candied Beetroot, Toasted Pumpkin Seeds, Pesto",
+            price: "",
+            desc: "Pickled Candy Beetroot, Toasted Pumpkin Seeds, Pesto Dressing",
           },
+
           {
             type: "item",
-            name: "Haddock Crêpe",
+            name: "Haddock Crepe",
             dietary: "",
-            price: "£15.00",
-            desc: "Haddock Goujons, Lemon Aioli, Pico de Gallo, Chilli, Pickles, Side Salad",
+            price: "",
+            desc: "Haddock Goujons, Lemon Aioli, Pico de Gallo, Chilli, Pickles, Salad",
           },
+
           {
             type: "item",
-            name: "Chicken & Avocado Crêpe",
+            name: "Chicken & Avocado Crepe",
             dietary: "",
-            price: "£14.00",
-            desc: "Harrissa, Bacon, Fried Egg, Side Salad",
+            price: "",
+            desc: "Bacon, Fried Egg, Salad",
           },
+
           {
             type: "item",
-            name: "Brel Macaroni",
-            dietary: "[V]",
-            price: "£14.75",
-            desc: "Comté Crumb, Garlic Ciabatta Add Bacon & Raclette +£3.00",
-          },
-          {
-            type: "promo",
-            id: "sunday-roast-fondue",
-            title: "",
-            image:
-              "https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/bea7780a-d44e-4a41-9eda-ec4f86bbd2ad/Brel+-+Sunday+Roast+Fondue+2.png?content-type=image%2Fpng",
-            alt: "Sunday Roast Fondue",
-            lines: [
-              "£47.50 for 2 Large Yorkshire pudding filled with fillet steak and gravy fondue",
-              "Sides: Roast Potatoes, Carrots & Parsnips, Broccoli, Cheese filled Mini Yorkshire Puddings",
-              "All day every Sunday",
-              "Limited availability, first come first serve. Book in to secure your spot. Sunday Roast Fondue boards will be limited to 1 board per couple",
-            ],
-            buttonText: "book a table",
-            buttonHref:
-              "https://www.sevenrooms.com/explore/brel/reservations/create/search/",
-          },
-          {
-            type: "heading",
-            text: "For the Table",
-          },
-          {
-            type: "item",
-            name: "Sharing Board",
-            dietary: "",
-            price: "£32.00",
-            desc: "Manchego Fritters, Toulouse Sausage, Mini Macaroni, Tenderstem Broccoli, Onion Rings, Foccaccia, Frites, Aioli, Gotcha Ketchup",
-          },
-          {
-            type: "item",
-            name: "The Burrata Board",
-            dietary: "",
-            price: "£28.00",
-            desc: "Coppa, Tomatoes, Grapes, Pickles, Croutes, Balsamic, Oil",
-          },
-          {
-            type: "box",
-            items: [
-              {
-                type: "item",
-                name: "Raclette",
-                dietary: "[GFA]",
-                price: "£47.50 for 2",
-                desc: "14-month Aged Raclette melted at your table",
-              },
-              {
-                type: "item",
-                name: "Cheese Fondue",
-                dietary: "[GFA]",
-                price: "£47.50 for 2",
-                desc: "3 Cheese mix fondue to dip in at your table",
-              },
-              {
-                type: "item",
-                name: "CHOOSE FROM:",
-                dietary: "",
-                price: "",
-                desc: "• Toulouse Sausage, Chorizo, Crispy Potatoes, Pretzel Bites, Apple, Pickles [GFA]\n• Crispy Potatoes, Broccoli & Cauliflower Florets, Cherry Tomatoes, Soda Bread, Pickles [GFA]",
-              },
-            ],
-          },
-          {
-            type: "promo",
-            id: "fondue-tuesday",
-            title: "",
-            image:
-              "https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/b63dbd1d-63a5-4e08-a540-577190fbec34/Brel+-+Fondue+Tuesdays.png?content-type=image%2Fpng",
-            alt: "Fondue & Raclette Tuesdays",
-            lines: [
-              "Fondue or Raclette for 2 from £31",
-              "Fondue or Raclette for 2 from £41 With a bottle of house wine",
-              "Every Tuesday from 5pm",
-            ],
-            buttonText: "book a table",
-            buttonHref:
-              "https://www.sevenrooms.com/explore/brel/reservations/create/search/",
-          },
-        ],
-      },
-      {
-        id: "bread",
-        label: "Breads",
-        title: "BREADS",
-        items: [
-          {
-            type: "item",
-            name: "Beef Burger",
+            name: "Scottish Steamed Mussels",
             dietary: "[GFA]",
-            price: "£18.00",
-            desc: "Emmental, Smoked Bacon, French Onions, Lettuce, Tomato, Pickle, Truffle Aioli, Frites",
+            price: "",
+            desc: "Full Pot: Fries & Soda Bread\n• Mariniere With (Or Without) Cream\n• Belgian Beer, Bacon, Leek\n• Thai Lemongrass, Coriander\n• Saffron, Coconut & Chilli",
           },
-          {
-            type: "item",
-            name: "Chicken Burger",
-            dietary: "[VGA/GFA]",
-            price: "£18.00",
-            desc: "Buttermilk Fried Chicken, Red Slaw, Gotcha Ketchup, Lettuce, Tomato, Pickle, Frites",
-          },
-          {
-            type: "item",
-            name: "French Dip Sandwich",
-            dietary: "",
-            price: "£19.00",
-            desc: "Sirloin Steak, French Mustard, Truffle Aioli, French Onions, French Dip, Ciabatta, Side Salad",
-          },
-          {
-            type: "item",
-            name: "French Onion Cheese Melt",
-            dietary: "",
-            price: "£14.75",
-            desc: "Raclette, Gruyère, French Onions, Baguette, Side Salad",
-          },
+
         ],
       },
+  
+      // DESSERTS
       {
-        id: "sides",
-        label: "Sides",
-        title: "SIDES",
-        items: [
-          {
-            type: "item",
-            name: "Frites",
-            dietary: "[VG/GF]",
-            price: "£6.00",
-            desc: "Aioli",
-          },
-          {
-            type: "item",
-            name: "Mini Macaroni",
-            dietary: "[V]",
-            price: "£6.00",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Belgian Beer Battered Onion Rings",
-            dietary: "[V]",
-            price: "£5.25",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Chilli & Lemon Tenderstem Broccoli",
-            dietary: "[VG/GF]",
-            price: "£5.75",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Garden Salad",
-            dietary: "[VG/GF]",
-            price: "£5.25",
-            desc: "",
-          },
-        ],
-      },
-      {
-        id: "dessert",
+        id: "desserts",
         label: "Desserts",
-        title: "DESSERTS",
+        title: "Desserts",
         items: [
           {
             type: "item",
             name: "Waffle Fingers",
             dietary: "[V]",
-            price: "£9.50",
+            price: "+ £9.50",
             desc: "Melted Chocolate",
           },
+
           {
             type: "item",
             name: "S'mores",
             dietary: "[VGA/GFA]",
-            price: "£10.50",
+            price: "+ £10.50",
             desc: "Crackers, Chocolate, Marshmallows",
           },
+
           {
             type: "item",
             name: "S'mores Skillet",
             dietary: "[VGA/GFA]",
-            price: "£10.00 / £19.00",
-            desc: "Small / Large: Crackers, Chocolate, Marshmallows, Berry Compote",
+            price: "+ £10.00 / + £19.00",
+            desc: "SMALL / LARGE: Crackers, Chocolate, Marshmallows, Berry Compote",
           },
+
           {
             type: "item",
             name: "Chocolate Fondue",
             dietary: "[V/GFA]",
-            price: "£19.50",
+            price: "+ £19.50",
             desc: "Fresh Fruit, Waffle Fingers, Meringue, Marshmallows",
           },
+
           {
             type: "item",
             name: "Toblerone Cheesecake",
             dietary: "",
-            price: "£9.00",
+            price: "+ £9.00",
             desc: "Chocolate, Almonds",
           },
-        ],
-      },
-    ],
-    drinks: [
-      {
-        id: "bier",
-        label: "Bier",
-        title: "Bier",
-        items: [
-          {
-            type: "heading",
-            text: "Belgian Klassiks",
-          },
-          {
-            type: "item",
-            name: "Duvel",
-            dietary: "",
-            price: "£8.50",
-            desc: "330ml | 8.5%",
-          },
-          {
-            type: "item",
-            name: "Orval",
-            dietary: "",
-            price: "£7.50",
-            desc: "330ml | 6.2%",
-          },
-          {
-            type: "item",
-            name: "Delirium Tremens",
-            dietary: "",
-            price: "£9.75",
-            desc: "330ml | 8.5%",
-          },
-          {
-            type: "item",
-            name: "Brugse Zot Blond",
-            dietary: "",
-            price: "£7.50",
-            desc: "330ml | 6%",
-          },
-          {
-            type: "item",
-            name: "Blanche De Bruxelles",
-            dietary: "",
-            price: "£7.50",
-            desc: "330ml | 4.5%",
-          },
-          {
-            type: "item",
-            name: "Pauwel Kwak",
-            dietary: "",
-            price: "£9.50",
-            desc: "330ml | 8.4%",
-          },
-          {
-            type: "item",
-            name: "Chimay Red Cap",
-            dietary: "",
-            price: "£7.00",
-            desc: "330ml | 7%",
-          },
-          {
-            type: "item",
-            name: "Chimay Blue Cap",
-            dietary: "",
-            price: "£10.75",
-            desc: "330ml | 9%",
-          },
-          {
-            type: "item",
-            name: "La Chouffee Blonde Ale",
-            dietary: "",
-            price: "£9.50",
-            desc: "330ml | 8%",
-          },
-          {
-            type: "item",
-            name: "Mongozo Pilsner",
-            dietary: "",
-            price: "£6.80",
-            desc: "330ml | 5% | Gluten Free",
-          },
-          {
-            type: "item",
-            name: "Leffe",
-            dietary: "",
-            price: "£3.90 / £7.80",
-            desc: "Belgium | 6.6%",
-          },
-          {
-            type: "item",
-            name: "Weihenstephaner",
-            dietary: "",
-            price: "£3.75 / £7.80",
-            desc: "Germany | 5.4%",
-          },
-          {
-            type: "item",
-            name: "Schöfferhofer Grapefruit",
-            dietary: "",
-            price: "£2.90 / £5.75",
-            desc: "Germany | 2.5%",
-          },
-          {
-            type: "item",
-            name: "La Chouffe Session Ale",
-            dietary: "",
-            price: "£3.50 / £7.00",
-            desc: "Belgium | 4%",
-          },
-          {
-            type: "item",
-            name: "Amstel",
-            dietary: "",
-            price: "£3.25 / £6.50",
-            desc: "Netherlands | 4.1%",
-          },
-          {
-            type: "item",
-            name: "Heineken",
-            dietary: "",
-            price: "£3.30 / £6.60",
-            desc: "Netherlands | 4%",
-          },
-          {
-            type: "item",
-            name: "Moretti",
-            dietary: "",
-            price: "£3.40 / £6.75",
-            desc: "Italy | 4.6%",
-          },
-          {
-            type: "item",
-            name: "Guinness",
-            dietary: "",
-            price: "£3.30 / £6.60",
-            desc: "Ireland | 4.3%",
-          },
-          {
-            type: "item",
-            name: "St Mungo",
-            dietary: "",
-            price: "£3.40 / £6.75",
-            desc: "Scotland | 4.9%",
-          },
-          {
-            type: "item",
-            name: "Neck Oil",
-            dietary: "",
-            price: "£3.80 / £7.60",
-            desc: "England | 4.3%",
-          },
-          {
-            type: "item",
-            name: "Strongbow",
-            dietary: "",
-            price: "£3.30 / £6.60",
-            desc: "England | 4.5%",
-          },
-          {
-            type: "heading",
-            text: "Zoet (Sweet)",
-          },
-          {
-            type: "item",
-            name: "Cherry La Chouffe",
-            dietary: "",
-            price: "£9.50",
-            desc: "330ml | 8%",
-          },
-          {
-            type: "item",
-            name: "Fruli",
-            dietary: "",
-            price: "£6.80",
-            desc: "330ml | 5.4%",
-          },
-          {
-            type: "item",
-            name: "Mongozo Coconut",
-            dietary: "",
-            price: "£6.00",
-            desc: "330ml | 3.5% | Gluten Free",
-          },
-          {
-            type: "item",
-            name: "Timmermans Pêche",
-            dietary: "",
-            price: "£6.75",
-            desc: "330ml | 4%",
-          },
-          {
-            type: "item",
-            name: "Kasteel Rubus",
-            dietary: "",
-            price: "£8.00",
-            desc: "330ml | 7%",
-          },
-          {
-            type: "item",
-            name: "Kasteel Tropical",
-            dietary: "",
-            price: "£8.00",
-            desc: "330ml | 7%",
-          },
-          {
-            type: "heading",
-            text: "Around the World",
-          },
-          {
-            type: "item",
-            name: "Budvar",
-            dietary: "",
-            price: "£6.75",
-            desc: "Czech Republic | 500ml | 5%",
-          },
-          {
-            type: "item",
-            name: "Früh Kölsch",
-            dietary: "",
-            price: "£7.25",
-            desc: "Germany | 330ml | 4.8%",
-          },
-          {
-            type: "item",
-            name: "Corona",
-            dietary: "",
-            price: "£5.75",
-            desc: "Mexico | 330ml | 4.6%",
-          },
-          {
-            type: "item",
-            name: "Joker IPA",
-            dietary: "",
-            price: "£6.50",
-            desc: "Scotland | 500ml | 5%",
-          },
-          {
-            type: "item",
-            name: "Old Mout Cider",
-            dietary: "",
-            price: "£6.75",
-            desc: "New Zealand | 500ml | 4% Ask our friendly team for flavours",
-          },
-          {
-            type: "promo",
-            id: "moules-monday",
-            title: "Beir Flight",
-            image:
-              "https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/b6c9835c-6677-4792-920d-30aa18f4504b/Brel+Drinks+Menu+Bier+Flight.png?content-type=image%2Fpng",
-            alt: "bier flight",
-            lines: [
-              "Belgian - £21 Orval | Duvel | Fruli",
-              "Around the World - £16 Weihenstephaner | St Mungo | Schöfferhofer Grapefruit",
-            ],
-            buttonText: "book now",
-            buttonHref: "https://www.brelbar.com/book",
-          },
-          {
-            type: "heading",
-            text: "Non-Alcoholic",
-          },
-          {
-            type: "item",
-            name: "Beavertown Lazer Crush IPA",
-            dietary: "",
-            price: "£5.00",
-            desc: "England | 330ml | 0%",
-          },
-          {
-            type: "item",
-            name: "Heineken",
-            dietary: "",
-            price: "£5.00",
-            desc: "Netherlands | 330ml | 0%",
-          },
-          {
-            type: "item",
-            name: "Furstenberg",
-            dietary: "",
-            price: "£5.00",
-            desc: "Germany | 500ml | 0%",
-          },
-          {
-            type: "item",
-            name: "Guinness 0%",
-            dietary: "",
-            price: "£5.50",
-            desc: "Ireland | 538ml | 0%",
-          },
-        ],
-      },
-      {
-        id: "cocktail",
-        label: "Cocktails",
-        title: "Cocktails",
-        items: [
-          {
-            type: "heading",
-            text: "Klassik",
-          },
-          {
-            type: "item",
-            name: "Espresso Martini",
-            dietary: "",
-            price: "£11.50",
-            desc: "Smirnoff Vodka, Kahlua, Espresso, Gomme",
-          },
-          {
-            type: "item",
-            name: "Margarita",
-            dietary: "",
-            price: "£11.50",
-            desc: "[ Classic or Spicy ] El Jimador Blanco, Triple Sec, Gomme, Lime, Salt",
-          },
-          {
-            type: "item",
-            name: "Amaretto Sour",
-            dietary: "",
-            price: "£11.00",
-            desc: "Luxardo Amaretto, Angostura Orange Bitters, Lemon, Foamer",
-          },
-          {
-            type: "item",
-            name: "Old Fashioned",
-            dietary: "",
-            price: "£12.00",
-            desc: "Woodford Reserve, Jack Daniels, Angostura",
-          },
-          {
-            type: "item",
-            name: "Negroni",
-            dietary: "",
-            price: "£12.00",
-            desc: "Tanqueray Gin, Campari, Martini Rosso",
-          },
-          {
-            type: "item",
-            name: "French Martini",
-            dietary: "",
-            price: "£11.50",
-            desc: "Smirnoff Vodka, Chambord, Pineapple",
-          },
-          {
-            type: "item",
-            name: "Bramble",
-            dietary: "",
-            price: "£11.50",
-            desc: "Tanqueray Gin, Lemon, Gomma, Crème-de-Mure",
-          },
-          {
-            type: "item",
-            name: "Mojito",
-            dietary: "",
-            price: "£11.50",
-            desc: "Morgans Blanco, Mint, Lime, Gomme, Soda",
-          },
-          {
-            type: "item",
-            name: "Paloma",
-            dietary: "",
-            price: "£12.00",
-            desc: "El Jimador Blanco, Grapefruit Aperitif, Gomme, Grapefruit Soda, Salt",
-          },
-          {
-            type: "item",
-            name: "Bloody Mary",
-            dietary: "",
-            price: "£12.50",
-            desc: "Smirnoff Vodka, Toamto, Lemon, Celery Salt, Tobasco, Worcestershire",
-          },
-          {
-            type: "heading",
-            text: "Spritz",
-          },
-          {
-            type: "item",
-            name: "Aperol",
-            dietary: "",
-            price: "£11.75",
-            desc: "Aperol, Prosecco, Soda",
-          },
-          {
-            type: "item",
-            name: "Hugo",
-            dietary: "",
-            price: "£12.50",
-            desc: "St Germain Elderflower Liquor, Prosecco, Soda",
-          },
-          {
-            type: "item",
-            name: "Sarti",
-            dietary: "",
-            price: "£11.75",
-            desc: "Sarti Blood Orange, Mango & Passionfruit Liquor, Prosecco, Soda",
-          },
-          {
-            type: "item",
-            name: "Limoncello",
-            dietary: "",
-            price: "£11.50",
-            desc: "Luxardo Limoncello, Prosecco, Soda",
-          },
-          {
-            type: "item",
-            name: "Peachy",
-            dietary: "",
-            price: "£11.50",
-            desc: "Peach Schnapps, Prosecco, Gomme, Soda",
-          },
-          {
-            type: "heading",
-            text: "Huis",
-          },
-          {
-            type: "item",
-            name: "SCHÖFFERITA",
-            dietary: "",
-            price: "£11.50",
-            desc: "El Jimador Tequila, Schöfferhofer, Lime, Gomme",
-          },
-          {
-            type: "item",
-            name: "Strawberry Basil Smash",
-            dietary: "",
-            price: "£11.75",
-            desc: "Tanqueray Gin, Lemon, Strawberry, Basil, Soda",
-          },
-          {
-            type: "item",
-            name: "Sunshine Sour",
-            dietary: "",
-            price: "£11.75",
-            desc: "Havana Especial, Smirnoff Peach, Pineapple, Gomme, Lemon, Foamer",
-          },
-          {
-            type: "item",
-            name: "MON CHÉRI",
-            dietary: "",
-            price: "£11.75",
-            desc: "Smirnoff Vodka, Cherry Liquor, Lime, Grenadine",
-          },
-          {
-            type: "heading",
-            text: "Sharers",
-          },
-          {
-            type: "item",
-            name: "Pimms",
-            dietary: "",
-            price: "£30.00",
-            desc: "Pimms No.1, Lemonade, Mixed Fruit",
-          },
-          {
-            type: "item",
-            name: "Peach Sangria",
-            dietary: "",
-            price: "£35.00",
-            desc: "Peach Schnapps, Pinot Blush, Lemonde",
-          },
-          {
-            type: "item",
-            name: "Aperol",
-            dietary: "",
-            price: "£35.00",
-            desc: "Aperol, Prosecco, Soda",
-          },
-          {
-            type: "item",
-            name: "Hugo",
-            dietary: "",
-            price: "£37.00",
-            desc: "St Germain, Prosecco, Soda",
-          },
-          {
-            type: "heading",
-            text: "Mocktails",
-          },
-          {
-            type: "item",
-            name: "Strawberry & Elderflower Spritz",
-            dietary: "",
-            price: "£5.50",
-            desc: "Strawberry, Elderflower, Lemon, Soda",
-          },
-          {
-            type: "item",
-            name: "Mellow Mango",
-            dietary: "",
-            price: "£5.50",
-            desc: "Mango, Vanilla, Lemon, Soda",
-          },
-          {
-            type: "item",
-            name: "Garden Sour",
-            dietary: "",
-            price: "£6.00",
-            desc: "Tanqueray 0%, Lemon, Gomme",
-          },
-        ],
-      },
-      {
-        id: "spirits",
-        label: "Spirits",
-        title: "SPIRITS",
-        items: [
-          {
-            type: "heading",
-            text: "Vodka",
-          },
-          {
-            type: "item",
-            name: "Smirnoff Red Vodka",
-            dietary: "",
-            price: "£6.25",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Smirnoff Pink Raspberry",
-            dietary: "",
-            price: "£6.50",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Smirnoff Vanilla",
-            dietary: "",
-            price: "£6.20",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Ciroc",
-            dietary: "",
-            price: "£7.25",
-            desc: "Ask Team for Flavours",
-          },
-          {
-            type: "heading",
-            text: "Rum",
-          },
-          {
-            type: "item",
-            name: "Captain Morgan's Blanco",
-            dietary: "",
-            price: "£6.25",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Captain Morgan's Spiced",
-            dietary: "",
-            price: "£6.25",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Appleton Estate 8yr Reserve",
-            dietary: "",
-            price: "£7.50",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Diplomatico",
-            dietary: "",
-            price: "£7.25",
-            desc: "Reserva Golden / Mantuano",
-          },
-          {
-            type: "item",
-            name: "Havana 3",
-            dietary: "",
-            price: "£7.25",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Havana 7",
-            dietary: "",
-            price: "£7.25",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Kraken",
-            dietary: "",
-            price: "£7.00",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Brugal 1888",
-            dietary: "",
-            price: "£7.50",
-            desc: "",
-          },
-          {
-            type: "heading",
-            text: "Gin",
-          },
-          {
-            type: "item",
-            name: "The Botanist",
-            dietary: "",
-            price: "£7.00",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Caorunn",
-            dietary: "",
-            price: "£7.00",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Brockman's",
-            dietary: "",
-            price: "£7.00",
-            desc: "Classic / Orange",
-          },
-          {
-            type: "item",
-            name: "Glaswegin",
-            dietary: "",
-            price: "£7.00",
-            desc: "Classic / Pink",
-          },
-          {
-            type: "item",
-            name: "Tanqueray",
-            dietary: "",
-            price: "£6.25",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Tanqueray No.10",
-            dietary: "",
-            price: "£7.25",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Tanqueray Flor De Sevilla",
-            dietary: "",
-            price: "£7.00",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Gin Mare",
-            dietary: "",
-            price: "£7.00",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Roku",
-            dietary: "",
-            price: "£7.00",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Gordon's Pink",
-            dietary: "",
-            price: "£6.50",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Gordon's Sicilian",
-            dietary: "",
-            price: "£6.75",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Gordon's Passionfruit",
-            dietary: "",
-            price: "£6.75",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Downpour Sloe Gin",
-            dietary: "",
-            price: "£6.75",
-            desc: "",
-          },
-          {
-            type: "heading",
-            text: "Tequila & Mezcal",
-          },
-          {
-            type: "item",
-            name: "Cazcabel Coffee",
-            dietary: "",
-            price: "£5.60",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "El Jimador Blanco",
-            dietary: "",
-            price: "£6.25",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Herradura Blanco",
-            dietary: "",
-            price: "£7.25",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Herradura Reposado",
-            dietary: "",
-            price: "£6.40",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "El Jimador Resposado",
-            dietary: "",
-            price: "£6.25",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Casamigos Blanco",
-            dietary: "",
-            price: "£7.50",
-            desc: "",
-          },
-          {
-            type: "heading",
-            text: "Whisky & Bourbon",
-          },
-          {
-            type: "item",
-            name: "Famous Grouse",
-            dietary: "",
-            price: "£7.00",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Naked Grouse",
-            dietary: "",
-            price: "£7.25",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Highland Park 12",
-            dietary: "",
-            price: "£8.00",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Laphroaig",
-            dietary: "",
-            price: "£7.75",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Glenlivet",
-            dietary: "",
-            price: "£7.75",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Auchentoshan 12",
-            dietary: "",
-            price: "£8.00",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Johnnie Walker Black",
-            dietary: "",
-            price: "£6.75",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Haig Club",
-            dietary: "",
-            price: "£7.00",
-            desc: "Original / Mediterranean Orange",
-          },
-          {
-            type: "item",
-            name: "Jameson",
-            dietary: "",
-            price: "£7.00",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Maker's Mark",
-            dietary: "",
-            price: "£7.25",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Jack Daniel's",
-            dietary: "",
-            price: "£6.25",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Jack Daniel's Honey",
-            dietary: "",
-            price: "£6.50",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Jack Daneils Apple",
-            dietary: "",
-            price: "£6.50",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Jack Daniel's Fire",
-            dietary: "",
-            price: "£6.50",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Jack Daniel's Single Barrel",
-            dietary: "",
-            price: "£8.00",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Gentleman Jack",
-            dietary: "",
-            price: "£7.50",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Slane",
-            dietary: "",
-            price: "£6.50",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Benriach 10",
-            dietary: "",
-            price: "£8.00",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Glendronach 12",
-            dietary: "",
-            price: "£7.25",
-            desc: "",
-          },
-          {
-            type: "heading",
-            text: "Spirits",
-          },
-          {
-            type: "item",
-            name: "Courvoisier",
-            dietary: "",
-            price: "£6.30",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Malibu",
-            dietary: "",
-            price: "£6.25",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Pimm's",
-            dietary: "",
-            price: "£7.70",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Baileys",
-            dietary: "",
-            price: "£6.50",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Campari",
-            dietary: "",
-            price: "£5.75",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Peach Schnapps",
-            dietary: "",
-            price: "£5.25",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Chambord",
-            dietary: "",
-            price: "£5.25",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Luxardo Limoncello",
-            dietary: "",
-            price: "£5.25",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Sarti",
-            dietary: "",
-            price: "£5.50",
-            desc: "",
-          },
-        ],
-      },
-      {
-        id: "wine",
-        label: "Wine",
-        title: "WINE",
-        items: [
-          {
-            type: "item",
-            name: "Perinitza Pinot Grigio",
-            dietary: "",
-            price: "£7.50 / £10.00 / £30.00",
-            desc: "Romania",
-          },
-          {
-            type: "item",
-            name: "Grand Crevette Sauvignon Blanc",
-            dietary: "",
-            price: "£9.00 / £11.00 / £34.00",
-            desc: "France",
-          },
-          {
-            type: "item",
-            name: "Fifth Quarter Vinho Verde",
-            dietary: "",
-            price: "£9.25 / £11.50 / £35.00",
-            desc: "Portugal",
-          },
-          {
-            type: "item",
-            name: "Le Ruse Merlot",
-            dietary: "",
-            price: "£7.50 / £10.00 / £30.00",
-            desc: "France",
-          },
-          {
-            type: "item",
-            name: "Perinitza Pinot Noir",
-            dietary: "",
-            price: "£8.75 / £11.50 / £33.00",
-            desc: "Romania",
-          },
-          {
-            type: "item",
-            name: "Goyencha Malbec",
-            dietary: "",
-            price: "£8.60 / £9.80 / £33.00",
-            desc: "Argentina",
-          },
-          {
-            type: "item",
-            name: "Villa Molino Pinot Grigio Blush",
-            dietary: "",
-            price: "£7.50 / £10.00 / £30.00",
-            desc: "France",
-          },
-          {
-            type: "item",
-            name: "Botter Prosecco",
-            dietary: "",
-            price: "£8.00 / £35.50",
-            desc: "Italy",
-          },
-          {
-            type: "item",
-            name: "Perrier Jouet Grand Brut NV Champagne",
-            dietary: "",
-            price: "£97.50",
-            desc: "France Bottle Only",
-          },
-        ],
-      },
-      {
-        id: "softhot",
-        label: "Soft & Hot",
-        title: "SOFT & HOT",
-        items: [
-          {
-            type: "heading",
-            text: "Soft",
-          },
-          {
-            type: "item",
-            name: "Soda & Lime",
-            dietary: "[HALF PINT / PINT]",
-            price: "£3.25 / £4.25",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Lemonade",
-            dietary: "[HALF PINT / PINT]",
-            price: "£3.50 / £4.75",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Pepsi Max",
-            dietary: "[HALF PINT / PINT]",
-            price: "£3.50 / £4.75",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Diet Pepsi",
-            dietary: "[HALF PINT / PINT]",
-            price: "£3.50 / £4.75",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Irn Bru",
-            dietary: "[CAN]",
-            price: "£3.90",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Diet Irn Bru",
-            dietary: "[CAN]",
-            price: "£3.90",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "San Pellegrino",
-            dietary: "",
-            price: "£4.40",
-            desc: "Limonata / Aranciata",
-          },
-          {
-            type: "item",
-            name: "London Essence",
-            dietary: "",
-            price: "£4.40",
-            desc: "Tonic / Ginger Beer / Grapefruit Soda",
-          },
-          {
-            type: "item",
-            name: "Fentiman's Rose Lemonade",
-            dietary: "",
-            price: "£4.70",
-            desc: "Hot Espresso £3.50 Double Espresso £4.00 Americano £3.75 Latte £4.25 Cappuccino £4.25 Flat White £4.25 Machiatto £4.25 Hot Chocolate £4.75 Whipped Cream, Marshmallows Alternative Milk +£1.00 Oat / Almond Syrups +£1.00 Caramel / Vanilla / Chai Tea £3.75 Ask Staff for Flavours",
-          },
-        ],
-      },
-    ],
-    kids: [
-      {
-        id: "small",
-        label: "Small",
-        title: "KIDS MENU",
-        items: [
-          {
-            type: "item",
-            name: "Mac 'n' Cheese",
-            dietary: "[V]",
-            price: "£10.00",
-            desc: "With Garlic Bread",
-          },
-          {
-            type: "item",
-            name: "Moules Frites",
-            dietary: "[GF]",
-            price: "£10.00",
-            desc: "",
-          },
-          {
-            type: "item",
-            name: "Beef Burger",
-            dietary: "[GFA]",
-            price: "£10.00",
-            desc: "With Frites",
-          },
-          {
-            type: "item",
-            name: "Chicken Burger",
-            dietary: "",
-            price: "£10.00",
-            desc: "With Frites",
-          },
-          {
-            type: "item",
-            name: "Cluck Free Chicken Burger",
-            dietary: "[VG]",
-            price: "£10.00",
-            desc: "With Frites",
-          },
-        ],
-      },
-    ],
-  };
 
-  /* Default booking link to be used if a promo cta doesn't have it's own href */
-  const BOOKING_URL =
-    "https://www.sevenrooms.com/explore/brel/reservations/create/search/";
+
+        ],
+      },
+  
+    ],
+ };
+
 
   /* Brand colors */
   const TEAL = "#007A8D";
@@ -1565,25 +189,6 @@
 
 
 
-  /*----------------------SMOOTH SCROLLS TO SECTION----------------------*/
-
-  function scrollToId(id) {
-    const el = document.getElementById(id); // the target section/card
-    const nav = document.getElementById("brel-menu-nav"); // sticky nav bar
-    if (!el) return;
-
-    const headerH =
-      parseFloat(
-        getComputedStyle(document.documentElement).getPropertyValue(
-          "--ssHeaderH",
-        ),
-      ) || 0;
-    const navH = nav ? nav.getBoundingClientRect().height : 0;
-    const y =
-      el.getBoundingClientRect().top + window.scrollY - headerH - navH - 18;
-
-    window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
-  }
 
   /*----------------------RENDERS ONE NORMAL MENU ROW (NAME/DIETARY/PRICE/DESC)----------------------*/
 
@@ -1634,64 +239,12 @@
     );
   }
 
-  /*----------------------RENDERS PROMO CARDS----------------------*/
 
-  function Promo({ item, activeMenu }) {
-    const id = `${activeMenu}-${item.id}`;
-
-    return (
-      <div
-        id={id}
-        style={{ columnSpan: "all", WebkitColumnSpan: "all" }}
-        className="my-8 break-inside-avoid scroll-mt-44 rounded-lg bg-[#007a8d] p-6 text-[#f6efe5] md:p-9"
-      >
-        {/* Promo image and text sit side-by-side on desktop and stack on mobile. */}
-        <div className="grid items-center gap-6 md:grid-cols-2">
-          {/* Optional promo image. */}
-          {item.image && (
-            <img
-              className="mx-auto max-w-xs rounded-md"
-              src={item.image}
-              alt={item.alt || item.title || "Menu special"}
-            />
-          )}
-
-          {/* Promo title and text lines. */}
-          <div className="space-y-4 text-center">
-            {item.title && (
-              <h3 className="text-2xl font-extrabold">{item.title}</h3>
-            )}
-            {item.lines.map((line, i) => (
-              <p
-                key={i}
-                className="m-0 text-base font-semibold leading-relaxed"
-              >
-                {line}
-              </p>
-            ))}
-          </div>
-        </div>
-
-        {/* Optional booking/action button. */}
-        {item.buttonText && (
-          <div className="mt-8 text-center">
-            <a
-              className="inline-flex rounded-full border-2 border-[#f6efe5] px-6 py-3 text-sm font-extrabold uppercase tracking-wide text-[#f6efe5] no-underline hover:bg-[#f6efe5] hover:text-[#007a8d]"
-              href={item.buttonHref || BOOKING_URL}
-            >
-              {item.buttonText}
-            </a>
-          </div>
-        )}
-      </div>
-    );
-  }
 
   /*----------------------DECIDES WHICH COMPONENT TO USE FOR EACH ITEM IN MENU_DATA BASED ON ITEM.TYPE----------------------*/
   function RenderBlock({ item, activeMenu }) {
     if (item.type === "heading") return <Heading text={item.text} />; // Subheading.
     if (item.type === "item") return <MenuItem item={item} />; // Normal menu row.
-    if (item.type === "promo") return null; // Promo cards removed.
 
     // Dotted outline box, used for grouped fondue/raclette content.
     if (item.type === "box") {
@@ -1712,7 +265,7 @@
     const id = `${activeMenu}-${section.id}`;
 
     return (
-      <section id={id} className="scroll-mt-44 pt-14">
+      <section id={id} className="pt-10">
         {/* Section title and horizontal rule. */}
         <div className="mb-8 text-center">
           <h2 className="text-3xl font-extrabold uppercase tracking-wide text-[#007a8d]">
@@ -1734,20 +287,21 @@
     );
   }
 
-  /*----------------------MAIN MENU APP RENDERS FOOD SECTIONS ONLY, WITHOUT STICKY NAV OR PROMO BANNERS----------------------*/
+  /*----------------------MAIN FOOD MENU APP---------------------*/
   function BrelMenu() {
+    // Food only. No sticky navigation bar, no Food/Drinks/Kids tabs, no section links.
     const activeMenu = "food";
     const sections = MENU_DATA.food;
 
     return (
-      // Main outer menu container. max-w-6xl keeps it from getting too wide; mx-auto centres it.
       <div className="w-full mx-auto max-w-6xl bg-[#fbf3ea] px-4 pb-16 font-sans text-[#1a1a1a]">
-        {/* Main page title. */}
         <h1 className="mb-5 text-center text-4xl font-extrabold text-[#007a8d]">
-          Food Menu
+          MENU
         </h1>
 
-        {/* Actual food menu sections rendered as a simple list. */}
+        <p className="mb-5 text-center text-2xl font-bold text-[#007a8d]">£35pp for 2 courses</p>
+        <p className="mb-5 text-center text-1xl text-[#1a1a1a]">Prosecco (Glass) or Corona (Bottle) included</p>
+
         <div>
           {sections.map((section) => (
             <Section
