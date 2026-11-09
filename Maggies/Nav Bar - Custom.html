@@ -1,0 +1,1482 @@
+<style>
+    /* Standalone colour variables used by the custom navigation.
+   Change these to suit the destination site. */
+:root {
+  --black: #1c1c1c;
+  --cream: #faf4db;
+  --oxblood: #6A1227;
+  --espresso: #1D1313;
+  --porcelain: #FFF5E9;
+
+
+  --red:#af2727;
+}
+
+/* NEW NAV SEP 2026 */
+
+
+/* padding for links on merchants */
+
+body.is-merchants-page #food,
+body.is-merchants-page #drinks {
+  scroll-margin-top: 200px;
+}
+/* Hide Squarespace's native header on the live site only */
+body:not(.sqs-edit-mode):not(.sqs-edit-mode-active) #header {
+  display: none !important;
+}
+
+
+/* Hide our custom maggies nav anywhere inside the Squarespace editor */
+body.sqs-edit-mode .maggies-nav,
+body.sqs-edit-mode-active .maggies-nav {
+  display: none !important;
+}
+  .maggies-nav {
+    --nav-height-top: 92px;
+    --nav-height-bottom: 56px;
+    position: fixed;
+    z-index: 9999;
+    inset: 0 0 auto 0;
+    width: 100%;
+    color: #fff;
+    background: transparent;
+    transition:
+      background-color 0.35s ease,
+      color 0.35s ease,
+      box-shadow 0.35s ease;
+    box-sizing: border-box;
+  }
+
+  /* =========================================================
+   TRANSPARENT / WHITE HEADER
+   Frosted dark background with soft bottom fade
+========================================================= */
+
+/*
+  IMPORTANT:
+  The actual nav must stay transparent.
+  The pseudo-element creates the darkened/blurred layer.
+*/
+.maggies-nav:not(.is-scrolled):not(.is-always-light):not(.is-merchants) {
+  background: transparent !important;
+
+  -webkit-backdrop-filter: none;
+  backdrop-filter: none;
+}
+
+
+/*
+  Frosted background layer
+*/
+.maggies-nav:not(.is-scrolled):not(.is-always-light):not(.is-merchants)::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  /*
+    Extends below the physical nav,
+    allowing the darkness + blur to fade out.
+  */
+  height: calc(100% + 15px);
+
+  /*
+    Darkness of the glass effect.
+    Adjust 0.30 if you want lighter/darker.
+  */
+  background: rgba(0, 0, 0, 0.30);
+
+  /*
+    Blur the image/content underneath.
+  */
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+
+  /*
+    Hold most of the effect through the header,
+    then smoothly dissolve it below the nav.
+  */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 68%,
+
+    rgba(0, 0, 0, 0.92) 74%,
+    rgba(0, 0, 0, 0.72) 81%,
+    rgba(0, 0, 0, 0.45) 88%,
+    rgba(0, 0, 0, 0.20) 94%,
+
+    rgba(0, 0, 0, 0) 100%
+  );
+
+  mask-image: linear-gradient(
+    to bottom,
+
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 68%,
+
+    rgba(0, 0, 0, 0.92) 74%,
+    rgba(0, 0, 0, 0.72) 81%,
+    rgba(0, 0, 0, 0.45) 88%,
+    rgba(0, 0, 0, 0.20) 94%,
+
+    rgba(0, 0, 0, 0) 100%
+  );
+
+  pointer-events: none;
+
+  z-index: -1;
+}
+
+
+  .maggies-nav.is-scrolled {
+    color: var(--cream);
+    background: var(--black);
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
+  }
+
+/* =========================================================
+   THE MERCHANTS NAV
+   ========================================================= */
+
+   .merchants-anchor {
+  scroll-margin-top: 165px;
+}
+
+/* Top of page */
+.maggies-nav.is-merchants {
+  color: var(--porcelain);
+  background: transparent;
+}
+
+
+/* Once user scrolls */
+.maggies-nav.is-merchants.is-scrolled {
+  color: var(--espresso);
+  background: var(--porcelain);
+
+  box-shadow:
+    0 1px 0 rgba(29, 19, 19, 0.10);
+}
+
+  .maggies-logo-defs {
+    position: absolute;
+    overflow: hidden;
+  }
+  .maggies-logo-svg {
+    display: block;
+    height: 58px;
+    width: auto;
+    color: inherit;
+    fill: currentColor;
+  }
+  .maggies-nav__mobile-logo .maggies-logo-svg {
+    height: 42px;
+  }
+
+  .maggies-nav__top {
+    display: grid;
+    grid-template-columns: 180px minmax(0, 1fr) 180px;
+    align-items: center;
+    height: var(--nav-height-top);
+    padding: 0 42px;
+    box-sizing: border-box;
+  }
+
+  .maggies-nav__socials {
+    grid-column: 1;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+  }
+  .maggies-nav__socials a {
+    display: flex;
+    width: 18px;
+    height: 18px;
+    align-items: center;
+    justify-content: center;
+    color: inherit;
+    transition: opacity 0.2s ease;
+  }
+  .maggies-nav__socials a:hover {
+    opacity: 0.55;
+  }
+  .maggies-nav__socials svg {
+    width: 17px;
+    height: 17px;
+    fill: currentColor;
+    stroke: currentColor;
+    stroke-width: 1.7;
+    overflow: visible;
+  }
+  .maggies-nav__socials a:nth-child(2) svg {
+    fill: none;
+  }
+
+  .maggies-nav__logo {
+    grid-column: 2;
+    justify-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: inherit;
+  }
+  .maggies-nav__book {
+    grid-column: 3;
+    justify-self: end;
+  }
+  .maggies-nav__book-button {
+    display: inline-flex;
+    min-width: 133px;
+    padding: 15px 20px;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border: 2px solid currentColor;
+    color: inherit;
+    background: transparent;
+    text-decoration: none;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition:
+      color 0.25s ease,
+      background-color 0.25s ease;
+  }
+  .maggies-nav__book-button:hover {
+    color: var(--black);
+    background: #fff;
+  }
+  .maggies-nav.is-scrolled .maggies-nav__book-button:hover {
+    color: var(--cream);
+    background: var(--black);
+  }
+
+/* Merchants button hover — top of page */
+.maggies-nav.is-merchants:not(.is-scrolled)
+.maggies-nav__book-button:hover {
+  color: var(--espresso);
+  background: var(--porcelain);
+}
+
+
+/* Merchants button hover — scrolled */
+.maggies-nav.is-merchants.is-scrolled
+.maggies-nav__book-button:hover {
+  color: var(--porcelain);
+  background: var(--espresso);
+}
+
+  /* Merchants divider at top */
+.maggies-nav.is-merchants
+.maggies-nav__bottom {
+  border-color:
+    color-mix(
+      in srgb,
+      var(--porcelain) 28%,
+      transparent
+    );
+}
+
+
+/* Merchants divider when scrolled */
+.maggies-nav.is-merchants.is-scrolled
+.maggies-nav__bottom {
+  border-color:
+    color-mix(
+      in srgb,
+      var(--espresso) 14%,
+      transparent
+    );
+}
+
+  .maggies-nav__bottom {
+    display: flex;
+    width: 100%;
+    height: var(--nav-height-bottom);
+    align-items: center;
+    justify-content: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.28);
+    box-sizing: border-box;
+    transition: border-color 0.35s ease;
+  }
+  .maggies-nav.is-scrolled .maggies-nav__bottom {
+    border-color: rgba(0, 0, 0, 0.12);
+  }
+
+/* =========================================================
+   ALWAYS CREAM + BLACK PAGES
+
+   /menu
+   /whats-on
+   /privatehire
+========================================================= */
+
+.maggies-nav.is-always-light,
+.maggies-nav.is-always-light.is-scrolled {
+  background: var(--cream);
+  color: var(--black);
+
+  box-shadow:
+    0 1px 0
+    rgba(0, 0, 0, 0.08);
+}
+
+
+/* Divider should be dark from the beginning */
+
+.maggies-nav.is-always-light
+.maggies-nav__bottom {
+  border-color:
+    rgba(0, 0, 0, 0.12);
+}
+
+
+/* Book Now hover should behave like
+   the normal scrolled header */
+
+.maggies-nav.is-always-light
+.maggies-nav__book-button:hover {
+  color: var(--cream);
+  background: var(--black);
+}
+
+  
+  .maggies-nav__links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+  }
+  .maggies-nav__item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    color: inherit;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 15px;
+    line-height: 20px;
+    font-weight: 400;
+    letter-spacing: 0;
+    white-space: nowrap;
+  }
+  a.maggies-nav__item:hover,
+  .maggies-nav__dropdown-button:hover {
+    opacity: 0.6;
+  }
+  .maggies-nav__dropdown-button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: inherit;
+    border: 0;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    cursor: pointer;
+    font: inherit;
+    transition: opacity 0.2s ease;
+  }
+  .maggies-nav__dropdown-button svg {
+    width: 10px;
+    height: 7px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    transition: transform 0.2s ease;
+  }
+
+  .maggies-nav__dropdown {
+    position: absolute;
+    top: calc(100% + 17px);
+    left: -18px;
+    z-index: 30;
+    min-width: 190px;
+    padding: 10px 0;
+    background: var(--cream);
+    color: var(--black);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-5px);
+    pointer-events: none;
+    transition:
+      opacity 0.2s ease,
+      visibility 0.2s ease,
+      transform 0.2s ease;
+  }
+  /* Invisible hover bridge: prevents the menu closing while the
+     pointer travels from the top-level link into the dropdown. */
+  .maggies-nav__dropdown::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -18px;
+    height: 18px;
+    background: transparent;
+  }
+
+  .maggies-nav__dropdown a {
+    display: block;
+    padding: 10px 18px;
+    color: inherit;
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 19px;
+    white-space: nowrap;
+  }
+  .maggies-nav__dropdown a:hover {
+    opacity: 0.55;
+  }
+
+  .maggies-nav.is-merchants .maggies-nav__dropdown {
+    background: var(--oxblood);
+    color: #fff;
+  }
+  @media (hover: hover) {
+    .maggies-nav__item--dropdown:hover .maggies-nav__dropdown,
+    .maggies-nav__item--dropdown:focus-within .maggies-nav__dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    .maggies-nav__item--dropdown:hover .maggies-nav__dropdown-button svg,
+    .maggies-nav__item--dropdown:focus-within .maggies-nav__dropdown-button svg {
+      transform: rotate(180deg);
+    }
+  }
+  .maggies-nav__item--dropdown.is-open .maggies-nav__dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .maggies-nav__item--dropdown.is-open .maggies-nav__dropdown-button svg {
+    transform: rotate(180deg);
+  }
+
+  .maggies-nav__mobile,
+  .maggies-mobile-menu {
+    display: none;
+  }
+
+  @media screen and (min-width: 1100px) {
+
+  .maggies-logo-svg {
+    transform: scale(1);
+    transform-origin: center center;
+
+    transition:
+      transform 0.35s ease,
+      color 0.35s ease;
+  }
+
+  .maggies-nav.is-scrolled .maggies-logo-svg {
+    transform: scale(0.67);
+  }
+
+    .maggies-nav__links {
+    transform: translateY(0);
+    transition: transform 0.35s ease;
+  }
+
+  .maggies-nav.is-scrolled .maggies-nav__links {
+    transform: translateY(-8px);
+  }
+
+}
+
+  @media screen and (max-width: 1099px) {
+    .maggies-nav__top,
+    .maggies-nav__bottom {
+      display: none;
+    }
+    .maggies-nav__mobile {
+      display: flex;
+      height: 72px;
+      padding: 0 22px;
+      align-items: center;
+      justify-content: space-between;
+      box-sizing: border-box;
+    }
+    .maggies-nav__mobile-logo {
+      display: flex;
+      align-items: center;
+      color: inherit;
+    }
+    .maggies-nav__hamburger {
+      display: flex;
+      width: 36px;
+      height: 36px;
+      padding: 7px 4px;
+      flex-direction: column;
+      justify-content: space-around;
+      border: 0;
+      color: var(--cream);
+      background: transparent;
+      cursor: pointer;
+    }
+    .maggies-nav__hamburger span {
+      display: block;
+      width: 100%;
+      height: 1.5px;
+      background: currentColor;
+      transition:
+        transform 0.25s ease,
+        opacity 0.25s ease;
+    }
+    .maggies-nav.mobile-open .maggies-nav__hamburger span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+    .maggies-nav.mobile-open .maggies-nav__hamburger span:nth-child(2) {
+      opacity: 0;
+    }
+    .maggies-nav.mobile-open .maggies-nav__hamburger span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+    .maggies-mobile-menu {
+      display: flex;
+      position: absolute;
+      top: 72px;
+      left: 0;
+      right: 0;
+      padding: 18px 22px 28px;
+      flex-direction: column;
+      background: var(--black);
+      color: var(--cream);
+      box-sizing: border-box;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-8px);
+      pointer-events: none;
+      transition:
+        opacity 0.25s ease,
+        visibility 0.25s ease,
+        transform 0.25s ease;
+    }
+    .maggies-nav.mobile-open .maggies-mobile-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+.maggies-nav.is-merchants
+.maggies-mobile-menu {
+  background: var(--porcelain);
+  color: var(--espresso);
+}
+    .maggies-mobile-menu a {
+      padding: 12px 0;
+      color: inherit;
+      border-bottom: 1px solid color-mix(in srgb, currentColor 14%, transparent);
+      text-decoration: none;
+      font-size: 17px;
+      line-height: 24px;
+    }
+    /* -------------------------------------------------------
+       MOBILE DROPDOWNS
+       Desktop dropdowns are absolutely positioned. On mobile
+       they become normal in-flow accordion sections.
+    ------------------------------------------------------- */
+    .maggies-mobile-menu {
+      max-height: calc(100dvh - 72px);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .maggies-mobile-menu > .maggies-nav__item,
+    .maggies-mobile-menu > .maggies-nav__item--dropdown {
+      width: 100%;
+      display: block;
+      box-sizing: border-box;
+    }
+
+    .maggies-mobile-menu > a.maggies-nav__item {
+      padding: 14px 0;
+    }
+
+    .maggies-mobile-menu .maggies-nav__dropdown-button {
+      width: 100%;
+      min-height: 50px;
+      padding: 14px 0;
+      justify-content: space-between;
+      border-bottom: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+      text-align: left;
+      white-space: normal;
+      font-size: 17px;
+      line-height: 22px;
+      opacity: 1;
+    }
+
+    .maggies-mobile-menu .maggies-nav__dropdown {
+      position: static;
+      top: auto;
+      left: auto;
+      z-index: auto;
+      width: 100%;
+      min-width: 0;
+      max-height: 0;
+      padding: 0;
+      overflow: hidden;
+      background: transparent;
+      color: inherit;
+      box-shadow: none;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      pointer-events: none;
+      transition: max-height 0.32s ease;
+    }
+
+    .maggies-mobile-menu .maggies-nav__dropdown::before {
+      display: none;
+    }
+
+    .maggies-mobile-menu .maggies-nav__item--dropdown.is-open .maggies-nav__dropdown {
+      max-height: 520px;
+      opacity: 1;
+      visibility: visible;
+      transform: none;
+      pointer-events: auto;
+    }
+
+    .maggies-mobile-menu .maggies-nav__dropdown a {
+      display: block;
+      padding: 12px 18px;
+      border-bottom: 1px solid color-mix(in srgb, currentColor 12%, transparent);
+      font-size: 15px;
+      line-height: 21px;
+      white-space: normal;
+    }
+
+    .maggies-mobile-menu .maggies-nav__dropdown a::before {
+      content: "\2014";
+      margin-right: 9px;
+      opacity: 0.45;
+    }
+
+    .maggies-mobile-menu__book {
+      display: block;
+      margin-top: 18px;
+      border: 1.5px solid currentColor !important;
+      padding: 14px 16px !important;
+      text-align: center;
+      font-size: 12px !important;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .maggies-nav,
+    .maggies-nav *,
+    .maggies-nav *::before,
+    .maggies-nav *::after {
+      transition: none !important;
+    }
+  }
+
+
+  /* =========================================================
+   KEEP CUSTOM NAV ABOVE SQUARESPACE PAGE CONTENT
+========================================================= */
+
+.maggies-nav {
+  position: fixed !important;
+
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+
+  width: 100% !important;
+
+  /*
+    Very high root-level z-index.
+    The JS below moves the nav directly under <body>,
+    so this can properly sit above Squarespace sections.
+  */
+  z-index: 2147483000 !important;
+
+  isolation: isolate;
+
+  /*
+    Important for dropdowns extending below the header.
+  */
+  overflow: visible !important;
+}
+
+
+/* =========================================================
+   PREVENT NAV WRAPPERS FROM CLIPPING DROPDOWNS
+========================================================= */
+
+.maggies-nav__top,
+.maggies-nav__bottom,
+.maggies-nav__links,
+.maggies-nav__item--dropdown {
+  overflow: visible !important;
+}
+
+
+/* =========================================================
+   DROPDOWNS SIT ABOVE EVERYTHING INSIDE NAV
+========================================================= */
+
+.maggies-nav__dropdown {
+  z-index: 100 !important;
+}
+
+
+/* =========================================================
+   MOBILE MENU ABOVE PAGE CONTENT
+========================================================= */
+
+.maggies-mobile-menu {
+  z-index: 200 !important;
+}
+
+
+/* =========================================================
+   OPTIONAL EXTRA PROTECTION
+
+   Helps prevent Squarespace section/block transforms
+   from visually interfering with the nav.
+========================================================= */
+
+body > .maggies-nav {
+  z-index: 2147483000 !important;
+
+
+</style>
+
+
+<!------------------------------------------------->
+<!------------------ CUSTOM NAV ------------------->
+<!------------------------------------------------->
+
+<!------------------------------------------------------------------------------------------------>
+
+<!-- NEW NAV STYLE SEP 2026 -->
+<!-- maggies CUSTOM NAV WITH INLINE COLOUR-CHANGING SVG LOGO -->
+<header class="maggies-nav" id="maggiesNav">
+  <!-- Hidden reusable logo symbol -->
+
+<svg class="maggies-logo-defs"
+     aria-hidden="true"
+     width="0"
+     height="0"
+     focusable="false">
+  <symbol id="maggies-logo-symbol" viewBox="0 0 2048 915">
+    <path fill="currentColor" fill-rule="evenodd" d="
+M1430,785 1435,792 1435,856 1430,863 1478,863 1482,848 1472,854 1455,852 1455,830 1464,828 1471,834 1477,816 1456,819 1455,796 1471,794 1481,800 1478,786Z
+M1334,785 1339,791 1339,857 1334,863 1377,862 1394,854 1406,831 1405,813 1397,797 1377,786Z
+M1362,792 1378,800 1384,821 1379,847 1366,856 1360,855Z
+M1134,785 1140,794 1140,854 1134,863 1165,863 1160,856 1160,833 1171,832 1189,861 1211,863 1189,827 1202,809 1199,793 1181,785Z
+M1161,792 1177,792 1184,798 1184,811 1171,822 1160,822Z
+M1049,785 1051,802 1056,803 1060,785Z
+M955,785 960,792 960,856 955,863 976,862 970,855 971,808 990,854 1001,862 1022,863 1017,857 1017,791 1022,785 1001,786 1007,793 1006,843 983,785Z
+M917,785 919,801 925,803 928,785Z
+M767,785 772,792 772,856 766,862 797,863 792,856 792,843 801,830 819,860 843,863 812,812 825,791 835,786 812,785 814,791 793,823 792,792 798,786Z
+M473,785 478,791 478,857 473,863 504,863 499,856 499,833 510,832 528,861 550,863 528,827 541,809 538,793 520,785Z
+M500,792 516,792 523,798 523,811 510,822 499,822Z
+M695,787 681,799 674,815 674,832 679,845 690,857 705,863 722,864 740,859 742,849 727,855 710,850 700,838 696,825 698,804 712,791 722,791 734,804 742,804 737,785 705,784Z
+M1539,783 1523,788 1512,797 1506,808 1504,828 1510,847 1520,857 1545,864 1568,857 1578,847 1584,820 1581,805 1571,792 1558,785Z
+M1540,791 1548,791 1556,798 1562,816 1559,843 1546,856 1532,849 1526,833 1527,809Z
+M1266,783 1248,789 1236,801 1231,830 1242,853 1255,861 1272,864 1287,861 1304,848 1310,835 1310,812 1305,800 1292,788Z
+M1267,791 1275,791 1283,798 1289,816 1287,840 1280,852 1273,856 1264,854 1257,846 1252,824 1255,805Z
+M605,783 587,789 575,801 570,830 581,853 594,861 611,864 626,861 643,848 649,835 649,812 644,800 631,788Z
+M606,791 614,791 622,798 628,816 626,840 612,856 603,854 596,846 591,824 594,805Z
+M1845,757 1848,769 1850,766Z
+M399,750 396,750 395,761 399,759Z
+M2041,737 2038,737 2038,749Z
+M1837,733 1840,745 1842,742Z
+M380,708 380,720 383,720Z
+M1690,699 1687,699 1685,712Z
+M520,697 520,700 532,700Z
+M2045,686 2042,687 2042,698Z
+M1824,684 1828,696 1827,685Z
+M1696,672 1691,672 1693,684Z
+M1452,672 1455,682 1456,674Z
+M729,664 725,674 730,673Z
+M379,658 379,669 382,669 382,658Z
+M708,654 718,660 720,658 710,652Z
+M2044,636 2047,647 2047,636Z
+M510,634 507,646 510,646Z
+M1433,628 1435,640 1436,628Z
+M514,609 511,621 514,620Z
+M378,607 378,618 381,619 381,607Z
+M1288,606 1287,616 1290,618Z
+M846,608 856,614 858,612 848,606Z
+M1434,602 1433,614 1436,614Z
+M195,596 195,608 198,608Z
+M2035,586 2038,598 2040,595Z
+M1287,581 1289,593 1290,581Z
+M1433,577 1433,589 1436,589 1436,577Z
+M265,577 262,577 262,589Z
+M188,572 191,584 191,572Z
+M2024,563 2022,565 2028,575 2030,573Z
+M968,556 967,568 970,568Z
+M270,552 267,553 267,564Z
+M1434,551 1433,563 1436,563Z
+M802,547 800,549 806,559Z
+M183,547 186,559 186,548Z
+M1663,546 1658,557 1663,557Z
+M1122,546 1120,548 1126,558Z
+M664,542 664,553 667,554Z
+M967,531 967,543 970,543 970,532Z
+M1989,526 1996,535 1999,534Z
+M1434,526 1433,538 1436,538Z
+M1114,522 1112,525 1117,534Z
+M967,506 969,518 970,507Z
+M376,506 378,518 379,506Z
+M1433,501 1435,513 1436,501Z
+M787,499 790,511 790,499Z
+M1107,498 1109,510 1111,505Z
+M1598,485 1598,488 1612,487Z
+M1433,476 1433,487 1436,487 1436,476Z
+M1652,472 1662,478 1661,471Z
+M1876,469 1887,475 1878,467Z
+M990,462 984,463 988,466 985,474 990,472Z
+M959,462 959,465 971,464Z
+M934,462 934,465 945,465 945,462Z
+M908,463 920,465 920,462Z
+M883,462 883,465 895,464Z
+M1310,461 1304,461 1308,465 1305,473 1310,471Z
+M1279,461 1279,464 1291,463Z
+M1253,462 1265,464 1265,461Z
+M1228,461 1228,464 1240,464 1240,461Z
+M1203,461 1203,464 1215,463Z
+M1434,450 1433,462 1436,462Z
+M1859,450 1866,460 1867,457Z
+M640,444 643,456 645,453Z
+M375,430 375,441 378,441Z
+M1851,426 1854,438 1854,426Z
+M1433,425 1435,437 1436,425Z
+M1433,400 1433,411 1436,411 1436,400Z
+M1119,398 1116,410 1121,401Z
+M1690,389 1690,399 1694,402Z
+M377,379 374,391 377,390Z
+M1434,374 1433,386 1436,386Z
+M148,373 149,384 152,385Z
+M950,365 954,377 953,365Z
+M1270,364 1273,376 1275,372Z
+M1681,361 1685,375 1684,362Z
+M618,345 621,357 622,350Z
+M1324,339 1324,346 1335,353 1344,370 1344,638 1339,650 1324,662 1324,669 1442,690 1442,681 1426,665 1422,635 1422,375 1427,359 1442,346 1442,339Z
+M604,339 506,339 506,347 517,362 518,376 443,724 419,743 419,750 538,712 535,710 525,715 519,707 497,704 492,700 491,684 507,590 515,590 515,596 519,590 587,592 601,650 601,663 580,698 580,708 716,679 715,670 672,644Z
+M546,424 577,556 514,555Z
+M1483,338 1482,347 1495,357 1502,372 1502,664 1493,681 1482,689 1482,699 1666,749 1682,681 1670,681 1656,700 1642,704 1581,652 1581,540 1591,539 1592,545 1595,539 1625,542 1638,551 1644,563 1650,562 1650,479 1643,479 1642,488 1635,493 1581,493 1581,385 1644,384 1653,388 1667,407 1679,408 1664,340Z
+M1994,336 2003,341 2002,336Z
+M398,336 395,347 399,345Z
+M1839,340 1795,375 1776,406 1765,446 1767,505 1782,543 1808,573 1834,591 1915,632 1944,659 1951,683 1944,772 1936,807 1925,821 1910,822 1920,825 1915,828 1893,830 1863,820 1851,809 1831,760 1813,689 1789,618 1790,611 1787,611 1786,619 1777,619 1777,807 1937,896 1961,907 1978,909 1987,904 2004,882 2018,826 2034,661 2028,606 2008,566 1981,537 1950,516 1863,474 1845,452 1840,425 1847,405 1860,391 1867,391 1878,384 1901,384 1930,394 1954,411 1969,429 1979,454 2012,454 2011,450 2018,449 2018,446 2010,445 1989,344 1973,344 1966,354 1957,355 1933,344 1901,336 1873,335 1844,342Z
+M385,341 258,341 193,655 128,341 14,341 15,333 10,333 9,341 0,341 0,351 15,364 23,387 25,863 20,896 14,909 18,913 24,913 113,853 79,839 69,825 65,783 68,465 120,723 133,754 151,776 182,793 209,793 277,464 277,770 269,790 255,803 255,813 385,765 385,754 369,738 363,402 365,377 374,360 385,351Z
+M1456,332 1453,332 1451,342 1456,340Z
+M784,338 783,342 747,363 727,383 711,407 697,441 690,477 690,514 696,546 710,581 731,610 750,627 783,646 803,653 831,658 869,658 900,653 944,655 956,652 956,504 962,489 977,477 977,471 858,471 858,478 871,487 878,502 878,618 869,619 878,623 877,630 842,619 807,587 786,548 774,488 775,449 784,415 800,389 812,378 809,389 816,380 812,378 830,367 866,363 882,368 908,389 921,417 951,417 931,339 908,336 916,342 907,348 873,337 840,332 796,338 792,334Z
+M1104,337 1103,341 1076,355 1052,376 1033,402 1018,436 1010,474 1010,514 1017,549 1031,582 1066,623 1085,636 1123,652 1152,657 1188,657 1219,652 1264,654 1276,651 1276,501 1281,489 1292,479 1288,490 1291,491 1297,470 1177,470 1177,476 1189,484 1198,501 1198,617 1189,618 1198,622 1197,629 1175,624 1154,613 1124,582 1102,535 1094,491 1095,446 1107,407 1131,377 1128,388 1136,379 1132,377 1152,365 1177,361 1202,367 1227,387 1241,416 1271,416 1251,338 1228,334 1227,337 1235,342 1227,347 1193,336 1161,331 1116,337 1114,332Z
+M927,330 938,333 938,330Z
+M1247,329 1258,332 1258,329Z
+M833,324 833,327 844,326Z
+M1178,323 1178,326 1190,325Z
+M1741,322 1720,329 1711,340 1710,353 1726,389 1736,401 1746,404 1768,378 1778,348 1766,329Z
+M1744,336 1749,351 1764,353 1752,361 1755,376 1743,368 1732,377 1735,361 1724,353 1738,351Z
+M828,238 822,239 823,245 829,243Z
+M1300,214 1288,217 1282,224 1281,237 1288,245 1297,245 1303,239 1303,230 1299,226 1288,225 1300,219Z
+M1291,229 1297,233 1294,241 1287,236Z
+M1262,214 1255,218 1252,234 1257,244 1267,245 1274,237 1274,223 1270,216Z
+M1262,219 1268,224 1268,235 1264,241 1258,232Z
+M1233,214 1225,220 1223,232 1230,245 1239,245 1244,240 1246,226 1241,216Z
+M1233,219 1239,223 1239,237 1235,241 1230,236Z
+M1197,216 1197,221 1205,219 1209,226 1195,245 1216,245 1216,240 1205,239 1214,230 1215,219 1207,214Z
+M789,214 789,245 809,243 816,233 814,220 806,214Z
+M797,218 804,219 809,225 809,233 802,240 795,239Z
+M758,214 758,219 766,220 766,244 773,245 773,220 781,219 782,215Z
+M704,214 704,244 724,245 724,240 711,239 712,231 723,230 722,226 712,226 711,220 723,219 723,214Z
+M750,214 740,213 732,218 733,228 742,232 745,238 732,239 731,244 745,245 751,241 751,231 738,223 742,218 749,219Z
+M1116,143 1121,163 1128,246 1137,226 1138,192 1131,165Z
+M1008,135 995,163 990,204 996,239 1026,284 1006,190Z
+M1033,125 1023,144 1019,162 1023,219 1052,287 1045,214 1048,214 1061,251 1071,298 1075,301 1083,253 1093,270 1088,200 1076,170 1064,155 1069,203 1066,202Z
+M975,121 967,131 961,151 954,208 948,195 942,157 928,176 918,207 917,259 924,254 934,220 935,270 949,244 946,320 975,245 972,224Z
+M643,10 653,62 676,104 712,140 763,164 879,201 880,174 893,144 915,119 937,110 937,116 905,153 893,180 889,217 896,243 915,170 927,149 968,110 1026,114 1062,83 1103,61 1055,66 1015,79 993,61 968,49 989,74 988,77 934,71 951,81 876,95 887,101 904,103 906,106 899,111 886,114 797,111 747,102 716,88 681,57 650,1 645,2Z
+M1382,2 1378,0 1374,4 1360,36 1340,63 1318,83 1283,101 1240,110 1148,117 1105,93 1138,82 1107,76 1068,90 1055,102 1054,114 1085,143 1102,178 1114,214 1115,183 1110,162 1101,143 1077,111 1089,111 1103,117 1130,139 1146,170 1150,200 1237,173 1299,146 1327,127 1350,104 1370,69 1383,26Z
+"/>
+  </symbol>
+</svg>
+
+
+  <div class="maggies-nav__top">
+    <div class="maggies-nav__socials">
+      <a
+        href="https://www.facebook.com/maggiesrocknrodeo"
+        data-social="facebook"
+        target="_blank"
+        rel="noopener"
+        aria-label="Facebook"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M14 8h3V4h-3c-3.3 0-5 2-5 5v2H6v4h3v7h4v-7h3.3l.7-4H13V9c0-.7.3-1 1-1z"
+          />
+        </svg>
+      </a>
+      <a
+        href="https://www.instagram.com/maggiesrocknrodeo/?hl=en"
+        data-social="instagram"
+        target="_blank"
+        rel="noopener"
+        aria-label="Instagram"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <rect x="3" y="3" width="18" height="18" rx="5"></rect>
+          <circle cx="12" cy="12" r="4"></circle>
+          <circle cx="17.4" cy="6.6" r="1"></circle>
+        </svg>
+      </a>
+      <a
+        href="https://www.tiktok.com/@maggiesrocknrodeo"
+        data-social="tiktok"
+        target="_blank"
+        rel="noopener"
+        aria-label="TikTok"
+      >
+        <svg viewBox="0 0 24 24" aria-hidden="true">
+          <path
+            d="M15 3v10.2a4.8 4.8 0 1 1-4-4.7v3.2a1.8 1.8 0 1 0 1 1.6V3h3zm0 0c.5 2.4 1.9 3.8 4 4.2v3.2c-1.6-.2-3-.8-4-1.7V3z"
+          />
+        </svg>
+      </a>
+    </div>
+
+    <a href="/" class="maggies-nav__logo" aria-label="maggies home">
+      <svg
+        class="maggies-logo-svg"
+        viewBox="0 0 2001 587"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <use href="#maggies-logo-symbol"></use>
+      </svg>
+    </a>
+
+    <div class="maggies-nav__book">
+      <a
+        href="https://www.sevenrooms.com/explore/maggies/reservations/create/search/"
+        class="maggies-nav__book-button"
+        target="_blank"
+        rel="noopener"
+      >
+        Book a Table
+      </a>
+    </div>
+  </div>
+
+  <div class="maggies-nav__bottom">
+    <nav class="maggies-nav__links" aria-label="Main navigation">
+      <div class="maggies-nav__item maggies-nav__item--dropdown">
+        <button
+          class="maggies-nav__dropdown-button"
+          type="button"
+          aria-expanded="false"
+        >
+          Ceilidh
+          <svg viewBox="0 0 12 8" aria-hidden="true">
+            <path d="M1 1.5 6 6.5l5-5" />
+          </svg>
+        </button>
+        <div class="maggies-nav__dropdown">
+          <a href="https://www.maggiesglasgow.co.uk/ceilidh"
+            >Friday Night Ceilidh</a
+          >
+          <a href="https://www.maggiesglasgow.co.uk/weeceilidh">Wee Ceilidh</a>
+        </div>
+      </div>
+
+      <div class="maggies-nav__item maggies-nav__item--dropdown">
+        <button
+          class="maggies-nav__dropdown-button"
+          type="button"
+          aria-expanded="false"
+        >
+          Seasonal
+          <svg viewBox="0 0 12 8" aria-hidden="true">
+            <path d="M1 1.5 6 6.5l5-5" />
+          </svg>
+        </button>
+        <div class="maggies-nav__dropdown">
+          <a href="https://www.maggiesglasgow.co.uk/christmas">Christmas</a>
+          <a href="https://www.maggiesglasgow.co.uk/hogmanay-2026">Hogmanay</a>
+        </div>
+      </div>
+      <a href="https://www.maggiesglasgow.co.uk/menu" class="maggies-nav__item"
+        >Menus</a
+      >
+
+      <div class="maggies-nav__item maggies-nav__item--dropdown">
+        <button
+          class="maggies-nav__dropdown-button"
+          type="button"
+          aria-expanded="false"
+        >
+          What's On
+          <svg viewBox="0 0 12 8" aria-hidden="true">
+            <path d="M1 1.5 6 6.5l5-5" />
+          </svg>
+        </button>
+        <div class="maggies-nav__dropdown">
+          <a href="https://www.maggiesglasgow.co.uk/smac">SMAC</a>
+          <a href="https://www.maggiesglasgow.co.uk/eatfilm">EatFilm</a>
+          <a href="https://www.maggiesglasgow.co.uk/ceilidh">Ceilidh</a>
+          <a href="https://www.maggiesglasgow.co.uk/weeceilidh">Wee Ceilidh</a>
+          <a href="https://www.maggiesglasgow.co.uk/quizhard">Quiz Hard</a>
+          <a href="https://www.maggiesglasgow.co.uk/lindyhoppers"
+            >Glasgow Lindyhoppers</a
+          >
+          <a href="https://www.maggiesglasgow.co.uk/whats-on">View all events</a>
+        </div>
+      </div>
+
+      <div class="maggies-nav__item maggies-nav__item--dropdown">
+        <button
+          class="maggies-nav__dropdown-button"
+          type="button"
+          aria-expanded="false"
+        >
+          Weddings &amp; Private Hire
+          <svg viewBox="0 0 12 8" aria-hidden="true">
+            <path d="M1 1.5 6 6.5l5-5" />
+          </svg>
+        </button>
+        <div class="maggies-nav__dropdown">
+          <a href="https://www.maggiesglasgow.co.uk/wedding">Weddings</a>
+          <a href="https://www.maggiesglasgow.co.uk/privatehire">Private Hire</a>
+        </div>
+      </div>
+      <a
+        href="https://www.maggiesglasgow.co.uk/the-merchants"
+        class="maggies-nav__item"
+        >The Merchant's</a
+      >
+      <a
+        href="https://maggies.giftpro.co.uk/vouchers/monetary-voucher/"
+        class="maggies-nav__item"
+        target="_blank"
+        rel="noopener"
+        >Gift Vouchers</a
+      >
+    </nav>
+  </div>
+
+  <div class="maggies-nav__mobile">
+    <a href="/" class="maggies-nav__mobile-logo" aria-label="maggies home">
+      <svg
+        class="maggies-logo-svg"
+        viewBox="0 0 2001 587"
+        aria-hidden="true"
+        focusable="false"
+      >
+        <use href="#maggies-logo-symbol"></use>
+      </svg>
+    </a>
+    <button
+      class="maggies-nav__hamburger"
+      type="button"
+      aria-label="Open menu"
+      aria-expanded="false"
+    >
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <div class="maggies-mobile-menu">
+    <div class="maggies-nav__item maggies-nav__item--dropdown">
+      <button
+        class="maggies-nav__dropdown-button"
+        type="button"
+        aria-expanded="false"
+      >
+        Ceilidh
+        <svg viewBox="0 0 12 8" aria-hidden="true">
+          <path d="M1 1.5 6 6.5l5-5" />
+        </svg>
+      </button>
+      <div class="maggies-nav__dropdown">
+        <a href="https://www.maggiesglasgow.co.uk/ceilidh"
+          >Friday Night Ceilidh</a
+        >
+        <a href="https://www.maggiesglasgow.co.uk/weeceilidh">Wee Ceilidh</a>
+      </div>
+    </div>
+
+    <div class="maggies-nav__item maggies-nav__item--dropdown">
+      <button
+        class="maggies-nav__dropdown-button"
+        type="button"
+        aria-expanded="false"
+      >
+        Seasonal
+        <svg viewBox="0 0 12 8" aria-hidden="true">
+          <path d="M1 1.5 6 6.5l5-5" />
+        </svg>
+      </button>
+      <div class="maggies-nav__dropdown">
+        <a href="https://www.maggiesglasgow.co.uk/christmas">Christmas</a>
+        <a href="https://www.maggiesglasgow.co.uk/hogmanay-2026">Hogmanay</a>
+      </div>
+    </div>
+
+    <a href="https://www.maggiesglasgow.co.uk/menu" class="maggies-nav__item"
+      >Menus</a
+    >
+
+    <div class="maggies-nav__item maggies-nav__item--dropdown">
+      <button
+        class="maggies-nav__dropdown-button"
+        type="button"
+        aria-expanded="false"
+      >
+        What's On
+        <svg viewBox="0 0 12 8" aria-hidden="true">
+          <path d="M1 1.5 6 6.5l5-5" />
+        </svg>
+      </button>
+      <div class="maggies-nav__dropdown">
+        <a href="https://www.maggiesglasgow.co.uk/smac">SMAC</a>
+        <a href="https://www.maggiesglasgow.co.uk/eatfilm">EatFilm</a>
+        <a href="https://www.maggiesglasgow.co.uk/ceilidh">Ceilidh</a>
+        <a href="https://www.maggiesglasgow.co.uk/weeceilidh">Wee Ceilidh</a>
+        <a href="https://www.maggiesglasgow.co.uk/quizhard">Quiz Hard</a>
+        <a href="https://www.maggiesglasgow.co.uk/lindyhoppers"
+          >Glasgow Lindyhoppers</a
+        >
+        <a href="https://www.maggiesglasgow.co.uk/whats-on">View all events</a>
+      </div>
+    </div>
+
+    <div class="maggies-nav__item maggies-nav__item--dropdown">
+      <button
+        class="maggies-nav__dropdown-button"
+        type="button"
+        aria-expanded="false"
+      >
+        Weddings &amp; Private Hire
+        <svg viewBox="0 0 12 8" aria-hidden="true">
+          <path d="M1 1.5 6 6.5l5-5" />
+        </svg>
+      </button>
+      <div class="maggies-nav__dropdown">
+        <a href="https://www.maggiesglasgow.co.uk/wedding">Weddings</a>
+        <a href="https://www.maggiesglasgow.co.uk/privatehire">Private Hire</a>
+      </div>
+    </div>
+
+    <a
+      href="https://www.maggiesglasgow.co.uk/the-merchants"
+      class="maggies-nav__item"
+    >
+      The Merchant's
+    </a>
+    <a
+      href="https://maggies.giftpro.co.uk/vouchers/monetary-voucher/"
+      class="maggies-nav__item"
+      target="_blank"
+      rel="noopener"
+      >Gift Vouchers</a
+    >
+
+    <a
+      href="https://www.sevenrooms.com/explore/maggies/reservations/create/search/?venues=maggies%2Cbrel%2Cmaggiesrocknrodeo"
+      class="maggies-mobile-menu__book"
+      target="_blank"
+      rel="noopener"
+      >Book a Table</a
+    >
+  </div>
+</header>
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const nav = document.getElementById("maggiesNav");
+    if (!nav) return;
+
+    /* -------------------------------------------------------
+   ESCAPE SQUARESPACE STACKING CONTEXT
+------------------------------------------------------- */
+
+    if (nav.parentElement !== document.body) {
+      document.body.appendChild(nav);
+    }
+
+    /* -------------------------------------------------------
+       PAGE-SPECIFIC THEME + SOCIAL LINKS
+    ------------------------------------------------------- */
+    const pagePath = window.location.pathname.replace(/\/+$/, "") || "/";
+    if (pagePath === "/the-merchants-sign-up") {
+      nav.remove();
+      return;
+    }
+
+    const isMerchantsPage =
+      pagePath === "/the-merchants" || pagePath === "/merchants-menus";
+
+    /* PAGES THAT ARE ALWAYS CREAM + BLACK */
+
+    const alwaysLightPages = [
+      "/menu",
+      "/whats-on",
+      "/privatehire",
+      "/merchants-menus",
+    ];
+    const isAlwaysLightPage =
+      alwaysLightPages.includes(pagePath) ||
+      pagePath === "/book" ||
+      pagePath.startsWith("/book-");
+
+    nav.classList.toggle("is-merchants", isMerchantsPage);
+
+    nav.classList.toggle("is-always-light", isAlwaysLightPage);
+
+    /* -------------------------------------------------------
+   THE MERCHANTS NAV CONTENT
+------------------------------------------------------- */
+
+    if (isMerchantsPage) {
+      document.body.classList.add("is-merchants-page");
+
+      /* --------------------------
+     MERCHANTS LOGO
+  -------------------------- */
+
+      const merchantsLogo = `
+    <svg
+      class="maggies-logo-svg merchants-logo-svg"
+      viewBox="0 0 2001 703"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <use href="#merchants-logo-symbol"></use>
+    </svg>
+  `;
+
+      const desktopLogo = nav.querySelector(".maggies-nav__logo");
+
+      const mobileLogo = nav.querySelector(".maggies-nav__mobile-logo");
+
+      if (desktopLogo) {
+        desktopLogo.innerHTML = merchantsLogo;
+        desktopLogo.href = "/the-merchants";
+
+        desktopLogo.setAttribute("aria-label", "The Merchants home");
+      }
+
+      if (mobileLogo) {
+        mobileLogo.innerHTML = merchantsLogo;
+        mobileLogo.href = "/the-merchants";
+
+        mobileLogo.setAttribute("aria-label", "The Merchants home");
+      }
+
+      /* --------------------------
+     MERCHANTS NAV LINKS
+  -------------------------- */
+
+      const merchantsLinks = `
+  <a
+    href="https://www.maggiesglasgow.co.uk/the-merchants#food"
+    class="maggies-nav__item"
+  >
+    Food
+  </a>
+
+  <a
+    href="https://www.maggiesglasgow.co.uk/the-merchants#drinks"
+    class="maggies-nav__item"
+  >
+    Drink
+  </a>
+
+  <a
+    href="/"
+    class="maggies-nav__item"
+  >
+    Back to maggies
+  </a>
+`;
+
+      /* DESKTOP */
+
+      const desktopLinks = nav.querySelector(".maggies-nav__links");
+
+      if (desktopLinks) {
+        desktopLinks.innerHTML = merchantsLinks;
+      }
+
+      /* MOBILE */
+
+      const mobileMenu = nav.querySelector(".maggies-mobile-menu");
+
+      if (mobileMenu) {
+        mobileMenu.innerHTML = `
+      ${merchantsLinks}
+
+      <a
+        href="https://www.sevenrooms.com/explore/maggies/reservations/create/search/?venues=maggies%2Cbrel%2Cmaggiesrocknrodeo"
+        class="maggies-mobile-menu__book"
+        target="_blank"
+        rel="noopener"
+      >
+        Book a Table
+      </a>
+    `;
+      }
+    }
+
+    /* -------------------------------------------------------
+   BOOK A TABLE LINKS
+------------------------------------------------------- */
+
+    const merchantsBookingUrl =
+      "https://www.sevenrooms.com/experiences/maggies/the-merchants-at-maggies-5146846482251776";
+
+    const maggiesBookingUrl =
+      "https://www.sevenrooms.com/explore/maggies/reservations/create/search/";
+
+    const bookingUrl = isMerchantsPage ? merchantsBookingUrl : maggiesBookingUrl;
+
+    /* Desktop */
+    const desktopBookButton = nav.querySelector(".maggies-nav__book-button");
+
+    if (desktopBookButton) {
+      desktopBookButton.href = bookingUrl;
+    }
+
+
+    /* Mobile */
+    const mobileNavBookButton = nav.querySelector(".maggies-mobile-menu__book");
+
+    if (mobileNavBookButton) {
+      mobileNavBookButton.href = bookingUrl;
+    }
+
+
+    const socialUrls = isMerchantsPage
+      ? {
+          facebook:
+            "https://www.facebook.com/profile.php?id=61593806224188&locale=en_GB",
+          instagram: "https://www.instagram.com/themerchants.maggies/",
+          tiktok: "https://www.tiktok.com/@themerchants.maggies",
+        }
+      : {
+          facebook: "https://www.facebook.com/maggies1797",
+          instagram: "https://www.instagram.com/maggiesglasgow/?hl=en",
+          tiktok: "https://www.tiktok.com/@maggiesglasgow",
+        };
+
+    nav.querySelectorAll("[data-social]").forEach(function (link) {
+      const network = link.getAttribute("data-social");
+      if (socialUrls[network]) link.href = socialUrls[network];
+    });
+
+    function updateNav() {
+      nav.classList.toggle("is-scrolled", window.scrollY > 30);
+    }
+    updateNav();
+    window.addEventListener("scroll", updateNav, { passive: true });
+
+    const dropdowns = nav.querySelectorAll(".maggies-nav__item--dropdown");
+    dropdowns.forEach(function (dropdown) {
+      const button = dropdown.querySelector(".maggies-nav__dropdown-button");
+      button.addEventListener("click", function (event) {
+        event.stopPropagation();
+        const currentlyOpen = dropdown.classList.contains("is-open");
+        dropdowns.forEach(function (item) {
+          item.classList.remove("is-open");
+          const itemButton = item.querySelector(".maggies-nav__dropdown-button");
+          if (itemButton) itemButton.setAttribute("aria-expanded", "false");
+        });
+        if (!currentlyOpen) {
+          dropdown.classList.add("is-open");
+          button.setAttribute("aria-expanded", "true");
+        }
+      });
+    });
+
+    document.addEventListener("click", function () {
+      dropdowns.forEach(function (dropdown) {
+        dropdown.classList.remove("is-open");
+        const button = dropdown.querySelector(".maggies-nav__dropdown-button");
+        if (button) button.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    const hamburger = nav.querySelector(".maggies-nav__hamburger");
+    if (hamburger) {
+      hamburger.addEventListener("click", function () {
+        const isOpen = nav.classList.toggle("mobile-open");
+        hamburger.setAttribute("aria-expanded", String(isOpen));
+        if (isOpen) {
+          nav.classList.add("is-scrolled");
+        } else {
+          dropdowns.forEach(function (dropdown) {
+            dropdown.classList.remove("is-open");
+            const button = dropdown.querySelector(
+              ".maggies-nav__dropdown-button",
+            );
+            if (button) button.setAttribute("aria-expanded", "false");
+          });
+          updateNav();
+        }
+      });
+    }
+
+    /* -------------------------------------------------------
+   CLOSE MERCHANTS MOBILE NAV AFTER ANCHOR CLICK
+------------------------------------------------------- */
+
+    if (isMerchantsPage) {
+      nav
+        .querySelectorAll('.maggies-mobile-menu a[href*="/the-merchants#"]')
+        .forEach(function (link) {
+          link.addEventListener("click", function () {
+            nav.classList.remove("mobile-open");
+
+            if (hamburger) {
+              hamburger.setAttribute("aria-expanded", "false");
+            }
+
+            updateNav();
+          });
+        });
+    }
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key !== "Escape") return;
+
+      dropdowns.forEach(function (dropdown) {
+        dropdown.classList.remove("is-open");
+        const button = dropdown.querySelector(".maggies-nav__dropdown-button");
+        if (button) button.setAttribute("aria-expanded", "false");
+      });
+
+      nav.classList.remove("mobile-open");
+      if (hamburger) hamburger.setAttribute("aria-expanded", "false");
+      updateNav();
+    });
+  });
+</script>
