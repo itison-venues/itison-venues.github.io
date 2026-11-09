@@ -1,0 +1,982 @@
+<style>
+  /* =========================================================
+     CHRISTMAS FILM LISTINGS
+     All custom classes are namespaced to avoid conflicts
+  ========================================================= */
+  .christmas-ticket-info {
+    width: calc(100% - 80px);
+    max-width: 900px;
+    margin: 18px auto 0;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .christmas-ticket-info__item {
+    text-align: center;
+  }
+
+  .christmas-ticket-info__item b,
+  .christmas-ticket-info__item span {
+    display: block;
+  }
+
+  .christmas-ticket-info__item span {
+    margin-top: 6px;
+  }
+
+  @media (max-width: 900px) {
+    .christmas-ticket-info {
+      width: calc(100% - 30px);
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+  }
+  .christmas-film-grid {
+    width: calc(100% - 80px);
+    max-width: 1260px;
+    margin: 28px auto 0;
+
+    display: grid;
+
+    /*
+   * Two columns when there is enough ACTUAL space.
+   * Automatically switches to one column when cards
+   * would otherwise become too narrow.
+   */
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 560px), 1fr));
+
+    gap: 28px;
+    align-items: stretch;
+  }
+
+  .christmas-film-card {
+    background: #fcf9f0;
+    border: 1px solid #ded5c2;
+    box-sizing: border-box;
+    padding: 30px;
+
+    /*
+   * Grid now controls the card width,
+   * so remove the old 50% flex sizing.
+   */
+    width: 100%;
+    max-width: none;
+  }
+
+  .christmas-film-card__inner {
+    display: flex;
+    gap: 26px;
+    height: 100%;
+    align-items: stretch;
+  }
+
+  .christmas-film-card__poster {
+    flex: 0 0 265px;
+    max-width: 265px;
+    width: 265px;
+  }
+
+  .christmas-film-card__poster img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .christmas-film-card__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    min-width: 0;
+  }
+
+  .christmas-film-card__title {
+    margin: 0;
+  }
+
+  .christmas-film-card__date {
+    margin: 6px 0 0;
+  }
+
+  .christmas-film-card__meta,
+  .christmas-film-card__desc {
+    margin: 0;
+  }
+
+  .christmas-film-card__meta {
+    margin-top: 6px;
+  }
+
+  .christmas-film-card__desc {
+    margin-top: 18px;
+  }
+
+  /* =========================================================
+     DATE SELECT
+  ========================================================= */
+
+  .christmas-film-card__date-wrapper {
+    margin-top: 18px;
+  }
+
+  .christmas-film-card__date-label {
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .christmas-film-card__select {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 40px 12px 14px;
+
+    border: 1px solid #ded5c2;
+    background-color: #fff;
+    color: #000;
+
+    font: inherit;
+    cursor: pointer;
+  }
+
+  /* =========================================================
+     BOOKING BUTTON
+  ========================================================= */
+
+  .christmas-film-card__action {
+    margin-top: auto;
+    padding-top: 30px;
+  }
+
+  .christmas-film-card__action > a {
+    display: inline-block;
+    min-width: 190px;
+    text-align: center;
+  }
+
+  /* Hidden on desktop */
+  .christmas-film-card__toggle {
+    display: none;
+  }
+
+  /* =========================================================
+     MOBILE
+  ========================================================= */
+
+  @media (max-width: 900px) {
+    .christmas-film-grid {
+      width: calc(100% - 30px);
+      margin: 16px auto 0;
+      gap: 16px;
+    }
+
+    .christmas-film-card {
+      padding: 24px;
+      width: 100%;
+      max-width: none;
+    }
+
+    .christmas-film-card__poster {
+      display: none;
+    }
+
+    .christmas-film-card__inner {
+      display: block;
+      height: auto;
+    }
+
+    .christmas-film-card__content {
+      min-height: 0;
+    }
+
+    .christmas-film-card__meta {
+      margin-top: 4px;
+    }
+
+    /* =======================================================
+       MOBILE DESCRIPTION DROPDOWN
+    ======================================================= */
+
+    .christmas-film-card__toggle {
+      display: block;
+
+      margin-top: 18px;
+      padding: 0;
+
+      border: 0;
+      background: none;
+
+      cursor: pointer;
+    }
+
+    .christmas-film-card__toggle::after {
+      content: " +";
+    }
+
+    .christmas-film-card__toggle[aria-expanded="true"]::after {
+      content: " −";
+    }
+
+    .christmas-film-card__desc {
+      display: none;
+      margin-top: 16px;
+    }
+
+    .christmas-film-card__desc.is-open {
+      display: block;
+    }
+
+    /* =======================================================
+       MOBILE BOOKING BUTTON
+    ======================================================= */
+
+    .christmas-film-card__action {
+      margin-top: 24px;
+      padding-top: 0;
+    }
+
+    .christmas-film-card__action > a {
+      width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
+    }
+  }
+</style>
+
+<div style="border: 3px solid var(--gold); padding: 52px">
+  <h2 class="black center">Christmas Listings</h2>
+
+  <div class="christmas-ticket-info">
+    <div class="christmas-ticket-info__item p-md">
+      <b>Adult ticket Includes:</b>
+      <span
+        >Christmas Movie • Festive main & dessert • Cocktail • Festive
+        treats</span
+      >
+    </div>
+
+    <div class="christmas-ticket-info__item p-md">
+      <b>Kids ticket Includes:</b>
+      <span
+        >Christmas Movie • Festive main & dessert • Mocktail or soft drink •
+        Festive treats</span
+      >
+    </div>
+  </div>
+
+  <br /><br />
+  <div class="btn-wrapper btn-align-center">
+    <a
+      href="https://static1.squarespace.com/static/59843341cf81e078efb32b0d/t/6ad728f5aa96d54819ca75ea/1792485621633/Sloans+Eatfilm+Christmas+Menu+2026.pdf"
+      class="btn btn-secondary-gold-dark btn-hover-sweep"
+    >
+      <span>View menu</span>
+    </a>
+  </div>
+</div>
+<br />
+
+<div class="christmas-film-grid" id="christmas-film-listings"></div>
+
+<script>
+  (function () {
+    const christmasFilms = [
+      {
+        title: "Frozen",
+
+        poster:
+          "https://images.squarespace-cdn.com/content/59843341cf81e078efb32b0d/0b2b63ed-d634-46a6-877b-97bfe2675e45/Frozen.jpg?content-type=image%2Fjpeg",
+
+        meta: "1h 42m &nbsp;&bull;&nbsp; Family / Musical",
+
+        description:
+          "Snow Queen Elsa inadvertently uses her power to make her kingdom experience constant wintriness. Her sister Anna teams up with mountaineer Kristoff and his reindeer to demolish the snowy spell.",
+
+        dates: [
+          "2026-11-22",
+          // "2026-12-27"
+        ],
+      },
+
+      // {
+      //   title: "The Holiday",
+
+      //   poster:
+      //     "https://images.squarespace-cdn.com/content/59843341cf81e078efb32b0d/ec6f838c-2235-4798-81f5-e8845fed9931/The+Holiday.jpg?content-type=image%2Fjpeg",
+
+      //   meta:
+      //     "2h 11m &nbsp;&bull;&nbsp; Comedy / Romance",
+
+      //   description:
+      //     "Two girls from different countries swap homes for the holidays to get away from their relationship issues. However, their lives change unexpectedly when they meet and fall in love with two local guys.",
+
+      //   dates: [
+      //     // "2026-11-22",
+      //     /*"2026-12-02",*/
+      //     "2026-12-09",
+      //     /*"2026-12-21"*/
+      //   ]
+      // },
+
+      {
+        title: "The Grinch",
+
+        poster:
+          "https://images.squarespace-cdn.com/content/59843341cf81e078efb32b0d/0ddfac3d-18a4-4867-89e4-43c660d1495e/The+Grinch.jpg?content-type=image%2Fjpeg",
+
+        meta: "1h 45m &nbsp;&bull;&nbsp; Family / Comedy",
+
+        description:
+          "The Grinch resides outside the town of Whoville, whose inhabitants adore Christmas. But he despises them and the festival. Cindy, a resident, befriends the Grinch, hoping to make him love Christmas.",
+
+        dates: [
+          "2026-11-23",
+          // "2026-12-15",
+          "2026-12-21",
+        ],
+      },
+
+      {
+        title: "Elf",
+
+        poster:
+          "https://images.squarespace-cdn.com/content/59843341cf81e078efb32b0d/a2a1976a-df85-4e7a-9a0f-e0dca8fb340a/%24_57+%282%29.jpg?content-type=image%2Fjpeg",
+
+        meta: "1h 37m &nbsp;&bull;&nbsp; Fantasy / Adventure",
+
+        description:
+          "Buddy, a human, is raised amongst elves at the North Pole. When he discovers that he is not an elf, he travels to New York to search for his biological father.",
+
+        dates: [
+          // "2026-11-23",
+          // "2026-11-29",
+          "2026-11-30",
+          "2026-12-01",
+          // /*"2026-12-06",*/
+          //   "2026-12-08",
+          // "2026-12-09",
+          // /*"2026-12-13",*/
+          //   "2026-12-14",
+          "2026-12-15",
+          // "2026-12-19",
+          // /*"2026-12-20",*/
+          "2026-12-21",
+          "2026-12-22",
+          "2026-12-23",
+          // "2026-12-24"
+        ],
+      },
+
+      {
+        title: "The Greatest Showman",
+
+        poster:
+          "https://images.squarespace-cdn.com/content/59843341cf81e078efb32b0d/b7b7064a-f125-4edd-adca-a15635baf938/The+Greatest+Showman.jpg?content-type=image%2Fjpeg",
+
+        meta: "1h 45m &nbsp;&bull;&nbsp; Musical / Drama",
+
+        description:
+          "P T Barnum becomes a worldwide sensation in the show business. His imagination and innovative ideas take him to the top of his game.",
+
+        dates: ["2026-11-24", "2026-12-30"],
+      },
+
+      {
+        title: "The Nightmare Before Christmas",
+
+        poster:
+          "https://images.squarespace-cdn.com/content/59843341cf81e078efb32b0d/9ec0d6a4-47d3-4e9f-ba0e-270defb3a484/The+Nightmare+Before+Christmas.jpg?content-type=image%2Fjpeg",
+
+        meta: "1h 16m &nbsp;&bull;&nbsp; Family / Fantasy",
+
+        description:
+          "Jack Skellington, a being from Halloween Town, finds Christmas Town and is instantly enchanted. The situation becomes riveting when his obsession with Christmas leads him to abduct Santa Claus.",
+
+        dates: ["2026-11-24"],
+      },
+
+      {
+        title: "Home Alone",
+
+        poster:
+          "https://images.squarespace-cdn.com/content/59843341cf81e078efb32b0d/49e8fdf6-b65e-4842-ab59-903a23c410bc/Home+Alone+%281%29.jpg?content-type=image%2Fjpeg",
+
+        meta: "1h 43m &nbsp;&bull;&nbsp; Family / Comedy",
+
+        description:
+          "Eight-year-old Kevin is accidentally left behind when his family leaves for France. At first, he's happy to be in charge; but when thieves try to break into his home, he puts up a fight like no other.",
+
+        dates: [
+          "2026-11-30",
+          /*"2026-12-06",*/
+          /*"2026-12-13",*/
+          /*"2026-12-20"*/
+        ],
+      },
+
+      //   {
+      //     title: "Die Hard",
+
+      //     poster:
+      //       "https://images.squarespace-cdn.com/content/59843341cf81e078efb32b0d/ed7de9c1-bc14-409a-adc6-f597484ca076/Die+Hard.jpg?content-type=image%2Fjpeg",
+
+      //     meta: "2h 12m &nbsp;&bull;&nbsp; Action / Thriller",
+
+      //     description:
+      //       "Just as Detective McClane lands in LA to spend Christmas with his wife, he learns about a hostage situation in an office building. Hans Gruber is the culprit and McClane's wife is one of the hostages.",
+
+      //     dates: ["2026-12-01"],
+      //   },
+
+      // {
+      //   title: "Christmas with the Kranks",
+
+      //   poster:
+      //     "https://images.squarespace-cdn.com/content/59843341cf81e078efb32b0d/46474659-ce22-4fba-b957-87387ab39e35/Christmas+with+the+Kranks.jpg?content-type=image%2Fjpeg",
+
+      //   meta:
+      //     "1h 38m &nbsp;&bull;&nbsp; Family / Comedy",
+
+      //   description:
+      //     "The Kranks scandalise everyone when they declare that they won't be celebrating Christmas. But, when their daughter decides to visit home, they get off on a mad rush to organise a spanking Christmas.",
+
+      //   dates: [
+      //     "2026-12-02",
+      //     "2026-12-16"
+      //   ]
+      // },
+
+      {
+        title: "Polar Express",
+
+        poster:
+          "https://images.squarespace-cdn.com/content/59843341cf81e078efb32b0d/81ea7bc4-79f6-4f67-974c-96ed3f3e4b4e/The+Polar+Express.jpg?content-type=image%2Fjpeg",
+
+        meta: "1h 39m &nbsp;&bull;&nbsp; Family / Adventure",
+
+        description:
+          "A young boy boards a train and embarks on an extraordinary journey to the North Pole to meet Santa Claus. His life takes a turn after he encounters special people that make his journey memorable.",
+
+        dates: [
+          "2026-12-05",
+          // "2026-12-20",
+          // "2026-12-28"
+        ],
+      },
+
+      {
+        title: "Friendsmas",
+
+        poster:
+          "https://images.squarespace-cdn.com/content/59843341cf81e078efb32b0d/d6a68ad9-1e28-4c9f-8ed8-524ab10fc59e/68631cf30b074212f55c844b_472608644_WB0074-8+%281%29.jpg?content-type=image%2Fjpeg",
+
+        meta: "Sit-Com",
+
+        description:
+          "Follow the lives of six reckless adults living in Manhattan, as they indulge in adventures which make their lives both troublesome and happening.",
+
+        dates: [
+          // "2026-12-06",
+          "2026-12-16",
+        ],
+      },
+
+      // {
+      //   title: "It's a Wonderful Life",
+
+      //   poster:
+      //     "https://images.squarespace-cdn.com/content/59843341cf81e078efb32b0d/a27831fb-4261-44a4-bda8-353c758b6bf2/it%27s+a+wonderful+life.jpg?content-type=image%2Fjpeg",
+
+      //   meta:
+      //     "2h 10m &nbsp;&bull;&nbsp; Fantasy / Comedy",
+
+      //   description:
+      //     "When a frustrated businessman, George Bailey, becomes suicidal, an angel from heaven, Clarence, is sent to him. To his change of heart, she shows him what life would have been without his existence.",
+
+      //   dates: [
+      //     "2026-12-06",
+      //     "2026-12-23"
+      //   ]
+      // },
+
+      {
+        title: "The Santa Clause",
+
+        poster:
+          "https://images.squarespace-cdn.com/content/59843341cf81e078efb32b0d/a21def44-16f3-4aa7-9ce1-a2bb4b933bf8/The+Santa+Clause.jpg?content-type=image%2Fjpeg",
+
+        meta: "1h 37m &nbsp;&bull;&nbsp; Family / Comedy",
+
+        description:
+          "By helping Santa Claus with a Christmas crisis, Scott unknowingly agrees to become the next Santa Claus. Now, he has to deal with a suspicious former wife while trying to keep his secret safe.",
+
+        dates: [
+          "2026-12-07",
+          "2026-12-22",
+          // "2026-12-23"
+        ],
+      },
+
+      {
+        title: "Love Actually",
+
+        poster:
+          "https://images.squarespace-cdn.com/content/59843341cf81e078efb32b0d/a0cdab68-37c0-4248-b041-ffe22a6a1938/Love+Actually.jpg?content-type=image%2Fjpeg",
+
+        meta: "2h 10m &nbsp;&bull;&nbsp; Comedy / Romance",
+
+        description:
+          "The film narrates the story of eight couples, of mix-bag ages and walks of life, who encounter love in their own special ways; all this in the beautiful days leading up to Christmas in London.",
+
+        dates: [
+          // "2026-12-07",
+          // /*"2026-12-13",*/
+          // "2026-12-22"
+          "2026-11-29",
+        ],
+      },
+
+      // {
+      //   title: "Home Alone 2",
+
+      //   poster:
+      //     "https://images.squarespace-cdn.com/content/59843341cf81e078efb32b0d/f5ec9658-d323-4137-9373-0421fd38e986/Home+Alone+2+%281%29.jpg?content-type=image%2Fjpeg",
+
+      //   meta:
+      //     "2hrs &nbsp;&bull;&nbsp; Family / Comedy",
+
+      //   description:
+      //     "Kevin thought all his worries were over for good and his parents won't leave home without him. But this time he is all alone in the big city of New York and the Wet Bandits are back in his life.",
+
+      //   dates: [
+      //     "2026-12-08",
+      //     "2026-12-20"
+      //   ]
+      // },
+
+      {
+        title: "Miracle on 34th Street",
+
+        poster:
+          "https://images.squarespace-cdn.com/content/59843341cf81e078efb32b0d/fec3eafc-2ffd-4938-9a8c-1f7115aa93a1/Miracle+on+34th+Street.jpg?content-type=image%2Fjpeg",
+
+        meta: "1h 54m &nbsp;&bull;&nbsp; Family / Comedy",
+
+        description:
+          "Susan, a child, and her mother, along with the help of a lawyer, must defend a man, Kris Kringle, from being institutionalised. In order to do so, they must prove that he is the real Santa Claus.",
+
+        dates: [
+          "2026-12-14",
+          // "2026-12-22"
+        ],
+      },
+
+      {
+        title: "Dirty Dancing",
+
+        poster:
+          "https://images.squarespace-cdn.com/content/59843341cf81e078efb32b0d/e14efb32-9ff5-4918-bfba-b2f854aea437/Dirty+Dancing.png?content-type=image%2Fpng",
+
+        meta: "1h 40m &nbsp;&bull;&nbsp; Romance / Dance",
+
+        description:
+          "While holidaying with her parents at a resort, Frances is smitten with the resort's rebellious dance instructor. However, her father opposes the relationship, creating ripples in her family.",
+
+        dates: ["2026-12-27"],
+      },
+
+      {
+        title: "Grease",
+
+        poster:
+          "https://images.squarespace-cdn.com/content/59843341cf81e078efb32b0d/4c5738a0-f041-4504-8fbf-5aeaa359dda8/Grease.jpg?content-type=image%2Fjpeg",
+
+        meta: "1h 45m &nbsp;&bull;&nbsp; Musical / Comedy",
+
+        description:
+          "While vacationing in Australia, Danny and Sandy indulge in a passionate love affair with each other. They part ways believing they will not see each other again but fate has other plans.",
+
+        dates: ["2026-12-28"],
+      },
+
+      // {
+      //   title: "New Year's Eve",
+
+      //   poster:
+      //     "https://images.squarespace-cdn.com/content/59843341cf81e078efb32b0d/13e3bbce-8f02-4b4d-a96d-a05826e11dd2/New+YEar%27s+Eve.jpg?content-type=image%2Fjpeg",
+
+      //   meta:
+      //     "1h 58m &nbsp;&bull;&nbsp; Romance / Drama",
+
+      //   description:
+      //     "People from different walks of life find their lives intertwined as they face multiple challenges when they embark on a quest to find happiness on New Year's Eve.",
+
+      //   dates: [
+      //     "2026-12-30"
+      //   ]
+      // }
+    ];
+
+    /*
+     * =========================================================
+     * BOOKING URL GENERATOR
+     * =========================================================
+     *
+     * Always produces:
+     *
+     * /book-movie-name-DDMMYY
+     */
+
+    function christmasCreateMovieSlug(title) {
+      return title
+        .toLowerCase()
+        .replace(/['’]/g, "")
+        .replace(/&/g, "and")
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "");
+    }
+
+    function christmasCreateDateSlug(dateString) {
+      const parts = dateString.split("-");
+
+      const year = parts[0].slice(-2);
+      const month = parts[1];
+      const day = parts[2];
+
+      return day + month + year;
+    }
+
+    function christmasCreateBookingURL(movieTitle, dateString) {
+      return (
+        "/book-" +
+        christmasCreateMovieSlug(movieTitle) +
+        "-" +
+        christmasCreateDateSlug(dateString)
+      );
+    }
+
+    /*
+     * =========================================================
+     * DATE FORMATTING
+     * =========================================================
+     */
+
+    function christmasGetOrdinal(day) {
+      if (day > 3 && day < 21) {
+        return day + "th";
+      }
+
+      switch (day % 10) {
+        case 1:
+          return day + "st";
+
+        case 2:
+          return day + "nd";
+
+        case 3:
+          return day + "rd";
+
+        default:
+          return day + "th";
+      }
+    }
+
+    function christmasFormatDate(dateString) {
+      const parts = dateString.split("-");
+
+      const year = Number(parts[0]);
+      const month = Number(parts[1]);
+      const day = Number(parts[2]);
+
+      const date = new Date(year, month - 1, day);
+
+      const weekday = date.toLocaleDateString("en-GB", {
+        weekday: "long",
+      });
+
+      const monthName = date.toLocaleDateString("en-GB", {
+        month: "long",
+      });
+
+      return weekday + ", " + christmasGetOrdinal(day) + " " + monthName;
+    }
+
+    /*
+     * =========================================================
+     * BUILD CHRISTMAS FILM CARDS
+     * =========================================================
+     */
+
+    const christmasGrid = document.getElementById("christmas-film-listings");
+
+    /*
+     * Prevent errors if this code block appears
+     * on a page without the Christmas listings container.
+     */
+
+    if (!christmasGrid) {
+      return;
+    }
+
+    christmasFilms.forEach(function (film, filmIndex) {
+      /*
+       * CARD
+       */
+
+      const card = document.createElement("article");
+
+      card.className = "christmas-film-card";
+
+      const inner = document.createElement("div");
+
+      inner.className = "christmas-film-card__inner";
+
+      /*
+       * =====================================================
+       * POSTER
+       * =====================================================
+       */
+
+      const poster = document.createElement("div");
+
+      poster.className = "christmas-film-card__poster";
+
+      const image = document.createElement("img");
+
+      image.src = film.poster;
+
+      image.alt = film.title + " Movie Poster";
+
+      poster.appendChild(image);
+
+      inner.appendChild(poster);
+
+      /*
+       * =====================================================
+       * CONTENT
+       * =====================================================
+       */
+
+      const content = document.createElement("div");
+
+      content.className = "christmas-film-card__content";
+
+      /*
+       * TITLE
+       */
+
+      const title = document.createElement("p");
+
+      title.className = "christmas-film-card__title p-xlg FW900 black";
+
+      title.textContent = film.title;
+
+      content.appendChild(title);
+
+      /* =====================================================
+   DATE / AVAILABILITY LINE
+===================================================== */
+
+      const dateLine = document.createElement("p");
+
+      dateLine.className = "christmas-film-card__date FW600 black";
+
+      /*
+       * Single screening:
+       * show the actual screening date.
+       *
+       * Multiple screenings:
+       * show "Various dates available".
+       */
+
+      if (film.dates.length === 1) {
+        dateLine.textContent = christmasFormatDate(film.dates[0]);
+      } else {
+        dateLine.textContent = "Various dates available";
+      }
+
+      content.appendChild(dateLine);
+
+      /* META */
+
+      const meta = document.createElement("p");
+
+      meta.className = "christmas-film-card__meta FW600 gold";
+
+      meta.innerHTML = film.meta;
+
+      content.appendChild(meta);
+
+      /*
+       * DESCRIPTION
+       */
+
+      const description = document.createElement("p");
+
+      description.className = "christmas-film-card__desc p-md black";
+
+      description.textContent = film.description;
+
+      content.appendChild(description);
+
+      /*
+       * =====================================================
+       * DATE SELECTOR
+       * =====================================================
+       */
+
+      const dateWrapper = document.createElement("div");
+
+      dateWrapper.className = "christmas-film-card__date-wrapper";
+
+      const label = document.createElement("label");
+
+      label.className = "christmas-film-card__date-label FW600 black";
+
+      const selectId = "christmas-film-date-" + filmIndex;
+
+      label.setAttribute("for", selectId);
+
+      label.textContent =
+        film.dates.length > 1 ? "Choose a date" : "Screening date";
+
+      const select = document.createElement("select");
+
+      select.className = "christmas-film-card__select";
+
+      select.id = selectId;
+
+      /*
+       * Multiple dates:
+       * add "Select a date" placeholder.
+       */
+
+      if (film.dates.length > 1) {
+        const placeholder = document.createElement("option");
+
+        placeholder.value = "";
+
+        placeholder.textContent = "Select a date";
+
+        placeholder.disabled = true;
+        placeholder.selected = true;
+
+        select.appendChild(placeholder);
+      }
+
+      /*
+       * Add each screening date.
+       */
+
+      film.dates.forEach(function (date) {
+        const option = document.createElement("option");
+
+        option.value = christmasCreateBookingURL(film.title, date);
+
+        option.textContent = christmasFormatDate(date);
+
+        select.appendChild(option);
+      });
+
+      dateWrapper.appendChild(label);
+
+      dateWrapper.appendChild(select);
+
+      content.appendChild(dateWrapper);
+
+      /*
+       * =====================================================
+       * BOOK NOW BUTTON
+       * =====================================================
+       */
+
+      const action = document.createElement("div");
+
+      action.className =
+        "christmas-film-card__action btn-wrapper btn-align-right";
+
+      const button = document.createElement("a");
+
+      button.className =
+        "christmas-film-card__button center btn btn-primary-gold-dark btn-hover-sweep ext-link";
+
+      if (film.dates.length === 1) {
+        button.href = christmasCreateBookingURL(film.title, film.dates[0]);
+      } else {
+        button.href = "#";
+      }
+
+      const buttonText = document.createElement("span");
+
+      buttonText.textContent = "Book now";
+
+      button.appendChild(buttonText);
+
+      action.appendChild(button);
+
+      content.appendChild(action);
+
+      /*
+       * =====================================================
+       * CHANGE BOOKING URL WHEN DATE IS SELECTED
+       * =====================================================
+       */
+
+      select.addEventListener("change", function () {
+        button.href = this.value;
+      });
+
+      button.addEventListener("click", function (event) {
+        if (film.dates.length > 1 && !select.value) {
+          event.preventDefault();
+
+          select.focus();
+        }
+      });
+
+      /*
+       * =====================================================
+       * FINISH CARD
+       * =====================================================
+       */
+
+      inner.appendChild(content);
+
+      card.appendChild(inner);
+
+      christmasGrid.appendChild(card);
+    });
+
+    christmasGrid
+      .querySelectorAll(".christmas-film-card__content")
+      .forEach(function (card) {
+        const description = card.querySelector(".christmas-film-card__desc");
+
+        if (!description) {
+          return;
+        }
+
+        const toggle = document.createElement("button");
+
+        toggle.type = "button";
+
+        toggle.className = "christmas-film-card__toggle";
+
+        toggle.textContent = "View description";
+
+        toggle.setAttribute("aria-expanded", "false");
+
+        description.before(toggle);
+
+        toggle.addEventListener("click", function () {
+          const isOpen = description.classList.toggle("is-open");
+
+          toggle.setAttribute("aria-expanded", isOpen);
+
+          toggle.textContent = isOpen ? "Hide description" : "View description";
+        });
+      });
+  })();
+</script>
