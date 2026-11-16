@@ -1,0 +1,53 @@
+{
+  "title": "Kids Menu",
+  "sections": [
+    {
+      "id": "brel-kids-small",
+      "title": "Kids Menu",
+      "fullWidth": true,
+      "blocks": [
+        {
+          "type": "items",
+          "items": [
+            {
+              "name": "Mac 'n' Cheese",
+              "price": "£10.00",
+              "dietary": [
+                "V"
+              ],
+              "descriptionHtml": "With Garlic Bread"
+            },
+            {
+              "name": "Moules Frites",
+              "price": "£10.00",
+              "dietary": [
+                "GF"
+              ]
+            },
+            {
+              "name": "Beef Burger",
+              "price": "£10.00",
+              "dietary": [
+                "GFA"
+              ],
+              "descriptionHtml": "With Frites"
+            },
+            {
+              "name": "Chicken Burger",
+              "price": "£10.00",
+              "descriptionHtml": "With Frites"
+            },
+            {
+              "name": "Cluck Free Chicken Burger",
+              "price": "£10.00",
+              "dietary": [
+                "VG"
+              ],
+              "descriptionHtml": "With Frites"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

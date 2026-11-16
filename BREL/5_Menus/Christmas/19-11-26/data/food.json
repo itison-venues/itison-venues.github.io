@@ -1,0 +1,460 @@
+{
+  "title": "Food Menu",
+  "sections": [
+    {
+      "id": "brel-food-snack",
+      "title": "SNACK",
+      "fullWidth": false,
+      "blocks": [
+        {
+          "type": "items",
+          "items": [
+            {
+              "name": "Gordal Picante Olives",
+              "price": "£5.50",
+              "dietary": [
+                "VG",
+                "GF"
+              ]
+            },
+            {
+              "name": "Focaccia",
+              "price": "£6.00",
+              "dietary": [
+                "V"
+              ],
+              "descriptionHtml": "Caramelised Onion Whipped Butter"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "brel-food-small",
+      "title": "SMALL",
+      "fullWidth": false,
+      "blocks": [
+        {
+          "type": "items",
+          "items": [
+            {
+              "name": "French Onion Soup",
+              "price": "£9.50",
+              "descriptionHtml": "Comté Crouton, Soda Bread<br/><span class=\"add-on\">Add Small French Onion Cheese Melt +£7.00</span>"
+            },
+            {
+              "name": "Breaded Brie",
+              "price": "£9.00",
+              "descriptionHtml": "Port & Orange Chutney"
+            },
+            {
+              "name": "Fried Squid",
+              "price": "£12.00",
+              "descriptionHtml": "Lemon Aioli"
+            },
+            {
+              "name": "Garlic & Chilli Prawns",
+              "price": "£12.00",
+              "dietary": [
+                "GFA"
+              ],
+              "descriptionHtml": "Lemon, Parsley, Soda Bread"
+            },
+            {
+              "name": "Chicken Skewers",
+              "price": "£12.00",
+              "dietary": [
+                "GF"
+              ],
+              "descriptionHtml": "Harissa, Mint & Chive Yoghurt"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "brel-food-poutines",
+      "title": "POUTINES",
+      "fullWidth": true,
+      "blocks": [
+        {
+          "type": "items",
+          "items": [
+            {
+              "name": "Mozzarella, Beef Gravy",
+              "price": "£11.00",
+              "dietary": [
+                "GF"
+              ]
+            },
+            {
+              "name": "Peppercorn & Steak",
+              "price": "£16.00",
+              "dietary": [
+                "GF"
+              ],
+              "descriptionHtml": "Fillet Steak, Peppercorn Sauce, Mozzarella"
+            },
+            {
+              "name": "Truffle",
+              "price": "£11.00",
+              "dietary": [
+                "V",
+                "GF"
+              ],
+              "descriptionHtml": "Truffle Aioli, Black Pepper, Parmesan"
+            },
+            {
+              "name": "Manchego",
+              "price": "£12.00",
+              "dietary": [
+                "GF"
+              ],
+              "descriptionHtml": "Gotcha Ketchup, Crispy Onions"
+            }
+          ]
+        }
+      ],
+      "headerAddon": "Add Buttermilk Fried Chicken +£4.25 (all poutines)"
+    },
+    {
+      "id": "brel-food-table",
+      "title": "FOR THE TABLE",
+      "fullWidth": true,
+      "blocks": [
+        {
+          "type": "items",
+          "items": [
+            {
+              "name": "Festive Fondue",
+              "price": "£45.00",
+              "descriptionHtml": "Pigs in Blankets, Stuffing Balls, Roast Potatoes, Carrots & Parsnips, Soda Bread, Cornichons"
+            },
+            {
+              "name": "Raclette",
+              "price": "£47.50 for 2",
+              "dietary": [
+                "GFA",
+                "GFA",
+                "GFA"
+              ],
+              "descriptionHtml": "14-month Aged Raclette melted at your table<br/><strong>Choose from:</strong><ul><li>Toulouse Sausage, Chorizo, Crispy Potatoes, Soda Bread, Apple, Pickles <span class=\"dietary-tags\"><span class=\"gluten\">GFA</span></span></li><li>Crispy Potatoes, Broccoli &amp; Cauliflower Florets, Cherry Tomatoes, Soda Bread, Pickles <span class=\"dietary-tags\"><span class=\"gluten\">GFA</span></span></li></ul>"
+            },
+            {
+              "name": "Cheese Fondue",
+              "price": "£47.50 for 2",
+              "dietary": [
+                "GFA",
+                "GFA",
+                "GFA"
+              ],
+              "descriptionHtml": "3 Cheese Mix Fondue to dip in at your table<br/><strong>Choose from:</strong><ul><li>Toulouse Sausage, Chorizo, Crispy Potatoes, Soda Bread, Apple, Pickles <span class=\"dietary-tags\"><span class=\"gluten\">GFA</span></span></li><li>Crispy Potatoes, Broccoli &amp; Cauliflower Florets, Cherry Tomatoes, Soda Bread, Pickles <span class=\"dietary-tags\"><span class=\"gluten\">GFA</span></span></li></ul>"
+            }
+          ]
+        },
+        {
+          "type": "special",
+          "id": "fondue-tuesday",
+          "image": {
+            "src": "https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/b63dbd1d-63a5-4e08-a540-577190fbec34/Brel+-+Fondue+Tuesdays.png?content-type=image%2Fpng",
+            "alt": "Fondue & Raclette Tuesdays"
+          },
+          "title": "Fondue & Raclette Tuesdays",
+          "paragraphs": [
+            "Every Tuesday from 5pm",
+            "Fondue for 2 — £40.00 with a bottle of house wine or sharing beer",
+            "Fondue for 2 — £30.00"
+          ],
+          "link": {
+            "url": "https://www.brelbar.com/booking",
+            "label": "book a table"
+          }
+        }
+      ]
+    },
+    {
+      "id": "brel-food-moules",
+      "title": "MOULES FRITES",
+      "fullWidth": true,
+      "blocks": [
+        {
+          "type": "items",
+          "items": [
+            {
+              "name": "Scottish Steamed Mussels",
+              "price": "£12.75 / £23.00",
+              "dietary": [
+                "GFA"
+              ],
+              "descriptionHtml": "Half Pot: Soda Bread / Full Pot: Frites, Soda Bread<br/><strong>Choose from:</strong><ul><li>Marinière with (or without) Cream</li><li>Belgian Beer, Bacon, Leek</li><li>Thai Lemongrass, Coriander</li><li>Chorizo, Tomato</li></ul>"
+            }
+          ]
+        },
+        {
+          "type": "special",
+          "id": "moules-monday",
+          "image": {
+            "src": "https://images.squarespace-cdn.com/content/595350c4bebafb54f3d494a2/a6d68a70-a9b7-48e0-96e1-283584204eaf/Brel+-+Moules+Monday.png?content-type=image%2Fpng",
+            "alt": "Moules Mondays"
+          },
+          "title": "Moules Mondays",
+          "paragraphs": [
+            "Served all day on Monday",
+            "Moules + Frites — £14.00",
+            "2 × Moules + 2 × Frites — £38.00 (includes bottle of house wine or sharing beer)"
+          ],
+          "link": {
+            "url": "https://www.brelbar.com/booking",
+            "label": "book a table"
+          }
+        }
+      ]
+    },
+    {
+      "id": "brel-food-bigs",
+      "title": "BIGS",
+      "fullWidth": true,
+      "blocks": [
+        {
+          "type": "items",
+          "items": [
+            {
+              "name": "Steak Frites",
+              "price": "£32.50",
+              "dietary": [
+                "GF"
+              ],
+              "descriptionHtml": "8oz Fillet Steak, Tenderstem Broccoli, Peppercorn Sauce"
+            },
+            {
+              "name": "Chicken Schnitzel",
+              "price": "£19.75",
+              "dietary": [
+                "GF"
+              ],
+              "descriptionHtml": "Crushed Potatoes, Tenderstem Broccoli, Fried Egg, Mushroom & Truffle Butter"
+            },
+            {
+              "name": "Turkey Schnitzel",
+              "price": "£19.00",
+              "dietary": [
+                "GF"
+              ],
+              "descriptionHtml": "Fried Egg, Sage & Garlic Butter, Crushed Potatoes, Tenderstem Broccoli"
+            },
+            {
+              "name": "Chorizo Chicken Schnitzel",
+              "price": "£19.75",
+              "descriptionHtml": "Chorizo Sugo, Melted Mozzarella, Crushed Potatoes, Tenderstem Broccoli"
+            },
+            {
+              "name": "Roast Turkey",
+              "price": "£23.00",
+              "dietary": [
+                "GFA"
+              ],
+              "descriptionHtml": "Pigs in Blankets, Stuffing, Roast Potatoes, Carrots, Parsnips, Sprouts & Gravy"
+            },
+            {
+              "name": "Prawn Linguini",
+              "price": "£22.00",
+              "descriptionHtml": "Lime, Chilli, Coriander"
+            },
+            {
+              "name": "Caesar Salad",
+              "price": "£13.50",
+              "dietary": [
+                "GFA"
+              ],
+              "descriptionHtml": "Lettuce, Parmesan, Croutons, Anchovies, Caesar Dressing<br/><span class=\"add-on\">Add Grilled Chicken +£4.00</span>"
+            },
+            {
+              "name": "Haddock Crêpe",
+              "price": "£15.00",
+              "descriptionHtml": "Haddock Goujons, Lemon Aioli, Pico de Gallo, Chilli, Pickles, Side Salad"
+            },
+            {
+              "name": "Chicken & Avocado Crêpe",
+              "price": "£14.00",
+              "descriptionHtml": "Harissa, Bacon, Fried Egg, Side Salad"
+            },
+            {
+              "name": "Brel Macaroni",
+              "price": "£14.75",
+              "dietary": [
+                "V"
+              ],
+              "descriptionHtml": "Comté Crumb, Garlic Ciabatta<br/><span class=\"add-on\">Add Bacon &amp; Raclette +£3.00</span>"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "brel-food-bread",
+      "title": "BREADS",
+      "fullWidth": false,
+      "blocks": [
+        {
+          "type": "items",
+          "items": [
+            {
+              "name": "Beef Burger",
+              "price": "£18.00",
+              "dietary": [
+                "GFA"
+              ],
+              "descriptionHtml": "Emmental, Smoked Bacon, French Onions, Lettuce, Tomato, Pickle, Truffle Aioli, Frites"
+            },
+            {
+              "name": "Chicken Burger",
+              "price": "£18.00",
+              "dietary": [
+                "VGA",
+                "GFA"
+              ],
+              "descriptionHtml": "Buttermilk Fried Chicken, Red Slaw, Gotcha Ketchup, Lettuce, Tomato, Pickle, Frites"
+            },
+            {
+              "name": "French Dip Sandwich",
+              "price": "£19.00",
+              "descriptionHtml": "Sirloin Steak, French Mustard, Truffle Aioli, French Onions, French Dip, Ciabatta, Side Salad"
+            },
+            {
+              "name": "Turkey Schnitzel Sandwich",
+              "price": "£15.00",
+              "descriptionHtml": "Roast Turkey Breast, Cranberry Slaw, Brie, Lettuce & Sage Aioli, Ciabatta"
+            },
+            {
+              "name": "Pigs in Blanket Melt",
+              "price": "£14.00",
+              "descriptionHtml": "Cumberland Sausage, Bacon, Gruyère, Cranberry Ketchup, Cranberry Slaw, Ciabatta"
+            }
+          ]
+        }
+      ],
+      "headerAddon": "Add a Pot of Dipping Cheese Fondue +£5.00 | Or French Dip +£3.00"
+    },
+    {
+      "id": "brel-food-sides",
+      "title": "SIDES",
+      "fullWidth": false,
+      "blocks": [
+        {
+          "type": "items",
+          "items": [
+            {
+              "name": "Frites",
+              "price": "£6.00",
+              "dietary": [
+                "VG",
+                "GF"
+              ],
+              "descriptionHtml": "Aioli"
+            },
+            {
+              "name": "Mini Macaroni",
+              "price": "£6.00",
+              "dietary": [
+                "V"
+              ]
+            },
+            {
+              "name": "Belgian Beer Battered Onion Rings",
+              "price": "£5.25"
+            },
+            {
+              "name": "Pigs in Blankets Stuffing Bites",
+              "price": "£9.00"
+            },
+            {
+              "name": "Chilli & Lemon Tenderstem Broccoli",
+              "price": "£5.75",
+              "dietary": [
+                "VG",
+                "GF"
+              ]
+            },
+            {
+              "name": "Raclette Potatoes",
+              "price": "£9.00",
+              "dietary": [
+                "V",
+                "GFA"
+              ],
+              "descriptionHtml": "New Potatoes, Melted Raclette Cheese, Cornichons, Crispy Onions"
+            },
+            {
+              "name": "Garden Salad",
+              "price": "£5.25",
+              "dietary": [
+                "VG",
+                "GF"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "brel-food-dessert",
+      "title": "DESSERTS",
+      "fullWidth": false,
+      "blocks": [
+        {
+          "type": "items",
+          "items": [
+            {
+              "name": "Waffle Fingers",
+              "price": "£9.50",
+              "dietary": [
+                "V"
+              ],
+              "descriptionHtml": "Melted Chocolate"
+            },
+            {
+              "name": "S’mores",
+              "price": "£10.50",
+              "dietary": [
+                "VGA",
+                "GFA"
+              ],
+              "descriptionHtml": "Crackers, Chocolate, Marshmallows"
+            },
+            {
+              "name": "S’mores Skillet",
+              "price": "£10.00 / £19.00",
+              "dietary": [
+                "VGA",
+                "GFA"
+              ],
+              "descriptionHtml": "Small / Large: Crackers, Chocolate, Marshmallows, Berry Compote"
+            },
+            {
+              "name": "Christmas Chocolate Fondue",
+              "price": "£19.50",
+              "dietary": [
+                "V",
+                "GFA"
+              ],
+              "descriptionHtml": "Fresh Fruit, Waffle Fingers, Mini Mince Pies, Candy Canes, Meringues, Marshmallows"
+            },
+            {
+              "name": "Raspberry Crème Brûlée",
+              "price": "£9.00",
+              "dietary": [
+                "V",
+                "GFA"
+              ],
+              "descriptionHtml": "Cinnamon Shortbread"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "footnotes": [
+    "<strong>Dietary:</strong> V = Vegetarian | VG = Vegan | VGA = Vegan Available | GF = Gluten Free | GFA = Gluten Free Available",
+    "Allergies or intolerances? Please speak to your server. For all customers dining, a discretionary 10% service charge will be added to your bill."
+  ]
+}
