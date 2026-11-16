@@ -442,3 +442,12 @@ html {
     margin-left: 0;
   }
 }
+
+
+/* BREL Menu - Sticky Navigation Offset */
+
+#brel-menu .menu-navigation {
+  position: sticky;
+  top: 100px;
+  z-index: 100;
+}
