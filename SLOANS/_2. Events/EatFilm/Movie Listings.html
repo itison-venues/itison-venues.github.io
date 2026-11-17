@@ -1,0 +1,296 @@
+<style>
+  .film-grid {
+    width: calc(100% - 80px);
+    max-width: 1260px;
+    margin: 28px auto 0;
+
+    display: flex;
+    flex-wrap: wrap;
+    gap: 28px;
+    align-items: stretch;
+  }
+
+  .film-card {
+    background: #fcf9f0;
+    border: 1px solid #ded5c2;
+    box-sizing: border-box;
+    padding: 30px;
+
+    /* Two cards per row on desktop; remaining cards pull forward automatically */
+    flex: 0 0 calc(50% - 14px);
+    max-width: calc(50% - 14px);
+  }
+
+  .film-card__inner {
+    display: flex;
+    gap: 26px;
+    height: 100%;
+    align-items: stretch;
+  }
+
+  .film-card__poster {
+    flex: 0 0 265px;
+  }
+
+  .film-card__poster img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .film-card__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+  }
+
+  .film-card__content h3 {
+    margin: 0 0 18px;
+  }
+
+  .film-card__date,
+  .film-card__meta,
+  .film-card__desc {
+    margin: 0;
+  }
+
+  .film-card__meta {
+    margin-top: 6px;
+  }
+
+  .film-card__desc {
+    margin-top: 18px;
+  }
+
+  .film-card__action {
+    margin-top: auto;
+    padding-top: 30px;
+  }
+
+  .film-card__action > a {
+    display: inline-block;
+    min-width: 190px;
+    text-align: center;
+  }
+
+  /* Hidden on desktop */
+  .film-card__toggle {
+    display: none;
+  }
+
+  /* ---------------------------------
+   MOBILE
+--------------------------------- */
+
+  /* Desktop */
+  .film-card {
+    flex: 0 0 calc(50% - 14px);
+    max-width: calc(50% - 14px);
+  }
+
+  .film-card__content {
+    flex: 1;
+    min-width: 0; /* important for flex children */
+  }
+
+  /* Tablet */
+  @media (max-width: 1200px) {
+    .film-card {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 900px) {
+    .film-grid {
+      width: calc(100% - 30px);
+      margin: 16px auto 0;
+      gap: 16px;
+    }
+
+    .film-card {
+      padding: 24px;
+    }
+
+    .film-card__poster {
+      display: none;
+    }
+
+    .film-card__inner {
+      display: block;
+      height: auto;
+    }
+
+    .film-card__content {
+      min-height: 0;
+    }
+
+    /* your remaining mobile styles */
+  }
+
+  @media (max-width: 900px) {
+    .film-grid {
+      width: calc(100% - 30px);
+      margin: 16px auto 0;
+
+      gap: 16px;
+    }
+
+    .film-card {
+      padding: 24px;
+      flex-basis: 100%;
+      max-width: 100%;
+    }
+
+    /* Remove posters */
+    .film-card__poster {
+      display: none;
+    }
+
+    .film-card__inner {
+      display: block;
+      height: auto;
+    }
+
+    .film-card__content {
+      min-height: 0;
+    }
+
+    .film-card__content h3 {
+      margin-bottom: 12px;
+    }
+
+    .film-card__meta {
+      margin-top: 4px;
+    }
+
+    /* ---------------------------------
+     Description dropdown
+  --------------------------------- */
+
+    .film-card__toggle {
+      display: block;
+
+      margin-top: 18px;
+      padding: 0;
+
+      border: 0;
+      background: none;
+
+      cursor: pointer;
+    }
+
+    .film-card__toggle::after {
+      content: " +";
+    }
+
+    .film-card__toggle[aria-expanded="true"]::after {
+      content: " −";
+    }
+
+    .film-card__desc {
+      display: none;
+      margin-top: 16px;
+    }
+
+    .film-card__desc.is-open {
+      display: block;
+    }
+
+    /* ---------------------------------
+     Ticket button
+  --------------------------------- */
+
+    .film-card__action {
+      margin-top: 24px;
+      padding-top: 0;
+    }
+
+    .film-card__action > a {
+      width: 100%;
+      min-width: 0;
+      box-sizing: border-box;
+    }
+  }
+</style>
+
+<div class="film-grid">
+
+
+  <!-------------------------------------------------------->
+  <!-- NOVEMBER -->
+  <!-------------------------------------------------------->
+
+
+  <!-- GREASE -->
+  <article class="film-card">
+    <div class="film-card__inner">
+      <div class="film-card__poster">
+        <img
+          src="https://images.squarespace-cdn.com/content/59843341cf81e078efb32b0d/4c5738a0-f041-4504-8fbf-5aeaa359dda8/Grease.jpg?content-type=image%2Fjpeg"
+          alt="Grease Movie Poster"
+        />
+      </div>
+
+      <div class="film-card__content">
+        <p class="p-xlg FW900 black">Grease</p>
+
+        <p class="film-card__date FW600 black">17th November</p>
+
+        <p class="film-card__meta FW600 gold">
+          1h 45m &nbsp;&bull;&nbsp; Musical / Comedy
+        </p>
+
+        <p class="p-md black">
+          While vacationing in Australia, Danny and Sandy indulge in a
+          passionate love affair with each other. They part ways believing they
+          will not see each other again but fate has other plans.
+        </p>
+
+        <div class="film-card__action btn-wrapper btn-align-right">
+          <a
+            href="https://www.sloansglasgow.co.uk/book-grease-171126"
+            class="center btn btn-primary-gold-dark btn-hover-sweep ext-link"
+          >
+            <span>Buy tickets</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
+
+<script>
+  document.querySelectorAll(".film-card__content").forEach(function (card) {
+    /* Find the movie description */
+    const description = card.querySelector("p.p-md.black");
+
+    if (!description) return;
+
+    description.classList.add("film-card__desc");
+
+    /* Create View Description button */
+    const toggle = document.createElement("button");
+
+    toggle.type = "button";
+    toggle.className = "film-card__toggle";
+    toggle.textContent = "View description";
+    toggle.setAttribute("aria-expanded", "false");
+
+    /* Put it directly before the description */
+    description.before(toggle);
+
+    /* Toggle description */
+    toggle.addEventListener("click", function () {
+      const isOpen = description.classList.toggle("is-open");
+
+      toggle.setAttribute("aria-expanded", isOpen);
+
+      toggle.textContent = isOpen ? "Hide description" : "View description";
+    });
+  });
+</script>
