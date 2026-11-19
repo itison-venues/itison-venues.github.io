@@ -443,15 +443,13 @@ html {
   }
 }
 
-
-
 /* BREL - Smoother sticky navigation */
 
 #brel-menu .menu-navigation {
   position: sticky;
   top: 100px;
   z-index: 100;
-  background: #fff;
+  background: var(--cream);
   transition: none;
   animation: none;
   transform: none;
