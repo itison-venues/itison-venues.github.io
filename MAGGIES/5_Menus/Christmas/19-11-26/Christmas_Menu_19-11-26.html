@@ -1,0 +1,932 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      :root {
+        --red: #af2727;
+        --cream: #faf4dc;
+        --white: #ffffff;
+        --black: #1a1a1a;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Roboto", sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+
+      .menu-container {
+        padding: 1rem;
+      }
+
+      .nav-buttons {
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+      }
+
+      .nav-buttons button {
+        padding: 0.5rem 1rem;
+        cursor: pointer;
+        border-radius: 3px;
+        font-size: 0.8em;
+        text-transform: uppercase;
+        font-weight: 800;
+        background-color: transparent;
+        color: var(--red);
+        border: 2px solid var(--red);
+        transition: all 0.2s ease;
+      }
+
+      .nav-buttons button.active {
+        background-color: var(--red);
+        color: var(--white);
+      }
+
+      .menu-section {
+        display: none;
+      }
+
+      .menu-section.active {
+        display: block;
+      }
+
+      .section-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .section-header-row {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        border-bottom: 2px solid var(--red);
+        padding-bottom: 0.5rem;
+        margin-top: 4rem !important;
+      }
+
+      .section-header {
+        font-size: 1.5rem;
+        font-family: "Roboto Slab", serif;
+        font-weight: 800;
+        color: var(--red);
+        text-transform: uppercase;
+      }
+
+      .section-header-subtitle {
+        font-size: 0.8em;
+        text-transform: uppercase;
+        color: var(--red);
+        font-weight: 700;
+        letter-spacing: 0.05em;
+      }
+
+      .menu-item {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid #ddd;
+        margin-bottom: -25px;
+      }
+
+      .item-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        font-weight: bold;
+        letter-spacing: 0.05em;
+        color: var(--black);
+        text-transform: uppercase;
+      }
+
+      .price {
+        font-weight: 400;
+      }
+
+      .item-details {
+        font-size: 0.8em;
+        margin-top: 0.25rem;
+        line-height: 1.5em;
+        font-weight: 400;
+        letter-spacing: 0.03em;
+        color: var(--black);
+      }
+
+      .red-highlight {
+        color: var(--red);
+        font-weight: 800;
+        font-size: 0.93em;
+      }
+
+      .dietary {
+        font-size: 0.9em;
+        font-weight: 800;
+        letter-spacing: 0.1em;
+        color: var(--red);
+      }
+
+      @media (min-width: 768px) {
+        .section-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+
+        .section-header-row {
+          flex-direction: row;
+          justify-content: space-between;
+          align-items: flex-end;
+          grid-column: span 3;
+        }
+      }
+
+      .menu-item-border {
+        border: 3px dotted var(--red);
+        padding: 1em;
+      }
+
+      /* call out boxes */
+      .menu-list {
+        list-style: none;
+        padding: 0;
+      }
+
+      .menu-list li {
+        display: flex;
+        justify-content: space-between;
+        padding: 4px 0;
+        border-bottom: 1px solid #ddd; /* optional line between items */
+      }
+
+      .item {
+        text-align: left;
+      }
+
+      .price {
+        text-align: right;
+        white-space: nowrap; /* keeps price on one line */
+      }
+
+      @media screen and (orientation: landscape) and (max-height: 500px) {
+        .section-grid {
+          grid-template-columns: 1fr !important;
+        }
+
+        .section-header-row {
+          flex-direction: column;
+          align-items: flex-start;
+          grid-column: span 1;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="menu-container">
+      <div class="nav-buttons">
+        <button onclick="showSection('starters')" class="active">
+          STARTERS
+        </button>
+        <button onclick="showSection('mac')">MACARONI</button>
+        <button onclick="showSection('loadedfries')">LOADED FRIES</button>
+        <button onclick="showSection('smokehouse')">SMOKEHOUSE</button>
+        <button onclick="showSection('buns')">BUNS</button>
+        <button onclick="showSection('desserts')">DESSERTS</button>
+      </div>
+
+      <!------------STARTERS------------>
+      <div id="starters" class="menu-section">
+        <!--LIL' PLATES-->
+        <div class="section-grid">
+          <div class="section-header-row">
+            <div class="section-header">LIL' PLATES</div>
+            <!--<div class="section-header-subtitle"></div>-->
+          </div>
+
+          <!--CORNBREAD 'N' BUTTER-->
+          <div class="menu-item">
+            <div class="item-row">
+              <span
+                >CORNBREAD 'N' BUTTER
+                <span class="dietary">[V]</span>
+              </span>
+              <span class="price">£7.00</span>
+            </div>
+            <div class="item-details">
+              Jalapeño & Cheddar Cornbread, Cowboy Butter
+            </div>
+          </div>
+
+          <!--BUTTERMILK BUFFALO BITES-->
+          <div class="menu-item">
+            <div class="item-row">
+              <span
+                >BUTTERMILK CHICKEN BITES
+                <!--<span class="dietary"></span>-->
+              </span>
+              <span class="price">£9.00</span>
+            </div>
+            <div class="item-details">
+              Buffalo or BBQ Chicken, Pickles, Ranch Dip
+            </div>
+          </div>
+
+          <!--SMOKED CAULIFLOWER BITES-->
+          <div class="menu-item">
+            <div class="item-row">
+              <span
+                >SMOKED CAULIFLOWER BITES
+                <!--<span class="dietary"></span>-->
+              </span>
+              <span class="price">£7.00</span>
+            </div>
+            <div class="item-details">
+              Fermented Chilli Sauce, Alabama White Sauce
+            </div>
+          </div>
+
+          <!--SMOKED TURKEY-->
+          <div class="menu-item menu-item-border">
+            <div class="item-row">
+              <span
+                >SMOKED TURKEY 'N' BACON CROQUETTES
+                <!--<span class="dietary"></span>-->
+              </span>
+              <span class="price">£9.00</span>
+            </div>
+            <div class="item-details">Chipotle & Cranberry Ketchup</div>
+          </div>
+
+          <!--CHUMMICHURI CORN-->
+          <div class="menu-item">
+            <div class="item-row">
+              <span
+                >Chimmichuri Corn
+                <span class="dietary">[VG]</span>
+              </span>
+              <span class="price">£7.00</span>
+            </div>
+            <div class="item-details">Half Corn on the Cob, Chimmichurri</div>
+          </div>
+        </div>
+      </div>
+
+      <!------------MAGGIES MAC------------>
+      <div id="mac" class="menu-section">
+        <!--MAGGIE'S MAC-->
+        <div class="section-grid">
+          <div class="section-header-row">
+            <div class="section-header">MAGGIE'S MAC</div>
+          </div>
+
+          <!--NASHVILLE HOT-->
+          <div class="menu-item menu-item-border">
+            <div class="item-row">
+              <span
+                >CHEESY MACARONI
+                <span class="dietary">[V]</span>
+              </span>
+              <span class="price">£12.00</span>
+            </div>
+            <br />
+            <div class="item-details">
+              <b style="color: var(--red)">LOAD IT UP</b>
+            </div>
+
+            <div class="item-row">
+              <div class="item-details">pork belly burnt ends</div>
+              <span style="text-align: right" class="item-details"
+                >+ £6.25</span
+              >
+            </div>
+
+            <div class="item-row">
+              <div class="item-details">slow smoked beef brisket</div>
+              <span style="text-align: right" class="item-details"
+                >+ £3.50</span
+              >
+            </div>
+
+            <div class="item-row">
+              <div class="item-details">jd pulled pork</div>
+              <span style="text-align: right" class="item-details"
+                >+ £6.25</span
+              >
+            </div>
+
+            <div class="item-row">
+              <div class="item-details">beef brisket chilli</div>
+              <span style="text-align: right" class="item-details"
+                >+ £3.50</span
+              >
+            </div>
+
+            <div class="item-row">
+              <div class="item-details">
+                jack daniels bbq jackfruit <span class="dietary"> [V]</span>
+              </div>
+              <span style="text-align: right" class="item-details"
+                >+ £2.50</span
+              >
+            </div>
+
+            <div class="item-row">
+              <div class="item-details">
+                crispy onions <span class="dietary"> [V]</span>
+              </div>
+              <span style="text-align: right" class="item-details"
+                >+ £1.25</span
+              >
+            </div>
+
+            <div class="item-row">
+              <div class="item-details">
+                crushed tortilla chips <span class="dietary"> [V]</span>
+              </div>
+              <span style="text-align: right" class="item-details"
+                >+ £1.25</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!------------LOADED FRIES------------>
+      <div id="loadedfries" class="menu-section">
+        <!--LOADED FRIES-->
+        <div class="section-grid">
+          <div class="section-header-row">
+            <div class="section-header">LOADED FRIES OR TATER TOTS</div>
+            <div class="section-header-subtitle">
+              * add boneless buttermilk fried chicken + £3.00<br />or cluckless
+              nuggets [vg] + £4.00
+            </div>
+          </div>
+
+          <!--NASHVILLE HOT-->
+          <div class="menu-item">
+            <div class="item-row">
+              <span
+                >NASHVILLE HOT
+                <span class="dietary"></span>
+              </span>
+              <span class="price">£13.75</span>
+            </div>
+            <div class="item-details">
+              Buttermilk Fried Chicken, Nashville Sauce, Confit Garlic Mayo,
+              Crispy Onions, Pickle
+            </div>
+          </div>
+
+          <!--NACHO-->
+          <div class="menu-item">
+            <div class="item-row">
+              <span
+                >NACHO
+                <span class="dietary">[GF]</span>
+              </span>
+              <span class="price">£13.75</span>
+            </div>
+            <div class="item-details">
+              Beef Brisket Chilli, Nacho Cheese, Jalapeños, Crushed Tortilla
+              Chips
+            </div>
+          </div>
+
+          <!--THE PORKER-->
+          <div class="menu-item">
+            <div class="item-row">
+              <span
+                >THE PORKER
+                <span class="dietary">[GF]</span>
+              </span>
+              <span class="price">£14.00</span>
+            </div>
+            <div class="item-details">
+              Pulled Pork, Cheese, Hot Honey, Pickled Red Onion
+            </div>
+          </div>
+
+          <!--TRUFFLE SHUFFLE-->
+          <div class="menu-item">
+            <div class="item-row">
+              <span
+                >TRUFFLE SHUFFLE<span style="color: var(--red)"> * </span>
+                <span class="dietary">[GF/VGA]</span>
+              </span>
+              <span class="price">£12.00</span>
+            </div>
+            <div class="item-details">
+              Truffle Mayo, Parmesan, Black Pepper, Crispy Onions
+            </div>
+          </div>
+
+          <!--SALT 'N' CHILLI-->
+          <div class="menu-item">
+            <div class="item-row">
+              <span
+                >SALT 'N' CHILLI<span style="color: var(--red)"> * </span>
+                <span class="dietary">[GF/VG]</span>
+              </span>
+              <span class="price">£12.00</span>
+            </div>
+            <div class="item-details">Salt & Chilli, Curry Sauce</div>
+          </div>
+        </div>
+      </div>
+
+      <!------------SMOKE HOUSE------------>
+      <div id="smokehouse" class="menu-section">
+        <!--FROM THE SMOKE HOUSE-->
+        <div class="section-grid">
+          <div class="section-header-row">
+            <div class="section-header">FROM THE SMOKEHOUSE</div>
+            <div class="section-header-subtitle">
+              ALL SERVED WITH red SLAW, CORN RIBS, CHOICE OF FRIES or TOTS,
+              CHOICE OF SAUCE
+            </div>
+          </div>
+
+          <!--PORK BELLY BURNT ENDS-->
+          <div class="menu-item">
+            <div class="item-row">
+              <span>
+                PORK BELLY BURNT ENDS
+                <span class="dietary">[GF]</span>
+              </span>
+              <span class="price">£19.00</span>
+            </div>
+          </div>
+
+          <!--SLOW SMOKED BEEF BRISKET-->
+          <div class="menu-item">
+            <div class="item-row">
+              <span>
+                SLOW SMOKED BEEF BRISKET
+                <span class="dietary">[GF]</span>
+              </span>
+              <span class="price">£19.00</span>
+            </div>
+          </div>
+
+          <!--JD PULLED PORK-->
+          <div class="menu-item">
+            <div class="item-row">
+              <span>
+                JD PULLED PORK
+                <span class="dietary">[GF]</span>
+              </span>
+              <span class="price">£17.00</span>
+            </div>
+          </div>
+
+          <!--TEXAS HOT LINK SAUSAGE-->
+          <div class="menu-item">
+            <div class="item-row">
+              <span> TEXAS HOT LINK SAUSAGE </span>
+              <span class="price">£17.00</span>
+            </div>
+          </div>
+
+          <!--LOUISIANNA SMOKED CHICKEN THIGHS-->
+          <div class="menu-item">
+            <div class="item-row">
+              <span>
+                LOUISIANA SMOKED CHICKEN THIGHS
+                <span class="dietary">[GF]</span>
+              </span>
+              <span class="price">£19.00</span>
+            </div>
+          </div>
+
+          <!--RACK 'O' JACK RIBS-->
+          <div class="menu-item">
+            <div class="item-row">
+              <span>
+                RACK 'O' JACK RIBS
+                <span class="dietary">[GF]</span>
+              </span>
+              <span class="price">£22.00</span>
+            </div>
+          </div>
+
+          <!--THE BBQ BEAST-->
+          <div class="menu-item menu-item-border">
+            <div class="item-row">
+              <span
+                >THE BBQ BEAST SMOKEHOUSE PLATTER
+                <!--<span class="dietary">[GFA]</span>-->
+              </span>
+              <span class="price">£75.00</span>
+            </div>
+            <div class="item-details">
+              Choice of 4 Meats, 4 Side Pieces, 4 Sauces<br /><b
+                style="color: var(--red)"
+                >FREE REFILL SOFT DRINK</b
+              >
+            </div>
+          </div>
+        </div>
+
+        <!--SALAD-->
+        <div class="section-grid">
+          <div class="section-header-row">
+            <div class="section-header">SALAD</div>
+            <!--<div class="section-header-subtitle"></div>-->
+          </div>
+
+          <!--TEX MEX SALAD-->
+          <div class="menu-item menu-item-border">
+            <div class="item-row">
+              <span
+                >TEX MEX SALAD
+                <!--<span class="dietary"></span>-->
+              </span>
+              <span class="price">£13.00</span>
+            </div>
+            <div class="item-details">
+              JD Pulled Pork or JD Jackfruit<span class="dietary"> [VG] </span
+              ><span style="color: var(--red)"> • </span>Tortilla Chips<span
+                style="color: var(--red)"
+              >
+                • </span
+              >Sweetcorn<span style="color: var(--red)"> • </span>Black
+              Beans<span style="color: var(--red)"> • </span>Apple Slaw<span
+                style="color: var(--red)"
+              >
+                • </span
+              >Jalapeños<span style="color: var(--red)"> • </span>Spring
+              Onion<span style="color: var(--red)"> • </span>Pickled Red
+              Onion<span style="color: var(--red)"> • </span>Choice of
+              Sauce<span class="dietary"> [GF] </span>
+            </div>
+          </div>
+        </div>
+
+        <!--SIDE PIECES-->
+        <div class="section-grid">
+          <div class="section-header-row">
+            <div class="section-header">SIDE PIECES</div>
+            <!--<div class="section-header-subtitle"></div>-->
+          </div>
+
+          <!--MINI MAC-->
+          <div class="menu-item">
+            <div class="item-row">
+              <span>
+                MINI MAC
+                <span class="dietary">[V]</span>
+              </span>
+              <span class="price">£5.00</span>
+            </div>
+          </div>
+
+          <!--PORK BELLY BURNT ENDS-->
+          <div class="menu-item">
+            <div class="item-row">
+              <span>
+                PORK BELLY BURNT ENDS
+                <span class="dietary"></span>
+              </span>
+              <span class="price">£9.50</span>
+            </div>
+          </div>
+
+          <!--Jalapeño & CHEDDAR CORNBREAD-->
+          <div class="menu-item">
+            <div class="item-row">
+              <span>
+                Jalapeño & CHEDDAR CORNBREAD
+                <span class="dietary">[V]</span>
+              </span>
+              <span class="price">£5.00</span>
+            </div>
+          </div>
+
+          <!--CORN ON THE COBB-->
+          <div class="menu-item">
+            <div class="item-row">
+              <span>
+                CORN ON THE COBB
+                <span class="dietary">[GF/V]</span>
+              </span>
+              <span class="price">£5.00</span>
+            </div>
+          </div>
+
+          <!--FRIES-->
+          <div class="menu-item">
+            <div class="item-row">
+              <span>
+                FRIES
+                <span class="dietary">[VG/GF]</span>
+              </span>
+              <span class="price">£4.75</span>
+            </div>
+          </div>
+
+          <!--TATER TOTS-->
+          <div class="menu-item">
+            <div class="item-row">
+              <span>
+                TATER TOTS
+                <span class="dietary">[VG/GF]</span>
+              </span>
+              <span class="price">£4.75</span>
+            </div>
+          </div>
+
+          <!--COWBOY BEANS-->
+          <div class="menu-item">
+            <div class="item-row">
+              <span>
+                COWBOY BEANS
+                <span class="dietary">[VG/GF]</span>
+              </span>
+              <span class="price">£3.00</span>
+            </div>
+          </div>
+
+          <!--RED SLAW-->
+          <div class="menu-item">
+            <div class="item-row">
+              <span>
+                RED SLAW
+                <span class="dietary">[VG]</span>
+              </span>
+              <span class="price">£3.00</span>
+            </div>
+          </div>
+
+          <!--APPLE SLAW-->
+          <div class="menu-item">
+            <div class="item-row">
+              <span>
+                APPLE SLAW
+                <span class="dietary">[VG/GF]</span>
+              </span>
+              <span class="price">£3.00</span>
+            </div>
+          </div>
+        </div>
+
+        <!--SAUCES-->
+        <div class="section-grid">
+          <div class="section-header-row">
+            <div class="section-header">SAUCES</div>
+            <!--<div class="section-header-subtitle"></div>-->
+          </div>
+
+          <!--RANCH DIP-->
+          <div class="menu-item">
+            <div class="item-row">
+              <span>
+                RANCH DIP
+                <span class="dietary">[GF]</span>
+              </span>
+              <span class="price">£1.75</span>
+            </div>
+          </div>
+
+          <!--BBQ SAUCE-->
+          <div class="menu-item">
+            <div class="item-row">
+              <span>
+                BBQ SAUCE
+                <span class="dietary">[GF/VG]</span>
+              </span>
+              <span class="price">£1.75</span>
+            </div>
+          </div>
+
+          <!--COWBOY BUTTER-->
+          <div class="menu-item">
+            <div class="item-row">
+              <span>
+                COWBOY BUTTER
+                <span class="dietary">[GF]</span>
+              </span>
+              <span class="price">£1.75</span>
+            </div>
+          </div>
+
+          <!--NASHVILLE HOT-->
+          <div class="menu-item">
+            <div class="item-row">
+              <span>
+                NASHVILLE HOT
+                <span class="dietary">[GF]</span>
+              </span>
+              <span class="price">£1.75</span>
+            </div>
+          </div>
+
+          <!--BUFFALO-->
+          <div class="menu-item">
+            <div class="item-row">
+              <span>
+                BUFFALO
+                <span class="dietary">[GF]</span>
+              </span>
+              <span class="price">£1.75</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!------------BUNS------------>
+      <div id="buns" class="menu-section">
+        <!--ROCKIN RODEO BUNS-->
+        <div class="section-grid">
+          <div class="section-header-row">
+            <div class="section-header">ROCKIN' RODEO BUNS</div>
+            <div class="section-header-subtitle">
+              Brioche bun, burger sauce & skinny fries or tater tots
+            </div>
+          </div>
+
+          <!--THE WHOLE HOG-->
+          <div class="menu-item">
+            <div class="item-row">
+              <span
+                >THE WHOLE HOG
+                <span class="dietary">[GFA]</span>
+              </span>
+              <span class="price">£15.50</span>
+            </div>
+            <div class="item-details">
+              JD Pulled Pork, Cowboy Butter, Apple Slaw, Jalapeños, Pickled Red
+              Onion, Crispy Onion
+            </div>
+          </div>
+
+          <!--THE DOUBLE BARREL-->
+          <div class="menu-item">
+            <div class="item-row">
+              <span
+                >THE DOUBLE BARREL
+                <span class="dietary">[GFA]</span>
+              </span>
+              <span class="price">£16.50</span>
+            </div>
+            <div class="item-details">
+              Classic Double Cheeseburger, Two Smashed Patties, American Cheese,
+              Pickles, Onions, Maggie's Secret Burger Sauce
+              <br /><b style="color: var(--red)"
+                >ADD SMOKED STREAKY BACON + £2.00</b
+              >
+            </div>
+          </div>
+
+          <!--SLOPPY MAC 'N' MAGGIE-->
+          <div class="menu-item">
+            <div class="item-row">
+              <span
+                >SLOPPY MAC 'N' MAGGIE
+                <!--<span class="dietary">[GFA]</span>-->
+              </span>
+              <span class="price">£15.50</span>
+            </div>
+            <div class="item-details">
+              Smashed Patty, Slow Smoked Beef Brisket, JD Sauce, Mac & Cheese
+            </div>
+          </div>
+
+          <!--NASHVILLE KNOCKOUT-->
+          <div class="menu-item">
+            <div class="item-row">
+              <span>
+                NASHVILLE KNOCKOUT
+                <svg
+                  width="15px"
+                  height="15px"
+                  viewBox="0 0 512 512"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="var(--red)"
+                >
+                  <path
+                    d="M496.269 112.839c-6.893-9.739-12.504-16.361-19.571-26.157-7.064-9.796-1.031-24.98 1.673-35.04 5.294-19.736 6.624-32.821 6.714-33.506.913-9.055-5.69-17.138-14.744-18.052-9.047-.913-17.121 5.664-18.048 14.712-.007.078-.054.535-.172 1.412-.442 3.41-1.862 12.708-5.215 25.479-2.366 9.005-5.23 21.149-13.382 25.337-11.028 2.997-20.845 1.362-31.362 2.233-17.637 1.456-31.643 8.79-37.39 21.434-1.906 4.174-2.754 8.648-2.686 13.285 21.918-3.346 45.428-.014 70.243 10.053 2.44.992 4.802 2.005 7.11 3.054 24.762 11.266 44.116 27.092 57.372 46.598 2.986-2.776 5.377-6.022 7.056-9.718 6.584-14.678 3.259-29.576-6.601-43.51z"
+                  />
+                  <path
+                    d="M425.075 134.735c-91.395-37.729-141.993 35.375-163.626 107.546-18.251 60.883-29.878 75.31-86.43 133.345-32.293 33.135-118.765 77.094-150.89 88.909-35.803 13.157-16.664 48.775 27.58 47.426 60.273-1.841 191.207-2.24 282.4-62.766 57.166-37.937 89.608-55.061 132.043-125.24 28.079-46.434 58.717-148.015-41.477-189.22zM318.846 285.541s-18.394-31.616-6.018-65.507c12.376-33.891 52.353-41.818 52.353-41.818L318.846 285.541z"
+                  />
+                </svg>
+              </span>
+              <span class="price">£15.50</span>
+            </div>
+            <div class="item-details">
+              Nashville Hot Chicken, Hot Oil, Nashville Sauce, Pickles, Slaw
+            </div>
+          </div>
+
+          <!--MAGGIES STACK-->
+          <div class="menu-item">
+            <div class="item-row">
+              <span> MAGGIES STACK </span>
+              <span class="price">£15.50</span>
+            </div>
+            <div class="item-details">
+              Buttermilk Fried Chicken, JD Sauce, Smoked Bacon, Hash Brown,
+              American Cheese, Red Slaw
+            </div>
+          </div>
+
+          <!--NO CLUCKS TO GIVE-->
+          <div class="menu-item">
+            <div class="item-row">
+              <span
+                >NO CLUCKS TO GIVE
+                <span class="dietary">[VG]</span>
+              </span>
+              <span class="price">£16.50</span>
+            </div>
+            <div class="item-details">
+              Cluckless Chicken, JD Sauce, Hash Brown, Vegan Cheese, Vegan Slaw
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!------------DESSERTS------------>
+      <div id="desserts" class="menu-section active">
+        <!--DESSERTS-->
+        <div class="section-grid">
+          <div class="section-header-row">
+            <div class="section-header">DESSERTS</div>
+            <!--<div class="section-header-subtitle"></div>-->
+          </div>
+
+          <div class="menu-item">
+            <div class="item-row">
+              <span
+                >MAGGIE'S STICKY TOFFEE PUDDING
+                <span class="dietary"></span>
+              </span>
+              <span class="price">£9.50</span>
+            </div>
+            <div class="item-details">Smoked Caramel Sauce, Vanilla Ice Cream</div>
+          </div>
+
+          <!-- TUNNOCKS CHEESECAKE
+          <div class="menu-item menu-item-border">
+            <div class="item-row">
+              <span
+                >TUNNOCKS CHEESECAKE
+              </span>
+              <span class="price">£9.50</span>
+            </div>
+            <div class="item-details">Raspberry, Shortbread</div>
+          </div> -->
+
+          <!--COOKIE DOUGH SKILLET-->
+          <div class="menu-item">
+            <div class="item-row">
+              <span
+                >BROWNIE ICE CREAM SUNDAE
+                <span class="dietary">[VG]</span>
+              </span>
+              <span class="price">£7.50</span>
+            </div>
+            <div class="item-details">Brownie Bites, Vanilla Ice Cream, Toffee Sauce, Whipped Cream, Maraschino Cherry</div>
+          </div>
+
+          <!--PEACH COBBLER-->
+          <div class="menu-item">
+            <div class="item-row">
+              <span
+                >KEY LIME PIE
+                <span class="dietary">[V]</span>
+              </span>
+              <span class="price">£9.00</span>
+            </div>
+            <div class="item-details">Chantilly Cream</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      function showSection(sectionId) {
+        document.querySelectorAll(".menu-section").forEach((section) => {
+          section.classList.remove("active");
+        });
+        document.getElementById(sectionId).classList.add("active");
+
+        document.querySelectorAll(".nav-buttons button").forEach((btn) => {
+          btn.classList.remove("active");
+        });
+        const buttons = document.querySelectorAll(".nav-buttons button");
+        buttons.forEach((button) => {
+          if (button.getAttribute("onclick").includes(sectionId)) {
+            button.classList.add("active");
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
