@@ -1,0 +1,650 @@
+
+  /* ============================================================
+   DRINK SIZE / WINE PRICE FILTERS
+   ============================================================ */
+
+  .drink-size-filter {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-left: auto;
+  }
+
+  .drink-size-button {
+    appearance: none;
+    padding: 7px 12px;
+    border: 1px solid var(--gold);
+    border-radius: 100px;
+    background: transparent;
+    color: var(--gold);
+    font: inherit;
+    font-size: var(--font-size-p-sm);
+    font-weight: 800;
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+  }
+
+  .drink-size-button:hover,
+  .drink-size-button[aria-pressed="true"] {
+    background-color: var(--gold);
+    color: var(--cream);
+  }
+
+  .drink-size-button:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 600px) {
+    .title-container {
+      flex-wrap: wrap;
+    }
+
+    .drink-size-filter {
+      width: 100%;
+      justify-content: flex-start;
+      margin-left: 0;
+    }
+  }
+
+  /* ============================================================
+   1. THEME + SHARED BEHAVIOUR
+   ============================================================ */
+
+  :root {
+    --black: #444;
+    --gold: #b37702;
+    --cream: #fcf9f0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Let visible menu content determine the block height. */
+  .menu-panel,
+  .menu-columns {
+    height: auto !important;
+    min-height: 0 !important;
+  }
+
+  /* Keep hidden menu UI out of the layout without affecting the rest of Squarespace. */
+  .menu-navigation [hidden],
+  .menu-panel[hidden],
+  .menu-panel [hidden] {
+    display: none !important;
+  }
+
+  /* ============================================================
+   2. STICKY MENU NAVIGATION
+   ============================================================ */
+
+  .menu-navigation {
+    position: sticky;
+    top: 12px;
+    z-index: 1000;
+    margin-bottom: 24px;
+    padding: 18px 24px;
+    border: 2px solid var(--gold);
+    border-radius: 8px;
+    background-color: var(--cream);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  }
+
+  /* Food / Drinks / Kids tabs */
+  .menu-tabs {
+    display: flex;
+    width: min(100%, 420px);
+    margin: 0 auto;
+    padding: 4px;
+    border: 1px solid var(--gold);
+    border-radius: 100px;
+  }
+
+  .menu-tab {
+    flex: 1;
+    appearance: none;
+    padding: 10px 20px;
+    border: 2px solid transparent;
+    border-radius: 100px;
+    background: transparent;
+    color: var(--black);
+    font: inherit;
+    font-weight: 800;
+    cursor: pointer;
+    transition:
+      border-color 0.2s ease,
+      color 0.2s ease,
+      background-color 0.2s ease;
+  }
+
+  .menu-tab[aria-selected="true"] {
+    border-color: var(--gold);
+    background-color: var(--cream);
+    color: var(--gold);
+  }
+
+  .menu-tab:hover {
+    color: var(--gold);
+  }
+
+  .menu-tab:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  /* Section links beneath the main tabs */
+  .menu-subnav {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px 22px;
+    margin: 20px 0 0;
+    padding: 0 12px;
+  }
+
+  .menu-subnav a {
+    padding-bottom: 3px;
+    border-bottom: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: var(--font-size-p-sm);
+    font-weight: 800;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+
+  .menu-subnav a:hover {
+    border-color: var(--black);
+    color: var(--black);
+  }
+
+  /* Stop anchor targets from landing underneath the sticky navigation. */
+  .section-container {
+    scroll-margin-top: 245px;
+  }
+
+  /* ============================================================
+   3. DIETARY FILTER CONTROLS + FILTER STATES
+   ============================================================ */
+
+  .dietary-filter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px 14px;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--gold);
+  }
+
+  .dietary-filter-label {
+    color: var(--black);
+    font-size: var(--font-size-p-sm);
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .dietary-filter-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .dietary-filter-button {
+    appearance: none;
+    padding: 7px 12px;
+    border: 1px solid var(--gold);
+    border-radius: 100px;
+    background: transparent;
+    color: var(--gold);
+    font: inherit;
+    font-size: var(--font-size-p-sm);
+    font-weight: 800;
+    cursor: pointer;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+  }
+
+  .dietary-filter-button:hover,
+  .dietary-filter-button[aria-pressed="true"] {
+    background-color: var(--gold);
+    color: var(--cream);
+  }
+
+  .dietary-filter-button:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  .filter-empty-state {
+    margin: 24px 0;
+    padding: 20px;
+    border: 2px dashed var(--gold);
+    border-radius: 8px;
+    color: var(--gold);
+    font-weight: 700;
+    text-align: center;
+  }
+
+  /* ============================================================
+   4. MENU LAYOUT + SECTION CONTAINERS
+   ============================================================ */
+
+  .menu-columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 24px;
+  }
+
+  .menu-columns .section-container.full-width,
+  .full-width-box {
+    grid-column: 1 / -1;
+  }
+
+  .section-container {
+    margin-top: 24px;
+    padding: 24px;
+    border: 2px solid var(--gold);
+    border-radius: 8px;
+  }
+
+  .box-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32px;
+    width: 100%;
+  }
+
+  .box {
+    min-width: 0;
+  }
+
+  /* ============================================================
+   5. MENU HEADINGS + ITEM TYPOGRAPHY
+   ============================================================ */
+
+  .header-container {
+    margin-bottom: 32px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--black);
+    text-align: center;
+  }
+
+  .header-container h2 {
+    margin: 0;
+  }
+
+  .title-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    margin-bottom: 32px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--gold);
+  }
+
+  .title {
+    margin: 0;
+    color: var(--gold);
+    font-size: var(--font-size-p-xlg);
+    font-weight: 800;
+    text-align: left;
+    text-transform: uppercase;
+  }
+
+  .title-add-on {
+    margin-left: auto;
+    text-align: right;
+  }
+
+  .title-add-on p {
+    margin: 0;
+  }
+
+  .menu-heading {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: start;
+    gap: 16px;
+    width: 100%;
+  }
+
+  .menu-title {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+    min-width: 0;
+  }
+
+  .dish-name {
+    font-size: var(--font-size-p-lg);
+    font-weight: 700;
+    text-transform: capitalize;
+  }
+
+  .price {
+    white-space: nowrap;
+    text-align: right;
+    font-size: var(--font-size-p-lg);
+    font-weight: 700;
+  }
+
+  .description {
+    margin-top: 8px;
+    font-size: var(--font-size-p-md);
+    font-weight: 400;
+    text-transform: capitalize;
+  }
+
+  .add-on {
+    color: var(--gold);
+    font-size: var(--font-size-p-sm);
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+
+  /* ============================================================
+   6. DIETARY BADGES
+   ============================================================ */
+
+  .dietary-tags {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  .veggie,
+  .vegan,
+  .gluten {
+    padding: 3px 8px;
+    border-radius: 100px;
+    background-color: var(--gold);
+    color: var(--cream);
+    font-size: var(--font-size-p-xsm);
+    font-weight: 800;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  /* Light badges are used on gold/dark backgrounds in topping panels. */
+  .veggie-light,
+  .vegan-light,
+  .gluten-light {
+    padding: 3px 8px;
+    border-radius: 100px;
+    background-color: var(--cream);
+    color: var(--gold);
+    font-size: var(--font-size-p-xsm);
+    font-weight: 800;
+    line-height: 1;
+    text-transform: uppercase;
+  }
+
+  /* ============================================================
+   7. OPTIONAL TOPPINGS + FEATURED PIE
+   ============================================================ */
+
+  .mac-pie {
+    padding: 12px;
+    border: 2px dashed var(--gold);
+  }
+
+  .toppings {
+    grid-column: 1 / -1;
+    padding: 20px;
+    border: 2px dashed var(--gold);
+    border-radius: 8px;
+  }
+
+  .choice-heading {
+    margin: 0 0 10px;
+    font-size: var(--font-size-p-lg);
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  .choice-price {
+    font-weight: 700;
+  }
+
+  .topping-list,
+  .burger-toppings {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .topping-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 16px;
+    text-align: left;
+    font-size: var(--font-size-p-md);
+  }
+
+  .topping-list li {
+    line-height: 1.6;
+  }
+
+  .burger-toppings {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 24px;
+  }
+
+  .burger-toppings li {
+    display: flex;
+    justify-content: space-between;
+    line-height: 1.6;
+  }
+
+  /* ============================================================
+   8. MACARONI FEATURE PANEL
+   ============================================================ */
+
+  .mac-feature {
+    overflow: hidden;
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+  }
+
+  .mac-top-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .mac-main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 24px;
+    border-right: 1px solid var(--gold);
+  }
+
+  .vegan-note {
+    margin-top: 12px;
+    color: var(--gold);
+    font-weight: 700;
+    text-align: center;
+  }
+
+  .mac-choices {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mac-toppings-banner,
+  .mac-crumb {
+    flex: 1;
+    padding: 20px 24px;
+    text-align: center;
+  }
+
+  .mac-toppings-banner {
+    background-color: var(--gold);
+    color: var(--cream);
+  }
+
+  .mac-sharer {
+    padding: 24px;
+    border-top: 1px solid var(--gold);
+  }
+
+  .gold-text {
+    color: var(--gold);
+  }
+
+  .bold {
+    font-weight: 700;
+  }
+
+  .dotted-divider {
+    margin: 16px 0;
+    border: 0;
+    border-top: 3px dotted var(--gold);
+  }
+
+  /* ============================================================
+   9. RESPONSIVE OVERRIDES
+   ============================================================ */
+
+ .menu-heading {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) max-content;
+  align-items: start;
+  gap: 12px;
+  width: 100%;
+}
+
+.price {
+  white-space: nowrap;
+  text-align: right;
+  font-size: var(--font-size-p-lg);
+  font-weight: 700;
+  padding-left: 4px;
+}
+
+  /* Tablet */
+  @media (max-width: 900px) {
+    .menu-columns {
+      grid-template-columns: 1fr;
+    }
+
+    .box-grid,
+    .topping-list {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .mac-top-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .mac-main {
+      border-right: 0;
+      border-bottom: 1px solid var(--gold);
+    }
+  }
+
+  /* Mobile */
+  @media (max-width: 600px) {
+    .menu-navigation {
+      top: 8px;
+      padding: 14px 12px;
+    }
+
+    .menu-tabs {
+      width: 100%;
+    }
+
+    .menu-tab {
+      padding: 9px 10px;
+    }
+
+    .menu-subnav {
+      justify-content: flex-start;
+      flex-wrap: nowrap;
+      gap: 8px 14px;
+      margin-top: 14px;
+      padding: 0 0 6px;
+      overflow-x: auto;
+      scrollbar-width: thin;
+    }
+
+    .menu-subnav a {
+      flex: 0 0 auto;
+    }
+
+    .dietary-filter {
+      justify-content: flex-start;
+      flex-wrap: nowrap;
+      padding-bottom: 4px;
+      overflow-x: auto;
+      scrollbar-width: thin;
+    }
+
+    .dietary-filter-label,
+    .dietary-filter-button {
+      flex: 0 0 auto;
+    }
+
+    .dietary-filter-buttons {
+      justify-content: flex-start;
+      flex-wrap: nowrap;
+    }
+
+    .section-container {
+      scroll-margin-top: 235px;
+    }
+
+    .box-grid,
+    .topping-list,
+    .burger-toppings {
+      grid-template-columns: 1fr;
+    }
+
+    .box-grid {
+      row-gap: 24px;
+    }
+
+    .menu-heading {
+      gap: 12px;
+    }
+
+    .mac-main,
+    .mac-sharer {
+      text-align: center;
+    }
+
+    .mac-main .menu-heading,
+    .mac-sharer .menu-heading {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      text-align: center;
+    }
+
+    .mac-toppings-banner,
+    .mac-crumb {
+      text-align: center;
+    }
+
+    .topping-list {
+      justify-items: center;
+      text-align: center;
+    }
+  }
+
+
+  /* Let the Squarespace code block shrink to the active menu */
+.sqs-block-code,
+.sqs-block-code .sqs-block-content {
+  height: auto !important;
+  min-height: 0 !important;
+}
