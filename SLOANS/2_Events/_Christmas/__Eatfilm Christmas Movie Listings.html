@@ -274,31 +274,38 @@
     >
       <span>View menu</span>
     </a>
+
+
+        <a
+      href="https://www.sloansglasgow.co.uk/eatfilm#faq"
+      class="btn btn-secondary-gold-dark btn-hover-sweep"
+    >
+      <span>Read FAQs</span>
+    </a>
   </div>
 </div>
 <br />
-
 <div class="christmas-film-grid" id="christmas-film-listings"></div>
 
 <script>
   (function () {
     const christmasFilms = [
-      {
-        title: "Frozen",
+      // {
+      //   title: "Frozen",
 
-        poster:
-          "https://images.squarespace-cdn.com/content/59843341cf81e078efb32b0d/0b2b63ed-d634-46a6-877b-97bfe2675e45/Frozen.jpg?content-type=image%2Fjpeg",
+      //   poster:
+      //     "https://images.squarespace-cdn.com/content/59843341cf81e078efb32b0d/0b2b63ed-d634-46a6-877b-97bfe2675e45/Frozen.jpg?content-type=image%2Fjpeg",
 
-        meta: "1h 42m &nbsp;&bull;&nbsp; Family / Musical",
+      //   meta: "1h 42m &nbsp;&bull;&nbsp; Family / Musical",
 
-        description:
-          "Snow Queen Elsa inadvertently uses her power to make her kingdom experience constant wintriness. Her sister Anna teams up with mountaineer Kristoff and his reindeer to demolish the snowy spell.",
+      //   description:
+      //     "Snow Queen Elsa inadvertently uses her power to make her kingdom experience constant wintriness. Her sister Anna teams up with mountaineer Kristoff and his reindeer to demolish the snowy spell.",
 
-        dates: [
-          "2026-11-22",
-          // "2026-12-27"
-        ],
-      },
+      //   dates: [
+      //     "2026-11-22",
+      //     // "2026-12-27"
+      //   ],
+      // },
 
       // {
       //   title: "The Holiday",
@@ -320,23 +327,23 @@
       //   ]
       // },
 
-      {
-        title: "The Grinch",
+      // {
+      //   title: "The Grinch",
 
-        poster:
-          "https://images.squarespace-cdn.com/content/59843341cf81e078efb32b0d/0ddfac3d-18a4-4867-89e4-43c660d1495e/The+Grinch.jpg?content-type=image%2Fjpeg",
+      //   poster:
+      //     "https://images.squarespace-cdn.com/content/59843341cf81e078efb32b0d/0ddfac3d-18a4-4867-89e4-43c660d1495e/The+Grinch.jpg?content-type=image%2Fjpeg",
 
-        meta: "1h 45m &nbsp;&bull;&nbsp; Family / Comedy",
+      //   meta: "1h 45m &nbsp;&bull;&nbsp; Family / Comedy",
 
-        description:
-          "The Grinch resides outside the town of Whoville, whose inhabitants adore Christmas. But he despises them and the festival. Cindy, a resident, befriends the Grinch, hoping to make him love Christmas.",
+      //   description:
+      //     "The Grinch resides outside the town of Whoville, whose inhabitants adore Christmas. But he despises them and the festival. Cindy, a resident, befriends the Grinch, hoping to make him love Christmas.",
 
-        dates: [
-          "2026-11-23",
-          // "2026-12-15",
-          "2026-12-21",
-        ],
-      },
+      //   dates: [
+      //     "2026-11-23",
+      //     // "2026-12-15",
+      //     // "2026-12-21",
+      //   ],
+      // },
 
       {
         title: "Elf",
@@ -353,18 +360,18 @@
           // "2026-11-23",
           // "2026-11-29",
           "2026-11-30",
-          "2026-12-01",
+          // "2026-12-01",
           // /*"2026-12-06",*/
           //   "2026-12-08",
           // "2026-12-09",
           // /*"2026-12-13",*/
           //   "2026-12-14",
-          "2026-12-15",
+          // "2026-12-15",
           // "2026-12-19",
           // /*"2026-12-20",*/
-          "2026-12-21",
-          "2026-12-22",
-          "2026-12-23",
+          // "2026-12-21",
+          // "2026-12-22",
+          // "2026-12-23",
           // "2026-12-24"
         ],
       },
@@ -383,38 +390,38 @@
         dates: ["2026-11-24", "2026-12-30"],
       },
 
-      {
-        title: "The Nightmare Before Christmas",
+      // {
+      //   title: "The Nightmare Before Christmas",
 
-        poster:
-          "https://images.squarespace-cdn.com/content/59843341cf81e078efb32b0d/9ec0d6a4-47d3-4e9f-ba0e-270defb3a484/The+Nightmare+Before+Christmas.jpg?content-type=image%2Fjpeg",
+      //   poster:
+      //     "https://images.squarespace-cdn.com/content/59843341cf81e078efb32b0d/9ec0d6a4-47d3-4e9f-ba0e-270defb3a484/The+Nightmare+Before+Christmas.jpg?content-type=image%2Fjpeg",
 
-        meta: "1h 16m &nbsp;&bull;&nbsp; Family / Fantasy",
+      //   meta: "1h 16m &nbsp;&bull;&nbsp; Family / Fantasy",
 
-        description:
-          "Jack Skellington, a being from Halloween Town, finds Christmas Town and is instantly enchanted. The situation becomes riveting when his obsession with Christmas leads him to abduct Santa Claus.",
+      //   description:
+      //     "Jack Skellington, a being from Halloween Town, finds Christmas Town and is instantly enchanted. The situation becomes riveting when his obsession with Christmas leads him to abduct Santa Claus.",
 
-        dates: ["2026-11-24"],
-      },
+      //   dates: ["2026-11-24"],
+      // },
 
-      {
-        title: "Home Alone",
+      // {
+      //   title: "Home Alone",
 
-        poster:
-          "https://images.squarespace-cdn.com/content/59843341cf81e078efb32b0d/49e8fdf6-b65e-4842-ab59-903a23c410bc/Home+Alone+%281%29.jpg?content-type=image%2Fjpeg",
+      //   poster:
+      //     "https://images.squarespace-cdn.com/content/59843341cf81e078efb32b0d/49e8fdf6-b65e-4842-ab59-903a23c410bc/Home+Alone+%281%29.jpg?content-type=image%2Fjpeg",
 
-        meta: "1h 43m &nbsp;&bull;&nbsp; Family / Comedy",
+      //   meta: "1h 43m &nbsp;&bull;&nbsp; Family / Comedy",
 
-        description:
-          "Eight-year-old Kevin is accidentally left behind when his family leaves for France. At first, he's happy to be in charge; but when thieves try to break into his home, he puts up a fight like no other.",
+      //   description:
+      //     "Eight-year-old Kevin is accidentally left behind when his family leaves for France. At first, he's happy to be in charge; but when thieves try to break into his home, he puts up a fight like no other.",
 
-        dates: [
-          "2026-11-30",
-          /*"2026-12-06",*/
-          /*"2026-12-13",*/
-          /*"2026-12-20"*/
-        ],
-      },
+      //   dates: [
+      //     // "2026-11-30",
+      //     /*"2026-12-06",*/
+      //     /*"2026-12-13",*/
+      //     /*"2026-12-20"*/
+      //   ],
+      // },
 
       //   {
       //     title: "Die Hard",
@@ -448,23 +455,23 @@
       //   ]
       // },
 
-      {
-        title: "Polar Express",
+      // {
+      //   title: "Polar Express",
 
-        poster:
-          "https://images.squarespace-cdn.com/content/59843341cf81e078efb32b0d/81ea7bc4-79f6-4f67-974c-96ed3f3e4b4e/The+Polar+Express.jpg?content-type=image%2Fjpeg",
+      //   poster:
+      //     "https://images.squarespace-cdn.com/content/59843341cf81e078efb32b0d/81ea7bc4-79f6-4f67-974c-96ed3f3e4b4e/The+Polar+Express.jpg?content-type=image%2Fjpeg",
 
-        meta: "1h 39m &nbsp;&bull;&nbsp; Family / Adventure",
+      //   meta: "1h 39m &nbsp;&bull;&nbsp; Family / Adventure",
 
-        description:
-          "A young boy boards a train and embarks on an extraordinary journey to the North Pole to meet Santa Claus. His life takes a turn after he encounters special people that make his journey memorable.",
+      //   description:
+      //     "A young boy boards a train and embarks on an extraordinary journey to the North Pole to meet Santa Claus. His life takes a turn after he encounters special people that make his journey memorable.",
 
-        dates: [
-          "2026-12-05",
-          // "2026-12-20",
-          // "2026-12-28"
-        ],
-      },
+      //   dates: [
+      //     "2026-12-05",
+      //     // "2026-12-20",
+      //     // "2026-12-28"
+      //   ],
+      // },
 
       {
         title: "Friendsmas",
@@ -513,30 +520,30 @@
           "By helping Santa Claus with a Christmas crisis, Scott unknowingly agrees to become the next Santa Claus. Now, he has to deal with a suspicious former wife while trying to keep his secret safe.",
 
         dates: [
-          "2026-12-07",
+          // "2026-12-07",
           "2026-12-22",
           // "2026-12-23"
         ],
       },
 
-      {
-        title: "Love Actually",
+      // {
+      //   title: "Love Actually",
 
-        poster:
-          "https://images.squarespace-cdn.com/content/59843341cf81e078efb32b0d/a0cdab68-37c0-4248-b041-ffe22a6a1938/Love+Actually.jpg?content-type=image%2Fjpeg",
+      //   poster:
+      //     "https://images.squarespace-cdn.com/content/59843341cf81e078efb32b0d/a0cdab68-37c0-4248-b041-ffe22a6a1938/Love+Actually.jpg?content-type=image%2Fjpeg",
 
-        meta: "2h 10m &nbsp;&bull;&nbsp; Comedy / Romance",
+      //   meta: "2h 10m &nbsp;&bull;&nbsp; Comedy / Romance",
 
-        description:
-          "The film narrates the story of eight couples, of mix-bag ages and walks of life, who encounter love in their own special ways; all this in the beautiful days leading up to Christmas in London.",
+      //   description:
+      //     "The film narrates the story of eight couples, of mix-bag ages and walks of life, who encounter love in their own special ways; all this in the beautiful days leading up to Christmas in London.",
 
-        dates: [
-          // "2026-12-07",
-          // /*"2026-12-13",*/
-          // "2026-12-22"
-          "2026-11-29",
-        ],
-      },
+      //   dates: [
+      //     // "2026-12-07",
+      //     // /*"2026-12-13",*/
+      //     // "2026-12-22"
+      //     "2026-11-29",
+      //   ],
+      // },
 
       // {
       //   title: "Home Alone 2",
@@ -556,22 +563,22 @@
       //   ]
       // },
 
-      {
-        title: "Miracle on 34th Street",
+      // {
+      //   title: "Miracle on 34th Street",
 
-        poster:
-          "https://images.squarespace-cdn.com/content/59843341cf81e078efb32b0d/fec3eafc-2ffd-4938-9a8c-1f7115aa93a1/Miracle+on+34th+Street.jpg?content-type=image%2Fjpeg",
+      //   poster:
+      //     "https://images.squarespace-cdn.com/content/59843341cf81e078efb32b0d/fec3eafc-2ffd-4938-9a8c-1f7115aa93a1/Miracle+on+34th+Street.jpg?content-type=image%2Fjpeg",
 
-        meta: "1h 54m &nbsp;&bull;&nbsp; Family / Comedy",
+      //   meta: "1h 54m &nbsp;&bull;&nbsp; Family / Comedy",
 
-        description:
-          "Susan, a child, and her mother, along with the help of a lawyer, must defend a man, Kris Kringle, from being institutionalised. In order to do so, they must prove that he is the real Santa Claus.",
+      //   description:
+      //     "Susan, a child, and her mother, along with the help of a lawyer, must defend a man, Kris Kringle, from being institutionalised. In order to do so, they must prove that he is the real Santa Claus.",
 
-        dates: [
-          "2026-12-14",
-          // "2026-12-22"
-        ],
-      },
+      //   dates: [
+      //     // "2026-12-14",
+      //     // "2026-12-22"
+      //   ],
+      // },
 
       {
         title: "Dirty Dancing",
